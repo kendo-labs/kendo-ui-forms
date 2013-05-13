@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<!--
+Copyright 2013 The Toolkitchen Authors. All rights reserved.
+Use of this source code is governed by a BSD-style
+license that can be found in the LICENSE file.
+-->
+<html>
+  <head>
+    <title>Kendo UI Forms Test Runner (Mocha)</title>
+    <meta charset="UTF-8">
+    <!-- -->
+    <link rel="stylesheet" href="../node_modules/mocha/mocha.css" />
+    <link rel="stylesheet" href="../lib/css/kendo.common.min.css" />
+    <link rel="stylesheet" href="../lib/css/kendo.default.min.css" />
+    <script src="../node_modules/mocha/mocha.js"></script>
+    <script src="../node_modules/chai/chai.js"></script>
+    <!-- -->
+    <script src="../lib/js/jquery.min.js"></script>
+    <script src="../lib/js/kendo.web.min.js"></script>
+    <script src="../src/kendo.forms.js"></script>
+  </head>
+  <body>
+    <div id="mocha"></div>
+    <script>
+      mocha.setup({ui: 'tdd', slow: 1000});
+    </script>
+    <!-- -->
+    
+    <!-- -->
+    <script>
+      mocha.run();
+    </script>
+  </body>
+</html>

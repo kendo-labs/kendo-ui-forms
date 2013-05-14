@@ -12,8 +12,8 @@ license that can be found in the LICENSE file.
     <link rel="stylesheet" href="../node_modules/mocha/mocha.css" />
     <link rel="stylesheet" href="../lib/css/kendo.common.min.css" />
     <link rel="stylesheet" href="../lib/css/kendo.default.min.css" />
-    <script src="../node_modules/mocha/mocha.js"></script>
     <script src="../node_modules/chai/chai.js"></script>
+    <script src="../node_modules/mocha/mocha.js"></script>
     <!-- -->
     <script src="../lib/js/jquery.min.js"></script>
     <script src="../lib/js/kendo.web.min.js"></script>
@@ -22,8 +22,9 @@ license that can be found in the LICENSE file.
   <body>
     <div id="mocha"></div>
     <script>
-      mocha.setup({ui: 'tdd', slow: 1000});
+      mocha.setup({ui: 'bdd', slow: 1000});
     </script>
+    <script src="js/forms.js"></script>
     <!-- -->
     
     <!-- -->

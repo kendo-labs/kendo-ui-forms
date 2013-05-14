@@ -11,17 +11,11 @@ basePath = '../';
 
 // list of files / patterns to load in the browser
 files = [
-  'tools/test/mocha-htmltest.js',
   'conf/mocha.conf.js',
   'node_modules/chai/chai.js',
-  'toolkit.js',
-  'test/js/*.js',
-  {pattern: 'tools/**/*.js', included: false},
-  {pattern: 'platform/**/*', included: false},
-  {pattern: 'src/*.js', included: false},
-  {pattern: 'test/**/*.html', included: false},
-  {pattern: 'test/**/*.css', included: false},
-  {pattern: 'test/**/*.js', included: false}
+  'lib/js/*.js',
+  'src/kendo.forms.js',
+  'test/js/*.js'
 ];
 
 // list of files to exclude

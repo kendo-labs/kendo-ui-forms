@@ -1,0 +1,158 @@
+<!doctype html>
+<html>
+<head>
+	<title>Kendo UI Forms Widget Sample</title>
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/bootstrap/bootstrap.css">
+	<link rel="stylesheet" href="../lib/css/kendo.common.min.css">
+	<link rel="stylesheet" href="../lib/css/kendo.default.min.css">
+</head>
+<body>
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container-fluid">
+				<button type="button" data-toggle="collapse" data-target=".nav-collapse" class="btn btn-navbar">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a href="#" class="brand">Kendo UI Forms Widget Sample</a>
+
+				<div class="nav-collapse collapse">
+					<ul class="nav">
+						<li class="active"><a href="#">Home</a></li>
+						<li><a href="http://www.github.com/kendo-labs/kendo-ui-forms" target="blank">GitHub Repo</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span3">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">Sidebar</li>
+              <li class="active"><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li class="nav-header">Sidebar</li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li class="nav-header">Sidebar</li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+            </ul>
+          </div><!--/.well -->
+        </div><!--/span-->
+        <div class="span5">
+          <div >
+          	<h1>Magic Form</h1>
+          </div>
+          <div>
+          	<form action="#">
+          		<fieldset>
+          			<legend>Essentials</legend>
+          			<div>
+	          			<label for="name">Name</label>
+	          			<input type="text" required placeholder="ex. Hugo Reyes" />
+								</div>
+								<div>
+			      			<label for="email">Email</label>
+			      			<input type="email" required placeholder="ex. hugo@dharma.com" />
+								</div>
+								<div>
+									<label for="phone">Phone</label>
+									<input type="tel" placeholder="ex. 555-555-5555" 
+													pattern="^[2-9]\d{2}-\d{3}-\d{4}$" 
+													title="Use a XXX-XXX-XXXX format" />
+								</div>					
+          		</fieldset>
+          		<fieldset>
+          			<legend>Dates and Times</legend>
+          			<div>
+									<label for="birthday">Birthday</label>
+          				<input type="date" />
+								</div>
+								<div>
+									<label for="doctor">Next Doctor's Appointment</label>
+          				<input type="datetime-local" />
+								</div>
+								<div>
+									<label for="favMonth">What month is it?</label>
+          				<input type="month" />
+								</div>
+								<div>
+									<label for="favMonth">When is Shark Week?</label>
+          				<input type="week" />
+								</div>
+								<div>
+									<label for="favMonth">What time is Beer O'Clock?</label>
+          				<input type="time" />
+								</div>
+          		</fieldset>
+          		<fieldset>
+          			<legend>Other Stuff</legend>
+          			<div>
+          				<label for="age">Age</label>
+          				<input type="number" min=13 max=128 required placeholder="13 - 128" />
+          			</div>
+								<div>
+          				<label for="color">Favorite Color</label>
+          				<input type="color" value="#fd49eb" />
+          			</div>
+								<div>
+									<label for="GPA">College GPA</label>
+          				<input type="range" min=0.0 max=4.0 value=3.0 step=0.25 /><span id="rangeValue"></span>
+								</div>	
+								<div>
+									<label for="browser">Favorite Browser</label>
+          				<input type="text" list="browsers" />
+									<datalist id="browsers">
+									  <option value="Chrome">
+									  <option value="Firefox">
+									  <option value="Internet Explorer">
+									  <option value="Opera">
+									  <option value="Safari">
+									</datalist>
+								</div>
+								<div>
+									<label for="picture">Recent Photo</label>
+          				<input type="file" />
+								</div>					
+          		</fieldset>
+          		<hr />
+          		<div>
+          			<div>
+          				Progress
+          				<progress id="completionPct" min=1 max=12 value=3></progress> 
+          			</div>
+          			<br />
+          			<input type="submit" value="Submit this mess!" />
+								<input type="submit" formnovalidate value="Save for later" />
+							</div>
+          	</form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+	<hr>
+	
+	<footer>
+		<p>&copy; Kendo UI 2013</p>
+	</footer>
+
+	<script src="../lib/js/jquery.min.js"></script>
+	<script src="js/bootstrap/bootstrap.min.js"></script>
+	<script src="../lib/js/kendo.web.min.js"></script>
+</body>
+</html>

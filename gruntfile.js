@@ -24,13 +24,23 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+    concat: {
+      options: {
+        separator: ';'
+      },
+      dist: {
+        src: ['src/**/*.js'],
+        dest: 'dist/kendo.forms.js'
+      }
+    },
     uglify: {
       options: {
         banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
       },
-      build: {
-        src: 'src/kendo.forms.js',
-        dest: 'build/kendo.forms.min.js'
+      dist: {
+        files: {
+          'dist/kendo.forms.min.js': ['<%= concat.dist.dest %>']
+        }
       }
     },
     karma: {
@@ -49,16 +59,39 @@ module.exports = function(grunt) {
       toolkit: {
         browsers: browsers
       }
+    },
+    jshint: {
+      files: ['gruntfile.js', 'src/**/*.js', 'test/**/*.js'],
+      options: {
+        globals: {
+          jQuery: true,
+          console: true,
+          module: true,
+          document: true
+        }
+      }
+    },
+    watch: {
+      scripts: {
+        files: ['<%= jshint.files %>'],
+        tasks: ['minify', 'test'],
+        options: {
+          nospawn: true
+        }
+      }
     }
   });
 
   // Load the plugin that provides the "uglify" task.
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-karma-0.9.1');
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-concat');
 
   // Default task(s).
-  grunt.registerTask('default', ['uglify']);
-	grunt.registerTask('minify', ['uglify']);
-	grunt.registerTask('test', ['karma:toolkit']);
+  grunt.registerTask('default', ['jshint', 'concat', 'uglify']);
+	grunt.registerTask('minify', ['concat', 'uglify']);
+	grunt.registerTask('test', ['jshint', 'karma:toolkit']);
 	grunt.registerTask('test-buildbot', ['karma:buildbot']);
 };

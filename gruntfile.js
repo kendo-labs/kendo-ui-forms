@@ -11,7 +11,6 @@ module.exports = function(grunt) {
     } catch (e) {
       var os = require('os');
       browsers = ['Chrome', 'Firefox'];
-      //browsers = ['Chrome'];
       if (os.type() === 'Darwin') {
         browsers.push('ChromeCanary');
       }
@@ -51,17 +50,12 @@ module.exports = function(grunt) {
       browserstack: {
         browsers: ["BrowserStack:IE:Win"]
       },
-      buildbot: {
-        browsers: browsers,
-        reporters: ['crbot'],
-        logLevel: 'OFF'
-      },
-      toolkit: {
+      forms: {
         browsers: browsers
       }
     },
     jshint: {
-      files: ['gruntfile.js', 'src/**/*.js', 'test/**/*.js'],
+      files: ['gruntfile.js', 'src/**/*.js', 'test/js/*.js'],
       options: {
         globals: {
           jQuery: true,
@@ -92,6 +86,5 @@ module.exports = function(grunt) {
   // Default task(s).
   grunt.registerTask('default', ['jshint', 'concat', 'uglify']);
 	grunt.registerTask('minify', ['concat', 'uglify']);
-	grunt.registerTask('test', ['jshint', 'karma:toolkit']);
-	grunt.registerTask('test-buildbot', ['karma:buildbot']);
+	grunt.registerTask('test', ['jshint', 'karma:forms']);
 };

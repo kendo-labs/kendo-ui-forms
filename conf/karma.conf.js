@@ -11,17 +11,19 @@ basePath = '../';
 
 // list of files / patterns to load in the browser
 files = [
-  'conf/mocha.conf.js',
-  'node_modules/chai/chai.js',
   'lib/js/*.js',
-  'src/kendo.forms.js',
-  'test/js/*.js'
+  'dist/kendo.forms.min.js',
+  {pattern: 'lib/js/jquery.min.js', watched: false, served: true, included: true},
+  {pattern: 'spec/lib/jasmine-jquery.js', watched: false, served: true, included: true},
+  {pattern: 'src/*.js', watched: true, served: true, included: false},
+  {pattern: 'spec/**/*.html', included: false},
+  'spec/js/*.js',
 ];
 
 // list of files to exclude
 exclude = [];
 
-frameworks = ['mocha'];
+frameworks = ['jasmine'];
 
 // use dots reporter, as travis terminal does not support escaping sequences
 // possible values: 'dots', 'progress', 'junit', 'teamcity'
@@ -77,7 +79,7 @@ preprocessors = {
 };
 
 plugins = [
-  'karma-mocha',
+  'karma-jasmine',
   'karma-chrome-launcher',
   'karma-firefox-launcher',
   'karma-script-launcher',

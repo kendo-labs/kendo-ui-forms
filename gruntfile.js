@@ -13,6 +13,7 @@ module.exports = function(grunt) {
       browsers = ['Chrome', 'Firefox'];
       if (os.type() === 'Darwin') {
         browsers.push('ChromeCanary');
+        browsers.push('Safari');
       }
       if (os.type() === 'Windows_NT') {
         browsers.push('IE');

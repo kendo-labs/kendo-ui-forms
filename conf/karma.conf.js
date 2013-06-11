@@ -82,6 +82,7 @@ plugins = [
   'karma-jasmine',
   'karma-chrome-launcher',
   'karma-firefox-launcher',
+  'karma-safari-launcher',
   'karma-script-launcher',
   'karma-crbot-reporter'
 ]

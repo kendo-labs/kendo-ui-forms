@@ -14,6 +14,7 @@
     "grunt-contrib-jshint": "~0.6.0",
     "grunt-contrib-concat": "~0.3.0",
     "karma-jasmine": "0.0.1",
-    "karma-safari-launcher": "0.0.2"
+    "karma-safari-launcher": "0.0.2",
+    "karma-opera-launcher": "https://github.com/karma-runner/karma-opera-launcher/archive/master.tar.gz"
   }
 }

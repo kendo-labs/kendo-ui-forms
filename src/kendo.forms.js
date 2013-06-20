@@ -5,10 +5,17 @@
 
 	Form = Widget.extend({
 		init: function(element, options) {
-			$(element).find('input').each(function(index, val) {
+			var form = $(element);
+
+			form.find('input').each(function(index, val) {
 				// Add the k-input class to each form element, which provides Kendo UI styling
 				// to all elements, not just those the widget will transform.
 				$(val).addClass('k-input');
+			});
+
+			//Add a ColorPicker for type='color'
+			form.find('input[type=color]').each(function(index, val) {
+				$(val).kendoColorPicker({ palette: "basic" });
 			});
 
 			// base call to initialize the widget

@@ -27,12 +27,19 @@ describe('Kendo Forms Widget Test Suite', function() {
 			});
 		});
 		
-		describe('Input Transformation', function() {
+		describe('Input transformation', function() {
 			it('should add the k-input class to all inputs inside of the form', function() {
 				fixtures.load('form-init.html');
 			
-				var form = $('#imperative-form').kendoForm().data('kendoForm');
+				$('#imperative-form').kendoForm();
 				expect($('#imperative-form').find('input').hasClass('k-input')).toBe(true);
+			});
+
+			it('should create a kendoColorPicker from the color input type', function() {
+				fixtures.load('form-init.html');
+
+				$('#imperative-form').kendoForm();
+				expect(typeof $('input[type=color]').data('kendoColorPicker')).toEqual("object");
 			});
 		});
 

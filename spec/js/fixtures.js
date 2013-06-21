@@ -56,21 +56,21 @@ describe('Kendo Forms Widget Test Suite', function() {
 					fixtures.load('form-init.html');
 
 					$('#imperative-form').kendoForm();
-					expect(typeof $('input[type=color]').data('kendoColorPicker')).toEqual("object");
+					expect(typeof $('#color').data('kendoColorPicker')).toEqual("object");
 				});
 			} else {
 				it('should NOT create a kendoColorPicker if the color type is already supported by the browser', function() {
 					fixtures.load('form-init.html');
 
 					$('#imperative-form').kendoForm();
-					expect(typeof $('input[type=color]').data('kendoColorPicker')).toEqual('undefined');
+					expect(typeof $('#color').data('kendoColorPicker')).toEqual('undefined');
 				});
 
 				it('should create a colorpicker on ALL browsers if the alwaysUseWidgets option is passed-in', function() {
 					fixtures.load('form-init.html');
 
 					$('#imperative-form').kendoForm({ alwaysUseWidgets: true });
-					expect(typeof $('input[type=color]').data('kendoColorPicker')).toEqual("object");
+					expect(typeof $('#color').data('kendoColorPicker')).toEqual("object");
 				});
 			}			
 		});
@@ -81,23 +81,39 @@ describe('Kendo Forms Widget Test Suite', function() {
 					fixtures.load('form-init.html');
 
 					$('#imperative-form').kendoForm();
-					expect(typeof $('input[type=number]').data('kendoNumericTextBox')).toEqual("object");
+					expect(typeof $('#numeric').data('kendoNumericTextBox')).toEqual("object");
 				});
 			} else {
 				it('should NOT create a kendoNumericTextBox if the number type is already supported by the browser', function() {
 					fixtures.load('form-init.html');
 
 					$('#imperative-form').kendoForm();
-					expect(typeof $('input[type=number]').data('kendoNumericTextBox')).toEqual('undefined');
+					expect(typeof $('#numeric').data('kendoNumericTextBox')).toEqual('undefined');
 				});
 
 				it('should create a colorpicker on ALL browsers if the alwaysUseWidgets option is passed-in', function() {
 					fixtures.load('form-init.html');
 
 					$('#imperative-form').kendoForm({ alwaysUseWidgets: true });
-					expect(typeof $('input[type=number]').data('kendoNumericTextBox')).toEqual("object");
+					expect(typeof $('#numeric').data('kendoNumericTextBox')).toEqual("object");
 				});
 			}
+
+			it('should expose number type attributes as values in the kendoNumericTextBox widget', function() {
+				fixtures.load('form-init.html');
+
+				$('#imperative-form').kendoForm({ alwaysUseWidgets: true });
+
+				var numericInput = $('#numeric');
+				var ntbObject = numericInput.data('kendoNumericTextBox');
+
+				// Test each value we set via attribute and make sure the value was 
+				// preserved in the NumericTextBox
+				expect(ntbObject.value().toString()).toEqual(numericInput.val());
+				expect(ntbObject.min().toString()).toEqual(numericInput.attr('min'));
+				expect(ntbObject.max().toString()).toEqual(numericInput.attr('max'));
+				expect(ntbObject.step().toString()).toEqual(numericInput.attr('step'));
+			});
 		});
 		
 		fixtures.cleanUp();

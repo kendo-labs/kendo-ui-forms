@@ -35,12 +35,21 @@ describe('Kendo Forms Widget Test Suite', function() {
 				expect($('#imperative-form').find('input').hasClass('k-input')).toBe(true);
 			});
 
-			it('should create a kendoColorPicker from the color input type', function() {
-				fixtures.load('form-init.html');
+			if (!kendo.forms.features.color) {
+				it('should create a kendoColorPicker from the color input type', function() {
+					fixtures.load('form-init.html');
 
-				$('#imperative-form').kendoForm();
-				expect(typeof $('input[type=color]').data('kendoColorPicker')).toEqual("object");
-			});
+					$('#imperative-form').kendoForm();
+					expect(typeof $('input[type=color]').data('kendoColorPicker')).toEqual("object");
+				});
+			} else {
+				it('should NOT create a kendoColorPicker if the color type is already supported by the browser', function() {
+					fixtures.load('form-init.html');
+
+					$('#imperative-form').kendoForm();
+					expect(typeof $('input[type=color]').data('kendoColorPicker')).toEqual('undefined');
+				});
+			}
 		});
 
 		fixtures.cleanUp();

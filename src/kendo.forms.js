@@ -13,11 +13,13 @@
 				$(val).addClass('k-input');
 			});
 
-			//Add a ColorPicker for type='color'
-			form.find('input[type=color]').each(function(index, val) {
-				$(val).kendoColorPicker({ palette: "basic" });
-			});
-
+			if (!kendo.forms.features.color) {
+				//Add a ColorPicker for type='color'
+				form.find('input[type=color]').each(function(index, val) {
+					$(val).kendoColorPicker({ palette: "basic" });
+				});	
+			}
+			
 			// base call to initialize the widget
 			Widget.fn.init.call(this, element, options);
 		},

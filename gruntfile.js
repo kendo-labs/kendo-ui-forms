@@ -86,6 +86,6 @@ module.exports = function(grunt) {
 
   // Default task(s).
   grunt.registerTask('default', ['jshint', 'concat', 'uglify']);
-	grunt.registerTask('minify', ['concat', 'uglify']);
-	grunt.registerTask('test', ['jshint', 'karma:forms']);
+	grunt.registerTask('minify', ['jshint', 'concat', 'uglify']);
+	grunt.registerTask('test', ['minify', 'karma:forms']);
 };

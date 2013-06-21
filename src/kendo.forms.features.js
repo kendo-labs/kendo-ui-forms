@@ -8,7 +8,8 @@
 	}
 
 	var featureDetects = {
-		color: detectFormTypeSupport("color")
+		color: detectFormTypeSupport("color"),
+		number: detectFormTypeSupport("number")
 	};
 
 	kendo.forms.features = featureDetects;

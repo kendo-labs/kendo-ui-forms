@@ -8,7 +8,8 @@
 	}
 
 	var featureDetects = {
-		color: detectFormTypeSupport("color")
+		color: detectFormTypeSupport("color"),
+		number: detectFormTypeSupport("number")
 	};
 
 	kendo.forms.features = featureDetects;
@@ -21,6 +22,28 @@
 		init: function(element, options) {
 			var that = this;
 			var form = $(element);
+			var i, len;
+
+			var typeUpgrades = [
+				{ 
+					type: 'color',
+					upgrade: function(index, val) {
+						$(val).kendoColorPicker({ palette: "basic" });
+					}
+				},
+				{
+					type: 'number',
+					upgrade: function(index, val) {
+						$(val).kendoNumericTextBox();
+					}
+				}
+			];
+
+			var upgradeFormType = function(type, callback) {
+				if (!kendo.forms.features[type] || that.options.alwaysUseWidgets) {
+					form.find('input[type=' + type + ']').each(callback);	
+				}
+			};
 			
 			// base call to widget initialization
 			Widget.fn.init.call(this, element, options);
@@ -33,11 +56,10 @@
 				});
 			}
 
-			if (!kendo.forms.features.color || that.options.alwaysUseWidgets) {
-				//Add a ColorPicker for type='color'
-				form.find('input[type=color]').each(function(index, val) {
-					$(val).kendoColorPicker({ palette: "basic" });
-				});	
+			// Add basic support for form types defined in the typeUpgrades array
+			for (i = 0, len = typeUpgrades.length; i < len; i++) {
+				var typeObj = typeUpgrades[i];
+				upgradeFormType(typeObj.type, typeObj.upgrade);
 			}
 		},
 

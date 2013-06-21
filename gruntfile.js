@@ -13,7 +13,9 @@ module.exports = function(grunt) {
       browsers = ['Chrome', 'Firefox', 'Opera'];
       if (os.type() === 'Darwin') {
         browsers.push('ChromeCanary');
-        browsers.push('Safari');
+        // Karma doesn't shut down Safari automatically, so commenting this out
+        // for my sanity, for now.
+        // browsers.push('Safari');
       }
       if (os.type() === 'Windows_NT') {
         browsers.push('IE');
@@ -56,7 +58,7 @@ module.exports = function(grunt) {
       }
     },
     jshint: {
-      files: ['gruntfile.js', 'src/**/*.js', 'test/js/*.js'],
+      files: ['gruntfile.js', 'src/**/*.js', 'spec/js/*.js'],
       options: {
         globals: {
           jQuery: true,

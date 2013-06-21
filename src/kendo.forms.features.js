@@ -1,4 +1,4 @@
-(function($, kendo) {
+(function (kendo) {
 	kendo.forms = kendo.forms || {};
 
 	function detectFormTypeSupport(type) {
@@ -12,4 +12,4 @@
 	};
 
 	kendo.forms.features = featureDetects;
-} (jQuery, kendo));
+} (kendo));

@@ -35,6 +35,22 @@ describe('Kendo Forms Widget Test Suite', function() {
 				expect($('#imperative-form').find('input').hasClass('k-input')).toBe(true);
 			});
 
+			it('should add the k-input class to inputs inside of the form if the styleInputs option is true', function() {
+				fixtures.load('form-init.html');
+			
+				$('#imperative-form').kendoForm({ styleInputs: true });
+				expect($('#imperative-form').find('input').hasClass('k-input')).toBe(true);
+			});
+
+			it('should NOT add the k-input class to inputs inside of the form if the styleInputs option is false', function() {
+				fixtures.load('form-init.html');
+			
+				$('#imperative-form').kendoForm({ styleInputs: false });
+				expect($('#imperative-form').find('input').hasClass('k-input')).toBe(false);
+			});
+		});
+
+		describe('Color type support', function() {
 			if (!kendo.forms.features.color) {
 				it('should create a kendoColorPicker from the color input type', function() {
 					fixtures.load('form-init.html');
@@ -49,9 +65,16 @@ describe('Kendo Forms Widget Test Suite', function() {
 					$('#imperative-form').kendoForm();
 					expect(typeof $('input[type=color]').data('kendoColorPicker')).toEqual('undefined');
 				});
-			}
-		});
 
+				it('should create a colorpicker on ALL browsers if the alwaysUseWidgets option is passed-in', function() {
+					fixtures.load('form-init.html');
+
+					$('#imperative-form').kendoForm({ alwaysUseWidgets: true });
+					expect(typeof $('input[type=color]').data('kendoColorPicker')).toEqual("object");
+				});
+			}			
+		});
+		
 		fixtures.cleanUp();
 		fixtures.clearCache();
 	});

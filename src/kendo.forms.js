@@ -1,7 +1,8 @@
 (function($, kendo) {
 	var ui = kendo.ui,
 		Widget = ui.Widget,
-		formWidget;
+		formWidget,
+		typeUpgrades = kendo.forms.types;
 
 	Form = Widget.extend({
 		init: function(element, options) {
@@ -9,38 +10,11 @@
 			var form = $(element);
 			var i, len;
 
-			var typeUpgrades = [
-				{ 
-					type: 'color',
-					upgrade: function(index, val) {
-						$(val).kendoColorPicker({ palette: "basic" });
-					}
-				},
-				{
-					type: 'number',
-					upgrade: function(index, val) {
-						$(val).kendoNumericTextBox();
-					}
-				},
-				{
-					type: 'range',
-					upgrade: function(index, val) {
-						$(val).kendoSlider({
-							showButtons: false,
-							tickPlacement: 'none'
-						});
-					}
-				},
-				{
-					type: 'file',
-					upgrade: function(index, val) {
-						$(val).kendoUpload();
-					}
-				}
-			];
-
 			var upgradeFormType = function(type, callback) {
-				if (!kendo.forms.features[type] || that.options.alwaysUseWidgets) {
+				// replace dash with underscore for features object lookup
+				var modType = type.replace(/-/g,'_');
+
+				if (!kendo.forms.features[modType] || that.options.alwaysUseWidgets) {
 					form.find('input[type=' + type + ']').each(callback);	
 				}
 			};

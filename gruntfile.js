@@ -31,7 +31,11 @@ module.exports = function(grunt) {
         separator: ';'
       },
       dist: {
-        src: ['src/**/*.js'],
+        src: [        
+          'src/kendo.forms.types.js', 
+          'src/kendo.forms.features.js', 
+          'src/kendo.forms.js'
+        ],
         dest: 'dist/kendo.forms.js'
       }
     },
@@ -78,7 +82,7 @@ module.exports = function(grunt) {
       }
     },
     jasmine: {
-      src: ['lib/**/*.js', 'src/*.js'],
+      src: ['lib/**/*.js', 'dist/kendo.forms.min.js'],
       options: {
         specs: 'spec/js/*.js',
         vendor: [

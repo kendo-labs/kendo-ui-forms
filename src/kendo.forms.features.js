@@ -3,15 +3,26 @@
 
 	function detectFormTypeSupport(type) {
 		var i = document.createElement("input");
-		i.setAttribute("type", "color");
+		i.setAttribute("type", type);
 		return i.type !== "text";
+	}
+
+	function detectDateTimeFields(type) {
+		var dummyVal = ":(";
+
+		var i = document.createElement("input");
+		i.setAttribute("type", type);
+		i.value = dummyVal; // Credit to Mike Taylor https://gist.github.com/miketaylr/310734
+		return (i.value !== dummyVal);
 	}
 
 	var featureDetects = {
 		color: detectFormTypeSupport("color"),
 		number: detectFormTypeSupport("number"),
 		range: detectFormTypeSupport("range"),
-		file: detectFormTypeSupport("file")
+		file: detectFormTypeSupport("file"),
+		datetime: detectDateTimeFields("datetime"),
+		datetime_local: detectFormTypeSupport("datetime-local")
 	};
 
 	kendo.forms.features = featureDetects;

@@ -1,13 +1,16 @@
 describe('Kendo Forms Widget Test Suite', function() {
   describe('Form initialization tests', function() {
-		var fixtures = jasmine.getFixtures();
+		var fixtures = jasmine.getFixtures(),
+			env = 'headless';
 
 		if (document.location.pathname === "/context.html") {
 			// Karma is running the test, so change the base
 			fixtures.fixturesPath = 'base/spec/javascripts/fixtures';
+			env = 'karma';
 		} else if (document.location.pathname.indexOf("runner.html") > 0) {
 			// We're running jasmine in the browser
 			fixtures.fixturesPath = '../spec/javascripts/fixtures';
+			env = 'browser';
 		}
 				
 		describe('Form Widget initialization', function() {
@@ -32,7 +35,6 @@ describe('Kendo Forms Widget Test Suite', function() {
 			it('should add the k-input class to all inputs inside of the form', function() {
 				fixtures.load('form-init.html');
 			
-				console.log("Form: " + $('#imperative-form'));
 				$('#imperative-form').kendoForm();
 				expect($('#imperative-form').find('#vanillaInput').hasClass('k-input')).toBe(true);
 			});
@@ -163,11 +165,12 @@ describe('Kendo Forms Widget Test Suite', function() {
 
 		describe('File type support', function() {
 			if (!kendo.forms.features.range) {
+				// TODO: Resolve File Picker issue in Firefox
 				it('should create a kendoUpload from the file input type', function() {
 					fixtures.load('form-init.html');
 
 					$('#imperative-form').kendoForm();
-					expect($('#photos').data('role')).toEqual('upload');
+					expect($('input[type=file]').data('role')).toEqual('upload');
 				});
 			} else {
 				it('should NOT create a kendoUpload if the file type is already supported by the browser', function() {
@@ -192,6 +195,96 @@ describe('Kendo Forms Widget Test Suite', function() {
 
 				expect($('#photos').attr('accept')).toEqual('.doc,.docx,.xml');
 			});
+		});
+
+		describe('DateTime and datetime-local type Support', function() {
+			if (!kendo.forms.features.datetime) {
+				it('should create a kendoDateTime from the datetime input type', function() {
+					fixtures.load('form-init.html');
+
+					$('#imperative-form').kendoForm();
+					expect($('#datetime').data('role')).toEqual('datetimepicker');
+				});
+
+				// DateTime Tests appear to be quirky when running under grunt-contrib-jasmine
+				// They run run fine in the browser and via Karma, so don't exclude from those
+				// environments.
+				if (env !== 'headless') {
+					it('should apply the datetime attributes (val, min, max, step) to the widget', function() {
+						fixtures.load('form-init.html');
+
+						$('#imperative-form').kendoForm();
+
+						var datetimeInput = $('#datetime');
+						var datetimeObject = datetimeInput.data('kendoDateTimePicker');
+
+						expect(datetimeObject.value()).not.toBeNull();
+						expect(datetimeObject.value()).toEqual(new Date(datetimeInput.val()));
+						expect(datetimeObject.min()).toEqual(new Date(datetimeInput.attr('min')));
+						expect(datetimeObject.max()).toEqual(new Date(datetimeInput.attr('max')));
+						expect(datetimeObject.options.interval).toEqual(Math.round(parseInt(datetimeInput.attr('step'), 10)/60));
+					});
+
+					it('should apply default values when attribures are null', function() {
+						fixtures.load('form-init.html');
+
+						$('#imperative-form').kendoForm();
+
+						var datetimeInput = $('#datetimeWithNoAttrs');
+						var datetimeObject = datetimeInput.data('kendoDateTimePicker');
+
+						expect(datetimeObject.value()).toBeNull();
+						expect(datetimeObject.min() instanceof Date).toBe(true);
+						expect(datetimeObject.max() instanceof Date).toBe(true);
+						expect(datetimeObject.options.interval).toEqual(30);
+					});
+				}
+			} else {
+				it('should NOT create a kendoUpload if the file type is already supported by the browser', function() {
+					fixtures.load('form-init.html');
+
+					$('#imperative-form').kendoForm();
+					expect($('#datetime').data('role')).not.toBeDefined();
+				});
+
+				it('should create a datetimepicker on ALL browsers if the alwaysUseWidgets option is passed-in', function() {
+					fixtures.load('form-init.html');
+
+					$('#imperative-form').kendoForm({ alwaysUseWidgets: true });
+					expect($('#datetime').data('role')).toEqual('datetimepicker');
+				});
+			}			
+
+			if (!kendo.forms.features.datetime_local) {
+				it('should create a kendoDateTime from the datetime-local input type', function() {
+					fixtures.load('form-init.html');
+
+					$('#imperative-form').kendoForm();
+					expect($('#datetime-local').data('role')).toEqual('datetimepicker');
+				});
+			} else {
+				it('should NOT create a kendoDateTimePicker from datetime-local if the file type is already supported by the browser', function() {
+					fixtures.load('form-init.html');
+
+					$('#imperative-form').kendoForm();
+					expect($('#local').data('role')).not.toBeDefined();
+				});
+			}
+
+			// Get/Set values on datetime-local is currently not supported in Chrome
+			// https://code.google.com/p/chromium/issues/detail?id=162022
+			// https://code.google.com/p/chromium/issues/detail?id=164539
+			/*it('should apply the datetime-local value attrbiute to the widget', function() {
+				fixtures.load('form-init.html');
+
+				$('#imperative-form').kendoForm({ alwaysUseWidgets: true });
+
+				var datetimeInput = $('#datetime-local');
+				var datetimeObject = datetimeInput.data('kendoDateTimePicker');
+
+				expect(datetimeObject.value()).not.toBeNull();
+				expect(datetimeObject.value()).toEqual(new Date(datetimeInput.val()));
+			});*/
 		});
 		
 		fixtures.cleanUp();

@@ -286,6 +286,49 @@ describe('Kendo Forms Widget Test Suite', function() {
 				expect(datetimeObject.value()).toEqual(new Date(datetimeInput.val()));
 			});*/
 		});
+
+		describe('Time type support', function() {
+			if(!kendo.forms.features.time) {
+				it('should create a kendoTimePicker from the time input type', function() {
+					fixtures.load('form-init.html');
+
+					$('#imperative-form').kendoForm();
+					expect($('#time').data('role')).toEqual('timepicker');
+				});
+			} else {
+				it('should NOT create a kendoUpload if the file type is already supported by the browser', function() {
+					fixtures.load('form-init.html');
+
+					$('#imperative-form').kendoForm();
+					expect($('#time').data('role')).not.toBeDefined();
+				});
+
+				it('should create a slider on ALL browsers if the alwaysUseWidgets option is passed-in', function() {
+					fixtures.load('form-init.html');
+
+					$('#imperative-form').kendoForm({ alwaysUseWidgets: true });
+					expect($('#time').data('role')).toEqual('timepicker');
+				});
+			}
+
+			if (env !== 'headless') {
+				it('should apply the datetime attributes (val, min, max, step) to the widget', function() {
+					fixtures.load('form-init.html');
+					var dummyDate = "2013-10-04 ";
+
+					$('#imperative-form').kendoForm({ alwaysUseWidgets: true });
+
+					var timeInput = $('#time');
+					var timeObject = timeInput.data('kendoTimePicker');
+
+					expect(timeObject.value()).not.toBeNull();
+					expect(timeObject.value()).toEqual(new Date(dummyDate + timeInput.val()));
+					expect(timeObject.min()).toEqual(new Date(dummyDate + timeInput.attr('min')));
+					expect(timeObject.max()).toEqual(new Date(dummyDate + timeInput.attr('max')));
+					expect(timeObject.options.interval).toEqual(Math.round(parseInt(timeInput.attr('step'), 10)/60));
+				});
+			}
+		});
 		
 		fixtures.cleanUp();
 		fixtures.clearCache();

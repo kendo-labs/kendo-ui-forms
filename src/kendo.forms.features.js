@@ -22,7 +22,8 @@
 		range: detectFormTypeSupport("range"),
 		file: detectFormTypeSupport("file"),
 		datetime: detectDateTimeFields("datetime"),
-		datetime_local: detectFormTypeSupport("datetime-local")
+		datetime_local: detectFormTypeSupport("datetime-local"),
+		time: detectFormTypeSupport("time")
 	};
 
 	kendo.forms.features = featureDetects;

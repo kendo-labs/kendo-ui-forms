@@ -48,6 +48,21 @@
 		{
 			type: 'datetime-local',
 			upgrade: dateTimeUpgrade
+		},
+		{
+			type: 'time',
+			upgrade: function(index, val) {
+				var input = $(val),
+					dummyDate = "2013-10-04 ";
+
+				$(val).kendoTimePicker({
+					value: input.val().length > 0 ? new Date(dummyDate + input.val()) : null,
+					min: input.attr('min') ? new Date(dummyDate + input.attr('min')) : new Date(2049, 0, 1, 0, 0, 0),
+					max: input.attr('max') ? new Date(dummyDate + input.attr('max')) : new Date(2099, 11, 31, 0, 0, 0),
+					// Step attribute is seconds, interval in minute
+					interval: input.attr('step') ? Math.round(parseInt(input.attr('step'), 10)/60) : 30
+				});
+			}
 		}
 	];
 
@@ -76,7 +91,8 @@
 		range: detectFormTypeSupport("range"),
 		file: detectFormTypeSupport("file"),
 		datetime: detectDateTimeFields("datetime"),
-		datetime_local: detectFormTypeSupport("datetime-local")
+		datetime_local: detectFormTypeSupport("datetime-local"),
+		time: detectFormTypeSupport("time")
 	};
 
 	kendo.forms.features = featureDetects;

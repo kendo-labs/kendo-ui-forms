@@ -1,13 +1,14 @@
 describe('Kendo Forms Widget Test Suite', function() {
   describe('Form initialization tests', function() {
-		var fixtures = jasmine.getFixtures(),
-			base = "../";
-		
+		var fixtures = jasmine.getFixtures();
+
 		if (document.location.pathname === "/context.html") {
 			// Karma is running the test, so change the base
-			base = "base/";
+			fixtures.fixturesPath = 'base/spec/javascripts/fixtures';
+		} else if (document.location.pathname.indexOf("runner.html") > 0) {
+			// We're running jasmine in the browser
+			fixtures.fixturesPath = '../spec/javascripts/fixtures';
 		}
-		fixtures.fixturesPath = base + 'spec/javascripts/fixtures';
 				
 		describe('Form Widget initialization', function() {
 			it('should exist in the kendo.ui namespace', function() {
@@ -31,6 +32,7 @@ describe('Kendo Forms Widget Test Suite', function() {
 			it('should add the k-input class to all inputs inside of the form', function() {
 				fixtures.load('form-init.html');
 			
+				console.log("Form: " + $('#imperative-form'));
 				$('#imperative-form').kendoForm();
 				expect($('#imperative-form').find('#vanillaInput').hasClass('k-input')).toBe(true);
 			});

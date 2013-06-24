@@ -76,6 +76,15 @@ module.exports = function(grunt) {
           nospawn: true
         }
       }
+    },
+    jasmine: {
+      src: ['lib/**/*.js', 'src/*.js'],
+      options: {
+        specs: 'spec/js/*.js',
+        vendor: [
+          'spec/lib/jasmine-jquery.js'
+        ]
+      }
     }
   });
 
@@ -85,9 +94,11 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-karma-0.9.1');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-jasmine');
 
   // Default task(s).
   grunt.registerTask('default', ['jshint', 'concat', 'uglify']);
 	grunt.registerTask('minify', ['jshint', 'concat', 'uglify']);
-	grunt.registerTask('test', ['minify', 'karma:forms']);
+  grunt.registerTask('x-test', ['minify', 'karma:forms']);
+	grunt.registerTask('test', ['jasmine']);
 };

@@ -9,7 +9,8 @@
 
 	var featureDetects = {
 		color: detectFormTypeSupport("color"),
-		number: detectFormTypeSupport("number")
+		number: detectFormTypeSupport("number"),
+		range: detectFormTypeSupport("range")
 	};
 
 	kendo.forms.features = featureDetects;
@@ -35,6 +36,15 @@
 					type: 'number',
 					upgrade: function(index, val) {
 						$(val).kendoNumericTextBox();
+					}
+				},
+				{
+					type: 'range',
+					upgrade: function(index, val) {
+						$(val).kendoSlider({
+							showButtons: false,
+							tickPlacement: 'none'
+						});
 					}
 				}
 			];

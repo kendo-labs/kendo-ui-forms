@@ -58,21 +58,21 @@ describe('Kendo Forms Widget Test Suite', function() {
 					fixtures.load('form-init.html');
 
 					$('#imperative-form').kendoForm();
-					expect(typeof $('#color').data('kendoColorPicker')).toEqual("object");
+					expect($('#color').data('role')).toEqual('colorpicker');
 				});
 			} else {
 				it('should NOT create a kendoColorPicker if the color type is already supported by the browser', function() {
 					fixtures.load('form-init.html');
 
 					$('#imperative-form').kendoForm();
-					expect(typeof $('#color').data('kendoColorPicker')).toEqual('undefined');
+					expect($('#color').data('role')).toEqual(undefined);
 				});
 
 				it('should create a colorpicker on ALL browsers if the alwaysUseWidgets option is passed-in', function() {
 					fixtures.load('form-init.html');
 
 					$('#imperative-form').kendoForm({ alwaysUseWidgets: true });
-					expect(typeof $('#color').data('kendoColorPicker')).toEqual("object");
+					expect($('#color').data('role')).toEqual("colorpicker");
 				});
 			}			
 		});
@@ -83,21 +83,21 @@ describe('Kendo Forms Widget Test Suite', function() {
 					fixtures.load('form-init.html');
 
 					$('#imperative-form').kendoForm();
-					expect(typeof $('#numeric').data('kendoNumericTextBox')).toEqual("object");
+					expect($('#numeric').data('role')).toEqual('numerictextbox');
 				});
 			} else {
 				it('should NOT create a kendoNumericTextBox if the number type is already supported by the browser', function() {
 					fixtures.load('form-init.html');
 
 					$('#imperative-form').kendoForm();
-					expect(typeof $('#numeric').data('kendoNumericTextBox')).toEqual('undefined');
+					expect($('#numeric').data('role')).toEqual(undefined);
 				});
 
 				it('should create a colorpicker on ALL browsers if the alwaysUseWidgets option is passed-in', function() {
 					fixtures.load('form-init.html');
 
 					$('#imperative-form').kendoForm({ alwaysUseWidgets: true });
-					expect(typeof $('#numeric').data('kendoNumericTextBox')).toEqual("object");
+					expect($('#numeric').data('role')).toEqual('numerictextbox');
 				});
 			}
 
@@ -116,6 +116,50 @@ describe('Kendo Forms Widget Test Suite', function() {
 				expect(ntbObject.max().toString()).toEqual(numericInput.attr('max'));
 				expect(ntbObject.step().toString()).toEqual(numericInput.attr('step'));
 			});
+		});
+
+		describe('Range type support', function() {
+			if (!kendo.forms.features.range) {
+				it('should create a kendoSlider from the range input type', function() {
+					fixtures.load('form-init.html');
+
+					$('#imperative-form').kendoForm();
+					expect($('#slider').data('role')).toEqual('slider');
+				});
+			} else {
+				it('should NOT create a kendoSlider if the range type is already supported by the browser', function() {
+					fixtures.load('form-init.html');
+
+					$('#imperative-form').kendoForm();
+					expect($('#slider').data('role')).toEqual(undefined);
+				});
+
+				it('should create a slider on ALL browsers if the alwaysUseWidgets option is passed-in', function() {
+					fixtures.load('form-init.html');
+
+					$('#imperative-form').kendoForm({ alwaysUseWidgets: true });
+					expect($('#slider').data('role')).toEqual('slider');
+				});
+			}
+			
+			it('should expose range type attributes as values in the kendoSlider widget', function() {
+				fixtures.load('form-init.html');
+
+				$('#imperative-form').kendoForm({ alwaysUseWidgets: true });
+
+				var rangeInput = $('#slider');
+				var sliderObject = rangeInput.data('kendoSlider');
+
+				// Test each value we set via attribute and make sure the value was 
+				// preserved in the Slider. Only value is public, 
+				// though the others can be tested via some trickery.
+				var vals = sliderObject._values;
+				expect(sliderObject.value().toString()).toEqual(rangeInput.val());
+				expect(vals[0].toString()).toEqual(rangeInput.attr('min'));
+				expect(vals[vals.length-1].toString()).toEqual(rangeInput.attr('max'));
+				expect((vals[1] - vals[0]).toString()).toEqual(rangeInput.attr('step'));
+			});
+			
 		});
 		
 		fixtures.cleanUp();

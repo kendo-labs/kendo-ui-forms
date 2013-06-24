@@ -21,6 +21,15 @@
 					upgrade: function(index, val) {
 						$(val).kendoNumericTextBox();
 					}
+				},
+				{
+					type: 'range',
+					upgrade: function(index, val) {
+						$(val).kendoSlider({
+							showButtons: false,
+							tickPlacement: 'none'
+						});
+					}
 				}
 			];
 

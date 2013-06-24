@@ -65,7 +65,7 @@ describe('Kendo Forms Widget Test Suite', function() {
 					fixtures.load('form-init.html');
 
 					$('#imperative-form').kendoForm();
-					expect($('#color').data('role')).toEqual(undefined);
+					expect($('#color').data('role')).not.toBeDefined();
 				});
 
 				it('should create a colorpicker on ALL browsers if the alwaysUseWidgets option is passed-in', function() {
@@ -90,7 +90,7 @@ describe('Kendo Forms Widget Test Suite', function() {
 					fixtures.load('form-init.html');
 
 					$('#imperative-form').kendoForm();
-					expect($('#numeric').data('role')).toEqual(undefined);
+					expect($('#numeric').data('role')).not.toBeDefined();
 				});
 
 				it('should create a colorpicker on ALL browsers if the alwaysUseWidgets option is passed-in', function() {
@@ -131,7 +131,7 @@ describe('Kendo Forms Widget Test Suite', function() {
 					fixtures.load('form-init.html');
 
 					$('#imperative-form').kendoForm();
-					expect($('#slider').data('role')).toEqual(undefined);
+					expect($('#slider').data('role')).not.toBeDefined();
 				});
 
 				it('should create a slider on ALL browsers if the alwaysUseWidgets option is passed-in', function() {
@@ -174,7 +174,7 @@ describe('Kendo Forms Widget Test Suite', function() {
 					fixtures.load('form-init.html');
 
 					$('#imperative-form').kendoForm();
-					expect($('#photos').data('role')).toEqual(undefined);
+					expect($('#photos').data('role')).not.toBeDefined();
 				});
 
 				it('should create a slider on ALL browsers if the alwaysUseWidgets option is passed-in', function() {

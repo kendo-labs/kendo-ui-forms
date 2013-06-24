@@ -158,8 +158,40 @@ describe('Kendo Forms Widget Test Suite', function() {
 				expect(vals[0].toString()).toEqual(rangeInput.attr('min'));
 				expect(vals[vals.length-1].toString()).toEqual(rangeInput.attr('max'));
 				expect((vals[1] - vals[0]).toString()).toEqual(rangeInput.attr('step'));
+			});			
+		});
+
+		describe('File type support', function() {
+			if (!kendo.forms.features.range) {
+				it('should create a kendoUpload from the file input type', function() {
+					fixtures.load('form-init.html');
+
+					$('#imperative-form').kendoForm();
+					expect($('#photos').data('role')).toEqual('upload');
+				});
+			} else {
+				it('should NOT create a kendoUpload if the file type is already supported by the browser', function() {
+					fixtures.load('form-init.html');
+
+					$('#imperative-form').kendoForm();
+					expect($('#photos').data('role')).toEqual(undefined);
+				});
+
+				it('should create a slider on ALL browsers if the alwaysUseWidgets option is passed-in', function() {
+					fixtures.load('form-init.html');
+
+					$('#imperative-form').kendoForm({ alwaysUseWidgets: true });
+					expect($('#photos').data('role')).toEqual('upload');
+				});
+			}
+
+			it('should preserve the accept attribute on the upload widget', function() {
+				fixtures.load('form-init.html');
+
+				$('#imperative-form').kendoForm({ alwaysUseWidgets: true });
+
+				expect($('#photos').attr('accept')).toEqual('.doc,.docx,.xml');
 			});
-			
 		});
 		
 		fixtures.cleanUp();

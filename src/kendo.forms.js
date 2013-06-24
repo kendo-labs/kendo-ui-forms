@@ -30,6 +30,12 @@
 							tickPlacement: 'none'
 						});
 					}
+				},
+				{
+					type: 'file',
+					upgrade: function(index, val) {
+						$(val).kendoUpload();
+					}
 				}
 			];
 

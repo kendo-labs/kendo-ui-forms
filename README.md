@@ -3,6 +3,8 @@ kendo-ui-forms
 
 Full-Featured HTML5 Forms Polyfill that leverages Kendo UI Widgets and Framework Validation
 
+[![Build Status](https://travis-ci.org/kendo-labs/kendo-ui-forms.png)](https://travis-ci.org/kendo-labs/kendo-ui-forms)
+
 ## Purpose & Goals
 
 The purpose of this project is to serve as a complete polyfill for [HTML5 Forms](http://www.w3.org/TR/2011/WD-html5-20110525/forms.html) functionality, including support for new input types--like color and datetime--new attributes--like placeholder and pattern--and validation. This project includes built-in feature detection and, by-default, will only polyfill those forms features not present in the user's browser. To polyfill forms features, Kendo UI widgets and framework features will be used.

@@ -164,8 +164,7 @@ describe('Kendo Forms Widget Test Suite', function() {
 		});
 
 		describe('File type support', function() {
-			if (!kendo.forms.features.range) {
-				// TODO: Resolve File Picker issue in Firefox
+			if (!kendo.forms.features.file) {
 				it('should create a kendoUpload from the file input type', function() {
 					fixtures.load('form-init.html');
 
@@ -218,10 +217,24 @@ describe('Kendo Forms Widget Test Suite', function() {
 						var datetimeInput = $('#datetime');
 						var datetimeObject = datetimeInput.data('kendoDateTimePicker');
 
+						var dateRegex = /\/|-| /g;
+						var valParts = datetimeInput.val().split(dateRegex);
+						var minParts = datetimeInput.attr('min').split(dateRegex);
+						var maxParts = datetimeInput.attr('max').split(dateRegex);
+
 						expect(datetimeObject.value()).not.toBeNull();
-						expect(datetimeObject.value()).toEqual(new Date(datetimeInput.val()));
-						expect(datetimeObject.min()).toEqual(new Date(datetimeInput.attr('min')));
-						expect(datetimeObject.max()).toEqual(new Date(datetimeInput.attr('max')));
+						expect(datetimeObject.value().getMonth()+1).toEqual(parseInt(valParts[0], 10));
+						expect(datetimeObject.value().getDate()).toEqual(parseInt(valParts[1], 10));
+						expect(datetimeObject.value().getFullYear()).toEqual(parseInt(valParts[2], 10));
+
+						expect(datetimeObject.min().getMonth()+1).toEqual(parseInt(minParts[1], 10));
+						expect(datetimeObject.min().getDate()).toEqual(parseInt(minParts[2], 10));
+						expect(datetimeObject.min().getFullYear()).toEqual(parseInt(minParts[0], 10));
+
+						expect(datetimeObject.max().getMonth()+1).toEqual(parseInt(maxParts[1], 10));
+						expect(datetimeObject.max().getDate()).toEqual(parseInt(maxParts[2], 10));
+						expect(datetimeObject.max().getFullYear()).toEqual(parseInt(maxParts[0], 10));
+
 						expect(datetimeObject.options.interval).toEqual(Math.round(parseInt(datetimeInput.attr('step'), 10)/60));
 					});
 
@@ -260,7 +273,7 @@ describe('Kendo Forms Widget Test Suite', function() {
 					fixtures.load('form-init.html');
 
 					$('#imperative-form').kendoForm();
-					expect($('#datetime-local').data('role')).toEqual('datetimepicker');
+					expect($('#local').data('role')).toEqual('datetimepicker');
 				});
 			} else {
 				it('should NOT create a kendoDateTimePicker from datetime-local if the file type is already supported by the browser', function() {
@@ -271,20 +284,23 @@ describe('Kendo Forms Widget Test Suite', function() {
 				});
 			}
 
-			// Get/Set values on datetime-local is currently not supported in Chrome
-			// https://code.google.com/p/chromium/issues/detail?id=162022
-			// https://code.google.com/p/chromium/issues/detail?id=164539
-			/*it('should apply the datetime-local value attrbiute to the widget', function() {
-				fixtures.load('form-init.html');
+			if (env !== 'headless') {
+				// Get/Set values on datetime-local is currently not supported in Chrome
+				// https://code.google.com/p/chromium/issues/detail?id=162022
+				// https://code.google.com/p/chromium/issues/detail?id=164539
+				// The library works around this by changing the type of 'datetime-local' to 'text'
+				it('should apply the datetime-local value attrbiute to the widget', function() {
+					fixtures.load('form-init.html');
 
-				$('#imperative-form').kendoForm({ alwaysUseWidgets: true });
+					$('#imperative-form').kendoForm({ alwaysUseWidgets: true });
 
-				var datetimeInput = $('#datetime-local');
-				var datetimeObject = datetimeInput.data('kendoDateTimePicker');
+					var datetimeInput = $('#local');
+					var datetimeObject = datetimeInput.data('kendoDateTimePicker');
 
-				expect(datetimeObject.value()).not.toBeNull();
-				expect(datetimeObject.value()).toEqual(new Date(datetimeInput.val()));
-			});*/
+					expect(datetimeObject.value()).not.toBeNull();
+					expect(datetimeObject.value()).toEqual(new Date(datetimeInput.val()));
+				});
+			}
 		});
 
 		describe('Time type support', function() {
@@ -312,19 +328,21 @@ describe('Kendo Forms Widget Test Suite', function() {
 			}
 
 			if (env !== 'headless') {
-				it('should apply the datetime attributes (val, min, max, step) to the widget', function() {
+				it('should apply the time attributes (val, min, max, step) to the widget', function() {
 					fixtures.load('form-init.html');
-					var dummyDate = "2013-10-04 ";
+					var dummyDate = "2013-10-04T";
 
 					$('#imperative-form').kendoForm({ alwaysUseWidgets: true });
 
 					var timeInput = $('#time');
 					var timeObject = timeInput.data('kendoTimePicker');
-
+					var timeParts = timeInput.val().replace(/AM|PM/g, '').trim().split(":");
+					
 					expect(timeObject.value()).not.toBeNull();
-					expect(timeObject.value()).toEqual(new Date(dummyDate + timeInput.val()));
-					expect(timeObject.min()).toEqual(new Date(dummyDate + timeInput.attr('min')));
-					expect(timeObject.max()).toEqual(new Date(dummyDate + timeInput.attr('max')));
+					expect(timeObject.value().getHours().toString()).toEqual(timeParts[0]);
+					expect(timeObject.value().getMinutes().toString()).toEqual(timeParts[1]);
+					expect(timeObject.min().toString()).toEqual(new Date(dummyDate + timeInput.attr('min')).toString());
+					expect(timeObject.max().toString()).toEqual(new Date(dummyDate + timeInput.attr('max')).toString());
 					expect(timeObject.options.interval).toEqual(Math.round(parseInt(timeInput.attr('step'), 10)/60));
 				});
 			}

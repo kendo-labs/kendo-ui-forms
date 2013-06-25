@@ -3,11 +3,20 @@
 	
 	function dateTimeUpgrade(index, val) {
 		var input = $(val);
-
+		
+		// Change the input type to 'text'. This
+		// preserves it's attributes, while working around some known issues 
+		// in certain browsers (eg. Chrome) that render attributes
+		// like value, min, max and step un-readable/writable when the 
+		// datetime and datetime-local fields are used.
+		if (!input.val()) {
+			input.attr('type', 'text');
+		}
+		
 		input.kendoDateTimePicker({
-			value: input.val().length > 0 ? new Date(input.val()) : null,
-			min: input.attr('min') ? new Date(input.attr('min')) : new Date(1900, 0, 1),
-			max: input.attr('max') ? new Date(input.attr('max')) : new Date(2099, 11, 31),
+			value: input.val().length > 0 ? new Date(input.val().trim().replace(/ /g, "T")) : null,
+			min: input.attr('min') ? new Date(input.attr('min').trim().replace(/ /g, "T")) : new Date(1900, 0, 1),
+			max: input.attr('max') ? new Date(input.attr('max').trim().replace(/ /g, "T")) : new Date(2099, 11, 31),
 			// Step attribute is seconds, interval in minute
 			interval: input.attr('step') ? Math.round(parseInt(input.attr('step'), 10)/60) : 30
 		});
@@ -53,7 +62,7 @@
 			type: 'time',
 			upgrade: function(index, val) {
 				var input = $(val),
-					dummyDate = "2013-10-04 ";
+					dummyDate = "2013-10-04T";
 
 				$(val).kendoTimePicker({
 					value: input.val().length > 0 ? new Date(dummyDate + input.val()) : null,

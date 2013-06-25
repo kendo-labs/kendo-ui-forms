@@ -375,11 +375,53 @@ describe('Kendo Forms Widget Test Suite', function() {
 			if (env !== 'headless') {
 				it('should apply the month attributes (val, min, max, step) to the widget', function() {
 					fixtures.load('form-init.html');
-					var dummyDate = "2013-10-04T";
-
 					$('#imperative-form').kendoForm({ alwaysUseWidgets: true });
 
 					var dateInput = $('#month');
+					var dateObject = dateInput.data('kendoDatePicker');
+					var dateRegex = /\/|-| /g;
+					var valParts = dateInput.val().split(dateRegex);
+					var minParts = dateInput.attr('min').split(dateRegex);
+					var maxParts = dateInput.attr('max').split(dateRegex);
+
+					expect(dateObject.value()).not.toBeNull();
+					expect(dateObject.value().getMonth()+1).toEqual(parseInt(valParts[0], 10));					
+					expect(dateObject.min().getMonth()+1).toEqual(parseInt(minParts[1], 10));					
+					expect(dateObject.max().getMonth()+1).toEqual(parseInt(maxParts[1], 10));
+				});
+			}
+		});
+
+		describe('Week type support', function() {
+			if(!kendo.forms.features.week) {
+				it('should create a kendoDatePicker from the week input type', function() {
+					fixtures.load('form-init.html');
+
+					$('#imperative-form').kendoForm();
+					expect($('#week').data('role')).toEqual('datepicker');
+				});
+			} else {
+				it('should NOT create a kendoDatePicker if the time type is already supported by the browser', function() {
+					fixtures.load('form-init.html');
+
+					$('#imperative-form').kendoForm();
+					expect($('#week').data('role')).not.toBeDefined();
+				});
+
+				it('should create a kendoDatePicker on ALL browsers if the alwaysUseWidgets option is passed-in', function() {
+					fixtures.load('form-init.html');
+
+					$('#imperative-form').kendoForm({ alwaysUseWidgets: true });
+					expect($('#week').data('role')).toEqual('datepicker');
+				});
+			}
+
+			if (env !== 'headless') {
+				it('should apply the week attributes (val, min, max, step) to the widget', function() {
+					fixtures.load('form-init.html');
+					$('#imperative-form').kendoForm({ alwaysUseWidgets: true });
+
+					var dateInput = $('#week');
 					var dateObject = dateInput.data('kendoDatePicker');
 					var dateRegex = /\/|-| /g;
 					var valParts = dateInput.val().split(dateRegex);

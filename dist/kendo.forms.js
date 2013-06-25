@@ -55,27 +55,37 @@
 		{
 			type: 'month',
 			upgrade: function(index, val) {
-				var input = $(val);
-				
-				// Change the input type to 'text'. This
-				// preserves it's attributes, while working around some known issues 
-				// in certain browsers (eg. Chrome) that render attributes
-				// like value, min, max and step un-readable/writable when the 
-				// datetime and datetime-local fields are used.
-				if (!input.val()) {
-					input.attr('type', 'text');
-				}
-
-				var defaults = getDateTimeDefaults(input);
-				// Set the start and depth properties to year, which means that only month 
-				// values are displayed.
-				defaults.start = "year";
-				defaults.depth = "year";
-
-				input.kendoDatePicker(defaults);
+				monthWeekUpgrade(val, "year");
+			}
+		},
+		{
+			type: 'week',
+			upgrade: function(index, val) {
+				monthWeekUpgrade(val, "month");
 			}
 		}
 	];
+
+	function monthWeekUpgrade(val, depth) {
+		var input = $(val);
+
+		// Change the input type to 'text'. This
+		// preserves it's attributes, while working around some known issues 
+		// in certain browsers (eg. Chrome) that render attributes
+		// like value, min, max and step un-readable/writable when the 
+		// datetime and datetime-local fields are used.
+		if (!input.val()) {
+			input.attr('type', 'text');
+		}
+
+		var defaults = getDateTimeDefaults(input);
+		// Set the start and depth properties to month, which means that only day/week 
+		// values are displayed.
+		defaults.start = depth;
+		defaults.depth = depth;
+
+		input.kendoDatePicker(defaults);
+	}
 
 	function dateTimeUpgrade(index, val) {
 		var input = $(val);
@@ -129,7 +139,8 @@
 		datetime: detectDateTimeFields("datetime"),
 		datetime_local: detectFormTypeSupport("datetime-local"),
 		time: detectFormTypeSupport("time"),
-		month: detectFormTypeSupport("month")
+		month: detectFormTypeSupport("month"),
+		week: detectFormTypeSupport("week")
 	};
 
 	kendo.forms.features = featureDetects;

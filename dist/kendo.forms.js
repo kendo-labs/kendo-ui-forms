@@ -1,27 +1,6 @@
 (function (kendo) {
 	kendo.forms = kendo.forms || {};
 	
-	function dateTimeUpgrade(index, val) {
-		var input = $(val);
-		
-		// Change the input type to 'text'. This
-		// preserves it's attributes, while working around some known issues 
-		// in certain browsers (eg. Chrome) that render attributes
-		// like value, min, max and step un-readable/writable when the 
-		// datetime and datetime-local fields are used.
-		if (!input.val()) {
-			input.attr('type', 'text');
-		}
-		
-		input.kendoDateTimePicker({
-			value: input.val().length > 0 ? new Date(input.val().trim().replace(/ /g, "T")) : null,
-			min: input.attr('min') ? new Date(input.attr('min').trim().replace(/ /g, "T")) : new Date(1900, 0, 1),
-			max: input.attr('max') ? new Date(input.attr('max').trim().replace(/ /g, "T")) : new Date(2099, 11, 31),
-			// Step attribute is seconds, interval in minute
-			interval: input.attr('step') ? Math.round(parseInt(input.attr('step'), 10)/60) : 30
-		});
-	}
-
 	var typeUpgrades = [
 		{ 
 			type: 'color',
@@ -64,7 +43,7 @@
 				var input = $(val),
 					dummyDate = "2013-10-04T";
 
-				$(val).kendoTimePicker({
+				input.kendoTimePicker({
 					value: input.val().length > 0 ? new Date(dummyDate + input.val()) : null,
 					min: input.attr('min') ? new Date(dummyDate + input.attr('min')) : new Date(2049, 0, 1, 0, 0, 0),
 					max: input.attr('max') ? new Date(dummyDate + input.attr('max')) : new Date(2099, 11, 31, 0, 0, 0),
@@ -72,8 +51,56 @@
 					interval: input.attr('step') ? Math.round(parseInt(input.attr('step'), 10)/60) : 30
 				});
 			}
+		},
+		{
+			type: 'month',
+			upgrade: function(index, val) {
+				var input = $(val);
+				
+				// Change the input type to 'text'. This
+				// preserves it's attributes, while working around some known issues 
+				// in certain browsers (eg. Chrome) that render attributes
+				// like value, min, max and step un-readable/writable when the 
+				// datetime and datetime-local fields are used.
+				if (!input.val()) {
+					input.attr('type', 'text');
+				}
+
+				var defaults = getDateTimeDefaults(input);
+				// Set the start and depth properties to year, which means that only month 
+				// values are displayed.
+				defaults.start = "year";
+				defaults.depth = "year";
+
+				input.kendoDatePicker(defaults);
+			}
 		}
 	];
+
+	function dateTimeUpgrade(index, val) {
+		var input = $(val);
+		
+		// Change the input type to 'text'. This
+		// preserves it's attributes, while working around some known issues 
+		// in certain browsers (eg. Chrome) that render attributes
+		// like value, min, max and step un-readable/writable when the 
+		// datetime and datetime-local fields are used.
+		if (!input.val()) {
+			input.attr('type', 'text');
+		}
+		// Step attribute is seconds, interval in minute
+		var defaults = getDateTimeDefaults(input);
+		defaults.interval = input.attr('step') ? Math.round(parseInt(input.attr('step'), 10)/60) : 30;
+		input.kendoDateTimePicker(defaults);
+	}
+
+	function getDateTimeDefaults(input) {
+		return {
+			value: input.val().length > 0 ? new Date(input.val().trim().replace(/ /g, "T")) : null,
+			min: input.attr('min') ? new Date(input.attr('min').trim().replace(/ /g, "T")) : new Date(1900, 0, 1),
+			max: input.attr('max') ? new Date(input.attr('max').trim().replace(/ /g, "T")) : new Date(2099, 11, 31),
+		};
+	}
 
 	kendo.forms.types = typeUpgrades;
 } (kendo));;(function (kendo) {
@@ -101,7 +128,8 @@
 		file: detectFormTypeSupport("file"),
 		datetime: detectDateTimeFields("datetime"),
 		datetime_local: detectFormTypeSupport("datetime-local"),
-		time: detectFormTypeSupport("time")
+		time: detectFormTypeSupport("time"),
+		month: detectFormTypeSupport("month")
 	};
 
 	kendo.forms.features = featureDetects;

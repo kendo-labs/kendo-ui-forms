@@ -1,13 +1,10 @@
 {
   "name": "kendo-ui-forms",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "devDependencies": {
-    "mocha": "*",
-    "chai": "*",
     "grunt": "*",
     "grunt-contrib-uglify": "*",
     "grunt-karma-0.9.1": "~0.4.3",
-    "karma-mocha": "*",
     "karma-script-launcher": "*",
     "karma-crbot-reporter": "*",
     "grunt-contrib-watch": "~0.4.4",

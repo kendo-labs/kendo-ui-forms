@@ -23,7 +23,8 @@
 		file: detectFormTypeSupport("file"),
 		datetime: detectDateTimeFields("datetime"),
 		datetime_local: detectFormTypeSupport("datetime-local"),
-		time: detectFormTypeSupport("time")
+		time: detectFormTypeSupport("time"),
+		month: detectFormTypeSupport("month")
 	};
 
 	kendo.forms.features = featureDetects;

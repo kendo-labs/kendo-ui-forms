@@ -1,8 +1,8 @@
 (function (kendo) {
 	kendo.forms = kendo.forms || {};
-	
+
 	var typeUpgrades = [
-		{ 
+		{
 			type: 'color',
 			upgrade: function(index, val) {
 				$(val).kendoColorPicker({ palette: "basic" });
@@ -89,7 +89,7 @@
 
 	function dateTimeUpgrade(index, val) {
 		var input = $(val);
-		
+
 		// Change the input type to 'text'. This
 		// preserves it's attributes, while working around some known issues 
 		// in certain browsers (eg. Chrome) that render attributes
@@ -108,7 +108,7 @@
 		return {
 			value: input.val().length > 0 ? new Date(input.val().trim().replace(/ /g, "T")) : null,
 			min: input.attr('min') ? new Date(input.attr('min').trim().replace(/ /g, "T")) : new Date(1900, 0, 1),
-			max: input.attr('max') ? new Date(input.attr('max').trim().replace(/ /g, "T")) : new Date(2099, 11, 31),
+			max: input.attr('max') ? new Date(input.attr('max').trim().replace(/ /g, "T")) : new Date(2099, 11, 31)
 		};
 	}
 

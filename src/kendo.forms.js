@@ -15,10 +15,10 @@
 				var modType = type.replace(/-/g,'_');
 
 				if (!kendo.forms.features[modType] || that.options.alwaysUseWidgets) {
-					form.find('input[type=' + type + ']').each(callback);	
+					form.find('input[type=' + type + ']').each(callback);
 				}
 			};
-			
+
 			// base call to widget initialization
 			Widget.fn.init.call(this, element, options);
 

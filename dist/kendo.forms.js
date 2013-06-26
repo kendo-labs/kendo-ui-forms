@@ -170,9 +170,15 @@
 
 			if (that.options.styleInputs) {
 				form.find('input').each(function(index, val) {
-					// Add the k-input class to each form element, which provides Kendo UI styling
-					// to all elements, not just those the widget will transform.
-					$(val).addClass('k-input');
+					// Add the k-input class to each form element (or k-button for buttons), providing Kendo UI 
+					// styling to all elements, not just those the widget will transform.
+					var el = $(val);
+
+					if (el.attr('type') === 'button' || el.attr('type') === 'submit' || el.attr('type') === 'reset') {
+						el.addClass('k-button');
+					} else {
+						el.addClass('k-input');
+					}
 				});
 			}
 

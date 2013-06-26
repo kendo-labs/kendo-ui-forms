@@ -52,6 +52,24 @@ describe('Kendo Forms Widget Test Suite', function() {
 				$('#imperative-form').kendoForm({ styleInputs: false });
 				expect($('#imperative-form').find('#vanillaInput').hasClass('k-input')).toBe(false);
 			});
+
+			it('should NOT add the k-input class to button inputs', function() {
+				fixtures.load('form-init.html');
+
+				$('#imperative-form').kendoForm();
+				expect($('#imperative-form').find('#submit').hasClass('k-input')).toBe(false);
+				expect($('#imperative-form').find('#button').hasClass('k-input')).toBe(false);
+				expect($('#imperative-form').find('#reset').hasClass('k-input')).toBe(false);
+			});
+
+			it('should add the k-button class to button inputs', function() {
+				fixtures.load('form-init.html');
+
+				$('#imperative-form').kendoForm();
+				expect($('#imperative-form').find('#submit').hasClass('k-button')).toBe(true);
+				expect($('#imperative-form').find('#button').hasClass('k-button')).toBe(true);
+				expect($('#imperative-form').find('#reset').hasClass('k-button')).toBe(true);
+			});
 		});
 
 		describe('Color type support', function() {

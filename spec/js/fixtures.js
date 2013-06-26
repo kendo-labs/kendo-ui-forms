@@ -12,7 +12,7 @@ describe('Kendo Forms Widget Test Suite', function() {
 			fixtures.fixturesPath = '../spec/javascripts/fixtures';
 			env = 'browser';
 		}
-				
+
 		describe('Form Widget initialization', function() {
 			it('should exist in the kendo.ui namespace', function() {
 				expect(kendo.ui.Form).toBeDefined();
@@ -24,31 +24,31 @@ describe('Kendo Forms Widget Test Suite', function() {
 
 			it('should be able to perform declarative initialization with data attributes', function() {
 				fixtures.load('form-init.html');
-			
+
 				kendo.init(document.body);
 
 				expect(typeof $('#declarative-form').data('kendoForm')).toEqual("object");
 			});
 		});
-		
+
 		describe('Input transformation', function() {
 			it('should add the k-input class to all inputs inside of the form', function() {
 				fixtures.load('form-init.html');
-			
+
 				$('#imperative-form').kendoForm();
 				expect($('#imperative-form').find('#vanillaInput').hasClass('k-input')).toBe(true);
 			});
 
 			it('should add the k-input class to inputs inside of the form if the styleInputs option is true', function() {
 				fixtures.load('form-init.html');
-			
+
 				$('#imperative-form').kendoForm({ styleInputs: true });
 				expect($('#imperative-form').find('#vanillaInput').hasClass('k-input')).toBe(true);
 			});
 
 			it('should NOT add the k-input class to inputs inside of the form if the styleInputs option is false', function() {
 				fixtures.load('form-init.html');
-			
+
 				$('#imperative-form').kendoForm({ styleInputs: false });
 				expect($('#imperative-form').find('#vanillaInput').hasClass('k-input')).toBe(false);
 			});
@@ -76,7 +76,7 @@ describe('Kendo Forms Widget Test Suite', function() {
 					$('#imperative-form').kendoForm({ alwaysUseWidgets: true });
 					expect($('#color').data('role')).toEqual("colorpicker");
 				});
-			}			
+			}
 		});
 
 		describe('Number type support', function() {
@@ -143,7 +143,7 @@ describe('Kendo Forms Widget Test Suite', function() {
 					expect($('#slider').data('role')).toEqual('slider');
 				});
 			}
-			
+
 			it('should expose range type attributes as values in the kendoSlider widget', function() {
 				fixtures.load('form-init.html');
 
@@ -160,7 +160,7 @@ describe('Kendo Forms Widget Test Suite', function() {
 				expect(vals[0].toString()).toEqual(rangeInput.attr('min'));
 				expect(vals[vals.length-1].toString()).toEqual(rangeInput.attr('max'));
 				expect((vals[1] - vals[0]).toString()).toEqual(rangeInput.attr('step'));
-			});			
+			});
 		});
 
 		describe('File type support', function() {
@@ -266,7 +266,7 @@ describe('Kendo Forms Widget Test Suite', function() {
 					$('#imperative-form').kendoForm({ alwaysUseWidgets: true });
 					expect($('#datetime').data('role')).toEqual('datetimepicker');
 				});
-			}			
+			}
 
 			if (!kendo.forms.features.datetime_local) {
 				it('should create a kendoDateTime from the datetime-local input type', function() {
@@ -337,7 +337,7 @@ describe('Kendo Forms Widget Test Suite', function() {
 					var timeInput = $('#time');
 					var timeObject = timeInput.data('kendoTimePicker');
 					var timeParts = timeInput.val().replace(/AM|PM/g, '').trim().split(":");
-					
+
 					expect(timeObject.value()).not.toBeNull();
 					expect(timeObject.value().getHours().toString()).toEqual(timeParts[0]);
 					expect(timeObject.value().getMinutes().toString()).toEqual(timeParts[1]);
@@ -385,8 +385,8 @@ describe('Kendo Forms Widget Test Suite', function() {
 					var maxParts = dateInput.attr('max').split(dateRegex);
 
 					expect(dateObject.value()).not.toBeNull();
-					expect(dateObject.value().getMonth()+1).toEqual(parseInt(valParts[0], 10));					
-					expect(dateObject.min().getMonth()+1).toEqual(parseInt(minParts[1], 10));					
+					expect(dateObject.value().getMonth()+1).toEqual(parseInt(valParts[0], 10));
+					expect(dateObject.min().getMonth()+1).toEqual(parseInt(minParts[1], 10));
 					expect(dateObject.max().getMonth()+1).toEqual(parseInt(maxParts[1], 10));
 				});
 			}
@@ -429,13 +429,13 @@ describe('Kendo Forms Widget Test Suite', function() {
 					var maxParts = dateInput.attr('max').split(dateRegex);
 
 					expect(dateObject.value()).not.toBeNull();
-					expect(dateObject.value().getMonth()+1).toEqual(parseInt(valParts[0], 10));					
-					expect(dateObject.min().getMonth()+1).toEqual(parseInt(minParts[1], 10));					
+					expect(dateObject.value().getMonth()+1).toEqual(parseInt(valParts[0], 10));
+					expect(dateObject.min().getMonth()+1).toEqual(parseInt(minParts[1], 10));
 					expect(dateObject.max().getMonth()+1).toEqual(parseInt(maxParts[1], 10));
 				});
 			}
 		});
-		
+
 		fixtures.cleanUp();
 		fixtures.clearCache();
 	});

@@ -56,7 +56,9 @@ This repository contains both the full and minified builds of the library in the
 
 ## Documentation
 
-TBD
+Check out the [Getting Started guide](https://github.com/kendo-labs/kendo-ui-forms/wiki/Getting-Started) in the Wiki.
+
+A working sample of the plugin can be found in the `samples` directory
 
 ## How to Contribute
 

@@ -1,7 +1,8 @@
-kendo-ui-forms
-==============
+# kendo-ui-forms
 
-Full-Featured HTML5 Forms Polyfill that leverages Kendo UI Widgets and Framework Validation
+## About kendo-ui-forms
+
+A Full-Featured HTML5 Forms Polyfill that leverages Kendo UI Widgets and Framework Validation
 
 [![Build Status](https://travis-ci.org/kendo-labs/kendo-ui-forms.png)](https://travis-ci.org/kendo-labs/kendo-ui-forms)
 
@@ -24,14 +25,6 @@ This library will function as an opt-in polyfill, meaning that the developer wil
 - This library will not support configurable or drop-in replacement for another UI/Widget library.
 - This library will not diverge from the [HTML5 Forms spec](http://www.w3.org/TR/2011/WD-html5-20110525/forms.html) in order to add convenience features or non-standard behaviors.
 
-## Intended Use
-
-To use this polyfill, the developer need only add `kendo.forms.js` to his or her project and then call the following:
-
-	$('form').kendoForm();
-
-The polyfill will then scan the form at runtime and will "upgrade" each UI element to use a Kendo UI widget equivalent. Attribute support and validation will also be added, when used in the form's markup.
-
 ## Features
 
 1. Ability to initialize a `kendoForm` custom widget from a Form in the DOM
@@ -41,6 +34,33 @@ The polyfill will then scan the form at runtime and will "upgrade" each UI eleme
 5. Ability to add Kendo UI Validation to a form
 6. Ability to support forms attributes (placeholder, to be specific)
 7. Ability to swap-in the Kendo UI File Upload control
+
+## Roadmap
+
+- v0.1 (Current) - Support upgrading all HTML5 input types (color, numeric, range, file, datatime, date, time, month, week)
+- v0.2 - Add support for progress and datalist elements; add a placeholder fallback and search box UI; autocomplete attribute support.
+- v0.3 - Add validation support 
+
+## Compatibility and Requirements
+
+kendo-ui-forms was designed to work with Kendo UI Web. The project currently depends on the following libraries:
+
+- [jQuery](http://www.jquery.com) v1.8.3+
+- [Kendo UI](http://www.kendoui.com) vCurrent
+
+kendo-ui-forms has not been tested against any other versions of these libraries. You may find that versions other than these are compatible with kendo-ui-forms, but we make no claims to support those version, nor can we troubleshoot issues that arise when using those versions.
+
+## Source Code
+
+This repository contains both the full and minified builds of the library in the `dist` folder
+
+## Documentation
+
+TBD
+
+## How to Contribute
+
+If you would like to contribute to kendo-ui-forms's source code, please read the [guidelines for pull requests and contributions](CONTRIBUTING.md). Following these guidelines will help make your contributions easier to bring in to the next release.
 
 ## Downloading and Installing
 
@@ -52,7 +72,7 @@ to grab all of the essential dependencies for dev, build and test. The repo uses
 
 	grunt
 
-to make sure everyhing is working. If you see text indicating that the jshint, concat and uglify tasks have run without errors, you're golden!
+to make sure everything is working. If you see text indicating that the jshint, concat and uglify tasks have run without errors, you're golden!
 
 ## Running the Tests
 
@@ -86,3 +106,31 @@ For OSX:
 And Windows:
 
 	C:\Users\[UserName]\AppData\Local\Google\Chrome[ SxS]\Application\chrome.exe --allow-file-access-from-files
+
+## Getting Help
+
+Use this section to list ways that a developer can obtain help or support for this project, for instance, Stack Overflow. Make sure to also leave the following section:
+
+As a part of Kendo UI Labs, kendo-ui-forms is intended to be a community-run project, and not an official part of any Kendo UI SKU (Web, DataViz, Mobile or Complete). As such, this project is not a supported part of Kendo UI, and is not covered under the support agreements for Kendo UI license holders. Please do not create support requests for this project, as these will be immediately closed and you'll be directed to post your question on a community forum.
+
+## Release Notes
+
+For change logs and release notes, see the [changelog](CHANGELOG.md) file.
+
+## License Information
+
+This project has been released under the [Apache License, version 2.0](http://www.apache.org/licenses/LICENSE-2.0.html), the text of which is included below. This license applies ONLY to the project-specific source of each repository and does not extend to Kendo UI itself, or any other 3rd party libraries used in a repository. For licensing information about Kendo UI, see the [License Agreements page](https://www.kendoui.com/purchase/license-agreement.aspx) at [KendoUI.com](http://www.kendoui.com).
+
+> Copyright © 2013 Telerik
+
+> Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+> [http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)
+
+>  Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.

@@ -1,3 +1,7 @@
+# 0.1.1
+
+Added logic to decorate form inputs of type button, submit and reset with `k-button` instead of `k-input`
+
 # 0.1.0
 
 Added basic support for HTML5 Form types (color, numeric, range, file, datetime, datetime-local, time, month, week)

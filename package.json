@@ -13,7 +13,8 @@
     "karma-jasmine": "0.0.1",
     "karma-safari-launcher": "0.0.2",
     "karma-opera-launcher": "https://github.com/karma-runner/karma-opera-launcher/archive/master.tar.gz",
-    "grunt-contrib-jasmine": "~0.5.1"
+    "grunt-contrib-jasmine": "~0.5.1",
+    "grunt-kendo-lint": "~0.0.1"
   },
   "scripts": {
     "test": "grunt test"

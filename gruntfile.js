@@ -72,6 +72,9 @@ module.exports = function(grunt) {
         }
       }
     },
+    kendo_lint: {
+      files: ['src/**/*.js']
+    },
     watch: {
       scripts: {
         files: ['<%= jshint.files %>'],
@@ -99,10 +102,11 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-jasmine');
+  grunt.loadNpmTasks('grunt-kendo-lint');
 
   // Default task(s).
-  grunt.registerTask('default', ['jshint', 'concat', 'uglify']);
-	grunt.registerTask('minify', ['jshint', 'concat', 'uglify']);
+  grunt.registerTask('default', ['jshint', 'kendo_lint', 'concat', 'uglify']);
+	grunt.registerTask('minify', ['jshint', 'kendo_lint', 'concat', 'uglify']);
   grunt.registerTask('x-test', ['minify', 'karma:forms']);
 	grunt.registerTask('test', ['jasmine']);
 };

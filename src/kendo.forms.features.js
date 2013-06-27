@@ -25,7 +25,8 @@
 		datetime_local: detectFormTypeSupport("datetime-local"),
 		time: detectFormTypeSupport("time"),
 		month: detectFormTypeSupport("month"),
-		week: detectFormTypeSupport("week")
+		week: detectFormTypeSupport("week"),
+		date: detectFormTypeSupport("date")
 	};
 
 	kendo.forms.features = featureDetects;

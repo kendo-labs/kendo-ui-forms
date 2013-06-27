@@ -55,18 +55,24 @@
 		{
 			type: 'month',
 			upgrade: function(index, val) {
-				monthWeekUpgrade(val, "year");
+				dateUpgrade(val, "year");
 			}
 		},
 		{
 			type: 'week',
 			upgrade: function(index, val) {
-				monthWeekUpgrade(val, "month");
+				dateUpgrade(val, "month");
+			}
+		},
+		{
+			type: 'date',
+			upgrade: function(index, val) {
+				dateUpgrade(val);
 			}
 		}
 	];
 
-	function monthWeekUpgrade(val, depth) {
+	function dateUpgrade(val, depth) {
 		var input = $(val);
 
 		// Change the input type to 'text'. This
@@ -81,8 +87,10 @@
 		var defaults = getDateTimeDefaults(input);
 		// Set the start and depth properties to month, which means that only day/week 
 		// values are displayed.
-		defaults.start = depth;
-		defaults.depth = depth;
+		if (depth) {
+			defaults.start = depth;
+			defaults.depth = depth;
+		}
 
 		input.kendoDatePicker(defaults);
 	}

@@ -60,6 +60,7 @@ describe('Kendo Forms Widget Test Suite', function() {
 				expect($('#imperative-form').find('#submit').hasClass('k-input')).toBe(false);
 				expect($('#imperative-form').find('#button').hasClass('k-input')).toBe(false);
 				expect($('#imperative-form').find('#reset').hasClass('k-input')).toBe(false);
+				expect($('#imperative-form').find('#button').hasClass('k-input')).toBe(false);
 			});
 
 			it('should add the k-button class to button inputs', function() {
@@ -69,6 +70,7 @@ describe('Kendo Forms Widget Test Suite', function() {
 				expect($('#imperative-form').find('#submit').hasClass('k-button')).toBe(true);
 				expect($('#imperative-form').find('#button').hasClass('k-button')).toBe(true);
 				expect($('#imperative-form').find('#reset').hasClass('k-button')).toBe(true);
+				expect($('#imperative-form').find('#buttonEl').hasClass('k-button')).toBe(true);
 			});
 		});
 

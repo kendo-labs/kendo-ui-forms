@@ -1,6 +1,7 @@
 # 0.1.1
 
-Added logic to decorate form inputs of type button, submit and reset with `k-button` instead of `k-input`
+- Added logic to decorate form inputs of type button, submit and reset with `k-button` instead of `k-input`
+- Added `k-button` support for the `<button>` element.
 
 # 0.1.0
 

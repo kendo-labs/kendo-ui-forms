@@ -8,6 +8,8 @@ node_modules
 *.pid
 *.gz
 .DS_Store
+.grunt/
+_SpecRunner.html
 
 pids
 logs

@@ -2,6 +2,7 @@
 
 - Added logic to decorate form inputs of type button, submit and reset with `k-button` instead of `k-input`
 - Added `k-button` support for the `<button>` element.
+- Added support for date input type
 
 # 0.1.0
 

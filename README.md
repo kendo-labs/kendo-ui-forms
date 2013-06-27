@@ -37,7 +37,8 @@ This library will function as an opt-in polyfill, meaning that the developer wil
 
 ## Roadmap
 
-- v0.1 (Current) - Support upgrading all HTML5 input types (color, numeric, range, file, datatime, date, time, month, week)
+- v0.1 - Support upgrading all HTML5 input types (color, numeric, range, file, datatime, time, month, week)
+- v0.1.1 (Current) - button support & date type support
 - v0.2 - Add support for progress and datalist elements; add a placeholder fallback and search box UI; autocomplete attribute support.
 - v0.3 - Add validation support 
 

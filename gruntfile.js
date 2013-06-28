@@ -92,6 +92,13 @@ module.exports = function(grunt) {
           'spec/lib/jasmine-jquery.js'
         ]
       }
+    },
+    changelog: {
+      options: {
+        dest: 'CHANGELOG.md',
+        github: 'kendo-labs/kendo-ui-forms',
+        version: grunt.file.readJSON('package.json').version
+      }
     }
   });
 
@@ -103,10 +110,12 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-jasmine');
   grunt.loadNpmTasks('grunt-kendo-lint');
+  grunt.loadNpmTasks('grunt-conventional-changelog');
 
   // Default task(s).
   grunt.registerTask('default', ['jshint', 'kendo_lint', 'concat', 'uglify']);
 	grunt.registerTask('minify', ['jshint', 'kendo_lint', 'concat', 'uglify']);
   grunt.registerTask('x-test', ['minify', 'karma:forms']);
 	grunt.registerTask('test', ['jasmine']);
+  grunt.registerTask('release', ['x-test', 'changelog']);
 };

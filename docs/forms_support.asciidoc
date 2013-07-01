@@ -31,8 +31,8 @@ This document contains a breakdown of current support for HTML5 Forms input type
 .Notes from Table 1
 [NOTE]
 ===================================
-[1] IE10+ does not show increment/decrement buttons for the number type
-[2] IE10+ supports progress, but not Meter
-[3] IE10+ Support http://playground.onereason.eu/2013/04/ie10s-lousy-support-for-datalists/[considered buggy]
-[4] Safari does not fire an event when a form with required fields is submitted
+- [1] IE10+ does not show increment/decrement buttons for the number type
+- [2] IE10+ supports progress, but not Meter
+- [3] IE10+ Support http://playground.onereason.eu/2013/04/ie10s-lousy-support-for-datalists/[considered buggy]
+- [4] Safari does not fire an event when a form with required fields is submitted
 ===================================

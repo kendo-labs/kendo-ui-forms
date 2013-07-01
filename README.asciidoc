@@ -42,7 +42,7 @@ This library will function as an opt-in polyfill, meaning that the developer wil
 - v0.2 - Add support for progress and datalist elements; add a placeholder fallback and search box UI; autocomplete attribute support.
 - v0.3 - Add validation support 
 
-A complete list of features can be found in Table 1, below.
+A complete list of features can be found in Table 1, below. For details about forms support across browsers, see the https://github.com/kendo-labs/kendo-ui-forms/blob/master/docs/forms_support.asciidoc[following document].
 
 .Current Status of Polyfill Features
 [grid="rows"]

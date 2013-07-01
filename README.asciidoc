@@ -45,7 +45,7 @@ This library will function as an opt-in polyfill, meaning that the developer wil
 A complete list of features can be found in Table 1, below.
 
 .Current Status of Polyfill Features
-[grid="rows", format="csv"]
+[grid="rows"]
 [options="header"]
 |==================================
 |Feature         |Supported|Version

@@ -1,4 +1,4 @@
-= HTML5 Forms Support Table
+== HTML5 Forms Support Table
 
 Updated on 07/01/2013
 

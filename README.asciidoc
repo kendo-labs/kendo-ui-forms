@@ -42,6 +42,28 @@ This library will function as an opt-in polyfill, meaning that the developer wil
 - v0.2 - Add support for progress and datalist elements; add a placeholder fallback and search box UI; autocomplete attribute support.
 - v0.3 - Add validation support 
 
+.Current Status of Polyfill Features
+[options="header, footer"]
+|==================================
+|Feature         |Supported|Version
+|Color           |Yes      |0.1
+|Number          |Yes      |0.1
+|Range           |Yes      |0.1
+|File            |Yes      |0.1
+|DateTime        |Yes      |0.1
+|DateTime-Local  |Yes      |0.1
+|Time            |Yes      |0.1
+|Month           |Yes      |0.1
+|Week            |Yes      |0.1
+|Date            |Yes      |0.1.1
+|Inputs & Buttons|Yes      |0.1.1
+|Progress        |No       |0.2
+|Datalist        |No       |0.2
+|Placeholder     |No       |0.2
+|Search          |No       |0.2
+|Autocomplete    |No       |0.2
+|Validation      |No       |0.3
+|==================================
 == Compatibility and Requirements
 
 kendo-ui-forms was designed to work with Kendo UI Web. The project currently depends on the following libraries:

@@ -42,8 +42,11 @@ This library will function as an opt-in polyfill, meaning that the developer wil
 - v0.2 - Add support for progress and datalist elements; add a placeholder fallback and search box UI; autocomplete attribute support.
 - v0.3 - Add validation support 
 
+A complete list of features can be found in Table 1, below.
+
 .Current Status of Polyfill Features
-[options="header, footer"]
+[grid="rows", format="csv"]
+[options="header"]
 |==================================
 |Feature         |Supported|Version
 |Color           |Yes      |0.1

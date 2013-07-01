@@ -46,7 +46,7 @@ A complete list of features can be found in Table 1, below.
 
 .Current Status of Polyfill Features
 [grid="rows"]
-[options="header"]
+[options="header",width="50%"]
 |==================================
 |Feature         |Supported|Version
 |Color           |Yes      |0.1

@@ -67,6 +67,7 @@ A complete list of features can be found in Table 1, below.
 |Autocomplete    |No       |0.2
 |Validation      |No       |0.3
 |==================================
+
 == Compatibility and Requirements
 
 kendo-ui-forms was designed to work with Kendo UI Web. The project currently depends on the following libraries:

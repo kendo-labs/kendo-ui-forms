@@ -46,8 +46,8 @@ This library will function as an opt-in polyfill, meaning that the developer wil
 
 kendo-ui-forms was designed to work with Kendo UI Web. The project currently depends on the following libraries:
 
-- [jQuery](http://www.jquery.com) v1.8.3+
-- [Kendo UI](http://www.kendoui.com) vCurrent
+- http://www.jquery.com[jQuery] v1.8.3+
+- http://www.kendoui.com[Kendo UI] vCurrent
 
 kendo-ui-forms has not been tested against any other versions of these libraries. You may find that versions other than these are compatible with kendo-ui-forms, but we make no claims to support those version, nor can we troubleshoot issues that arise when using those versions.
 
@@ -63,7 +63,7 @@ A working sample of the plugin can be found in the +samples+ directory
 
 == How to Contribute
 
-If you would like to contribute to kendo-ui-forms's source code, please read the CONTRIBUTING.md[guidelines for pull requests and contributions]. Following these guidelines will help make your contributions easier to bring in to the next release.
+If you would like to contribute to kendo-ui-forms's source code, please read the https://github.com/kendo-labs/kendo-ui-forms/blob/master/CONTRIBUTING.md[guidelines for pull requests and contributions]. Following these guidelines will help make your contributions easier to bring in to the next release.
 
 == Downloading and Installing
 
@@ -119,7 +119,7 @@ If you want to run the jasmine tests in your browser, as opposed to running the 
 file://localhost/Users/brandon/Dropbox/Development/kendo-ui-forms/spec/runner.html
 ----
 
-.Running Karma in Chrome
+.*Running Karma in Chrome*
 [NOTE]
 If you're using Chrome and taking the latter approach, some of the tests will fail because of cross-domain features in Chrome. To work around this, run Chrome with the +--allow-file-access-from-files+ terminal command. 
 
@@ -145,13 +145,13 @@ As a part of Kendo UI Labs, kendo-ui-forms is intended to be a community-run pro
 
 == Release Notes
 
-For change logs and release notes, see the CHANGELOG.md[changelog] file.
+For change logs and release notes, see the https://github.com/kendo-labs/kendo-ui-forms/blob/master/CHANGELOG.md[changelog] file.
 
 == License Information
 
 This project has been released under the http://www.apache.org/licenses/LICENSE-2.0.html[Apache License, version 2.0], the text of which is included below. This license applies ONLY to the project-specific source of each repository and does not extend to Kendo UI itself, or any other 3rd party libraries used in a repository. For licensing information about Kendo UI, see the https://www.kendoui.com/purchase/license-agreement.aspx[License Agreements page] at http://www.kendoui.com[KendoUI.com].
 
-[quote, The Apache Foundation, http://www.apache.org/licenses/LICENSE-2.0]
+[quote]
 ____
 Copyright (C) 2013 Telerik
 

@@ -1,4 +1,4 @@
-= kendo-ui-forms
+=kendo-ui-forms
 
 == About kendo-ui-forms
 

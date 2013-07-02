@@ -8,7 +8,7 @@ build:
     # A step that installs the grunt cli
     -  script:
         name: install grunt-cli
-        code: |-
+        code: |
           echo "npm install -g grunt-cli"
     # A step that executes `npm test` command
     - npm-test

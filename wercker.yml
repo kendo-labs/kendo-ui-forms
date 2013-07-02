@@ -9,7 +9,7 @@ build:
     -  script:
         name: install grunt-cli
         code: |
-          echo "npm install -g grunt-cli"
+          npm install -g grunt-cli
     # A step that executes `npm test` command
     - npm-test
     

@@ -8,7 +8,7 @@ If you notice any problems with any documentation, please fix it and we'll get i
 
 ### 1. Log an Issue
 
-Before doing anything else, we ask that you file an issue in the Issues list for this project. First, be sure to check the list to ensure that your issue hasn't already been logged. If you're free and clear, file an issue and provide a detailed description of the bug or feature you're interested in. If you're also planning to work on the issue you're creating, let us know so that we can help and provide feedback.
+Before doing anything else, we ask that you file an issue in the issues list for this project. First, be sure to check the list to ensure that your issue hasn't already been logged. If you're free and clear, file an issue and provide a detailed description of the bug or feature you're interested in. If you're also planning to work on the issue you're creating, let us know so that we can help and provide feedback.
 
 ### 2. Fork and Branch
 

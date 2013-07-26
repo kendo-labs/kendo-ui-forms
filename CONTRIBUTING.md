@@ -56,7 +56,7 @@ Without at least the first 2 items in this list, we won't have any clue why you'
 
 We're not dogmatic about code style, here, but we do believe that a project should adhere to a consistent style. All Kendo UI Labs projects are expected to follow the following style guidelines, so please keep these in mind before you submit your Pull Requests:
 
-- Tab indentation, size of 2
+- Space indentation, size of 2
 - Semicolons are nice. Use them
 - Single quotes
 - No trailing whitespace

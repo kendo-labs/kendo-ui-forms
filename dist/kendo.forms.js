@@ -5,7 +5,7 @@
 		{
 			type: 'color',
 			upgrade: function(index, val) {
-				$(val).kendoColorPicker({ palette: "basic" });
+				$(val).kendoColorPicker({ palette: 'basic' });
 			}
 		},
 		{
@@ -41,27 +41,31 @@
 			type: 'time',
 			upgrade: function(index, val) {
 				var input = $(val),
-					dummyDate = "2013-10-04T";
+					dummyDate = '2013-10-04T';
 
 				input.kendoTimePicker({
-					value: input.val().length > 0 ? new Date(dummyDate + input.val()) : null,
-					min: input.attr('min') ? new Date(dummyDate + input.attr('min')) : new Date(2049, 0, 1, 0, 0, 0),
-					max: input.attr('max') ? new Date(dummyDate + input.attr('max')) : new Date(2099, 11, 31, 0, 0, 0),
+					value: input.val().length > 0 ? new Date(dummyDate + input.val())
+						: null,
+					min: input.attr('min') ? new Date(dummyDate + input.attr('min'))
+						: new Date(2049, 0, 1, 0, 0, 0),
+					max: input.attr('max') ? new Date(dummyDate + input.attr('max'))
+						: new Date(2099, 11, 31, 0, 0, 0),
 					// Step attribute is seconds, interval in minute
-					interval: input.attr('step') ? Math.round(parseInt(input.attr('step'), 10)/60) : 30
+					interval: input.attr('step') ?
+						Math.round(parseInt(input.attr('step'), 10)/60) : 30
 				});
 			}
 		},
 		{
 			type: 'month',
 			upgrade: function(index, val) {
-				dateUpgrade(val, "year");
+				dateUpgrade(val, 'year');
 			}
 		},
 		{
 			type: 'week',
 			upgrade: function(index, val) {
-				dateUpgrade(val, "month");
+				dateUpgrade(val, 'month');
 			}
 		},
 		{
@@ -85,8 +89,8 @@
 		}
 
 		var defaults = getDateTimeDefaults(input);
-		// Set the start and depth properties to month, which means that only day/week 
-		// values are displayed.
+		// Set the start and depth properties to month, which means 
+		// that only day/week values are displayed.
 		if (depth) {
 			defaults.start = depth;
 			defaults.depth = depth;
@@ -108,15 +112,19 @@
 		}
 		// Step attribute is seconds, interval in minute
 		var defaults = getDateTimeDefaults(input);
-		defaults.interval = input.attr('step') ? Math.round(parseInt(input.attr('step'), 10)/60) : 30;
+		defaults.interval = input.attr('step') ?
+			Math.round(parseInt(input.attr('step'), 10)/60) : 30;
 		input.kendoDateTimePicker(defaults);
 	}
 
 	function getDateTimeDefaults(input) {
 		return {
-			value: input.val().length > 0 ? new Date(input.val().trim().replace(/ /g, "T")) : null,
-			min: input.attr('min') ? new Date(input.attr('min').trim().replace(/ /g, "T")) : new Date(1900, 0, 1),
-			max: input.attr('max') ? new Date(input.attr('max').trim().replace(/ /g, "T")) : new Date(2099, 11, 31)
+			value: input.val().length > 0 ? new Date(input.val()
+				.trim().replace(/ /g, 'T')) : null,
+			min: input.attr('min') ? new Date(input.attr('min')
+				.trim().replace(/ /g, 'T')) : new Date(1900, 0, 1),
+			max: input.attr('max') ? new Date(input.attr('max')
+				.trim().replace(/ /g, 'T')) : new Date(2099, 11, 31)
 		};
 	}
 
@@ -125,31 +133,32 @@
 	kendo.forms = kendo.forms || {};
 
 	function detectFormTypeSupport(type) {
-		var i = document.createElement("input");
-		i.setAttribute("type", type);
-		return i.type !== "text";
+		var i = document.createElement('input');
+		i.setAttribute('type', type);
+		return i.type !== 'text';
 	}
 
 	function detectDateTimeFields(type) {
-		var dummyVal = ":(";
+		var dummyVal = ':(';
 
-		var i = document.createElement("input");
-		i.setAttribute("type", type);
-		i.value = dummyVal; // Credit to Mike Taylor https://gist.github.com/miketaylr/310734
+		var i = document.createElement('input');
+		i.setAttribute('type', type);
+		// Credit to Mike Taylor //gist.github.com/miketaylr/310734
+		i.value = dummyVal;
 		return (i.value !== dummyVal);
 	}
 
 	var featureDetects = {
-		color: detectFormTypeSupport("color"),
-		number: detectFormTypeSupport("number"),
-		range: detectFormTypeSupport("range"),
-		file: detectFormTypeSupport("file"),
-		datetime: detectDateTimeFields("datetime"),
-		datetime_local: detectFormTypeSupport("datetime-local"),
-		time: detectFormTypeSupport("time"),
-		month: detectFormTypeSupport("month"),
-		week: detectFormTypeSupport("week"),
-		date: detectFormTypeSupport("date")
+		color: detectFormTypeSupport('color'),
+		number: detectFormTypeSupport('number'),
+		range: detectFormTypeSupport('range'),
+		file: detectFormTypeSupport('file'),
+		datetime: detectDateTimeFields('datetime'),
+		datetime_local: detectFormTypeSupport('datetime-local'),
+		time: detectFormTypeSupport('time'),
+		month: detectFormTypeSupport('month'),
+		week: detectFormTypeSupport('week'),
+		date: detectFormTypeSupport('date')
 	};
 
 	kendo.forms.features = featureDetects;
@@ -159,7 +168,7 @@
 		formWidget,
 		typeUpgrades = kendo.forms.types;
 
-	Form = Widget.extend({
+	var Form = Widget.extend({
 		init: function(element, options) {
 			var that = this;
 			var form = $(element);
@@ -179,11 +188,14 @@
 
 			if (that.options.styleInputs) {
 				form.find('input, button').each(function(index, val) {
-					// Add the k-input class to each form element (or k-button for buttons), providing Kendo UI 
-					// styling to all elements, not just those the widget will transform.
+					// Add the k-input class to each form element (or 
+					// k-button for buttons), providing Kendo UI styling 
+					// to all elements, not just those the widget will transform.
 					var el = $(val);
 
-					if (val.type === 'button' || val.type === 'submit' || val.type === 'reset') {
+					if (val.type === 'button' ||
+							val.type === 'submit' ||
+							val.type === 'reset') {
 						el.addClass('k-button');
 					} else {
 						el.addClass('k-input');
@@ -201,7 +213,7 @@
 		options: {
 			// the name is what it will appear in the kendo namespace (kendo.ui.Form).
 			// The jQuery plugin would be jQuery.fn.kendoForm.
-			name: "Form",
+			name: 'Form',
 			alwaysUseWidgets: false,
 			styleInputs: true
 		}

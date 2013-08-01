@@ -5,7 +5,7 @@
 		{
 			type: 'color',
 			upgrade: function(index, val) {
-				$(val).kendoColorPicker({ palette: "basic" });
+				$(val).kendoColorPicker({ palette: 'basic' });
 			}
 		},
 		{
@@ -41,27 +41,31 @@
 			type: 'time',
 			upgrade: function(index, val) {
 				var input = $(val),
-					dummyDate = "2013-10-04T";
+					dummyDate = '2013-10-04T';
 
 				input.kendoTimePicker({
-					value: input.val().length > 0 ? new Date(dummyDate + input.val()) : null,
-					min: input.attr('min') ? new Date(dummyDate + input.attr('min')) : new Date(2049, 0, 1, 0, 0, 0),
-					max: input.attr('max') ? new Date(dummyDate + input.attr('max')) : new Date(2099, 11, 31, 0, 0, 0),
+					value: input.val().length > 0 ? new Date(dummyDate + input.val())
+						: null,
+					min: input.attr('min') ? new Date(dummyDate + input.attr('min'))
+						: new Date(2049, 0, 1, 0, 0, 0),
+					max: input.attr('max') ? new Date(dummyDate + input.attr('max'))
+						: new Date(2099, 11, 31, 0, 0, 0),
 					// Step attribute is seconds, interval in minute
-					interval: input.attr('step') ? Math.round(parseInt(input.attr('step'), 10)/60) : 30
+					interval: input.attr('step') ?
+						Math.round(parseInt(input.attr('step'), 10)/60) : 30
 				});
 			}
 		},
 		{
 			type: 'month',
 			upgrade: function(index, val) {
-				dateUpgrade(val, "year");
+				dateUpgrade(val, 'year');
 			}
 		},
 		{
 			type: 'week',
 			upgrade: function(index, val) {
-				dateUpgrade(val, "month");
+				dateUpgrade(val, 'month');
 			}
 		},
 		{
@@ -85,8 +89,8 @@
 		}
 
 		var defaults = getDateTimeDefaults(input);
-		// Set the start and depth properties to month, which means that only day/week 
-		// values are displayed.
+		// Set the start and depth properties to month, which means 
+		// that only day/week values are displayed.
 		if (depth) {
 			defaults.start = depth;
 			defaults.depth = depth;
@@ -108,15 +112,19 @@
 		}
 		// Step attribute is seconds, interval in minute
 		var defaults = getDateTimeDefaults(input);
-		defaults.interval = input.attr('step') ? Math.round(parseInt(input.attr('step'), 10)/60) : 30;
+		defaults.interval = input.attr('step') ?
+			Math.round(parseInt(input.attr('step'), 10)/60) : 30;
 		input.kendoDateTimePicker(defaults);
 	}
 
 	function getDateTimeDefaults(input) {
 		return {
-			value: input.val().length > 0 ? new Date(input.val().trim().replace(/ /g, "T")) : null,
-			min: input.attr('min') ? new Date(input.attr('min').trim().replace(/ /g, "T")) : new Date(1900, 0, 1),
-			max: input.attr('max') ? new Date(input.attr('max').trim().replace(/ /g, "T")) : new Date(2099, 11, 31)
+			value: input.val().length > 0 ? new Date(input.val()
+				.trim().replace(/ /g, 'T')) : null,
+			min: input.attr('min') ? new Date(input.attr('min')
+				.trim().replace(/ /g, 'T')) : new Date(1900, 0, 1),
+			max: input.attr('max') ? new Date(input.attr('max')
+				.trim().replace(/ /g, 'T')) : new Date(2099, 11, 31)
 		};
 	}
 

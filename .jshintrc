@@ -1,0 +1,22 @@
+{
+  "indent": 2,
+  "undef": true,
+  "quotmark": "single",
+  "maxlen": 80,
+  "trailing": true,
+  "multistr": true,
+  "curly": true,
+  "globals": {
+    "jQuery": false,
+    "$": false,
+    "kendo": false,
+    "module": false,
+    "require": false,
+    "describe": false,
+    "jasmine": false,
+    "window": false,
+    "document": false,
+    "it": false,
+    "expect": false
+  }
+}

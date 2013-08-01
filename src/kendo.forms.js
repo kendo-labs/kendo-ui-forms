@@ -4,7 +4,7 @@
 		formWidget,
 		typeUpgrades = kendo.forms.types;
 
-	Form = Widget.extend({
+	var Form = Widget.extend({
 		init: function(element, options) {
 			var that = this;
 			var form = $(element);
@@ -24,11 +24,14 @@
 
 			if (that.options.styleInputs) {
 				form.find('input, button').each(function(index, val) {
-					// Add the k-input class to each form element (or k-button for buttons), providing Kendo UI 
-					// styling to all elements, not just those the widget will transform.
+					// Add the k-input class to each form element (or 
+					// k-button for buttons), providing Kendo UI styling 
+					// to all elements, not just those the widget will transform.
 					var el = $(val);
 
-					if (val.type === 'button' || val.type === 'submit' || val.type === 'reset') {
+					if (val.type === 'button' ||
+							val.type === 'submit' ||
+							val.type === 'reset') {
 						el.addClass('k-button');
 					} else {
 						el.addClass('k-input');
@@ -46,7 +49,7 @@
 		options: {
 			// the name is what it will appear in the kendo namespace (kendo.ui.Form).
 			// The jQuery plugin would be jQuery.fn.kendoForm.
-			name: "Form",
+			name: 'Form',
 			alwaysUseWidgets: false,
 			styleInputs: true
 		}

@@ -46,11 +46,15 @@
 			}
 
 			// Add placeholder support if not provided by the browser
-			//if(!kendo.forms.features.placeholder) {
-			form.find('[placeholder]').each(function(index, val) {
-				$(val).addClass('placeholder');
-			});
-			//}
+			if(!kendo.forms.features.placeholder) {
+				form.find('[placeholder]').each(function(index, val) {
+					var el = $(val);
+
+					el.wrap('<label class="placeholder">' + el.attr('placeholder') +
+						'</label>');
+					el.addClass('placeholder');
+				});
+			}
 		},
 
 		options: {

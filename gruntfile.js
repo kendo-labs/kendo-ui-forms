@@ -27,14 +27,16 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     concat: {
-      js: {
-        options: {
-          separator: ';'
-        },
-        dist: {
-          src: 'src/js/*.js',
-          dest: 'dist/js/kendo.forms.js'
-        }
+      options: {
+        separator: ';'
+      },
+      dist: {
+        src: [
+          'src/js/kendo.forms.features.js',
+          'src/js/kendo.forms.types.js',
+          'src/js/kendo.forms.js'
+        ],
+        dest: 'dist/js/kendo.forms.js'
       }
     },
     uglify: {
@@ -54,7 +56,7 @@ module.exports = function(grunt) {
       },
       dist: {
         files: {
-          'dist/js/kendo.forms.min.js': '<%= concat.js.dist.dest %>'
+          'dist/js/kendo.forms.min.js': '<%= concat.dist.dest %>'
         }
       }
     },

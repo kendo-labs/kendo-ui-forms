@@ -1,4 +1,4 @@
-.placeholder {
+label.placeholder {
     color: gray;
     display: block;
     font-size: small;
@@ -7,7 +7,7 @@
     text-indent: 5px;
 }
 
-input[placeholder] {
+input.placeholder {
     background-color: transparent;
     left: 0;
     position: absolute; 
@@ -15,6 +15,6 @@ input[placeholder] {
     z-index: 1;
 }
 
-input:focus, input:first-line {
+input.placeholder:focus, input.placeholder:first-line {
     background-color: white;
 }

@@ -584,14 +584,25 @@ describe('Kendo Forms Widget Test Suite', function() {
 				expect(kendo.forms.features.placeholder).toBeDefined();
 			});
 
-			it('should add a placeholder class to elements with the' +
-				' placeholder attribute', function() {
-				fixtures.load('form-init.html');
-				$('#imperative-form').kendoForm();
+			if(!kendo.forms.features.placeholder) {
+				it('should add a placeholder class to elements with the' +
+					' placeholder attribute', function() {
+					fixtures.load('form-init.html');
+					$('#imperative-form').kendoForm();
 
-				var placeholder = $('#placeholder');
-				expect(placeholder.hasClass('placeholder')).toBe(true);
-			});
+					var placeholder = $('#placeholder');
+					expect(placeholder.hasClass('placeholder')).toBe(true);
+				});
+
+				it('should add a label element to serve as the pseudo placeholder',
+					function() {
+					fixtures.load('form-init.html');
+					$('#imperative-form').kendoForm();
+
+					var placeholder = $('label.placeholder');
+					expect(placeholder.length === 1).toBe(true);
+				});
+			}
 		});
 
 		fixtures.cleanUp();

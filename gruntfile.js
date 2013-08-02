@@ -111,8 +111,7 @@ module.exports = function(grunt) {
       }
     },
     jasmine: {
-      src: ['lib/**/*.js', 'dist/js/kendo.forms.min.js',
-        'dist/css/kendo.forms.min.css'],
+      src: ['lib/**/*.js', 'dist/js/kendo.forms.min.js'],
       options: {
         specs: 'spec/js/*.js',
         vendor: [

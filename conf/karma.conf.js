@@ -12,7 +12,7 @@ basePath = '../';
 // list of files / patterns to load in the browser
 files = [
   'lib/js/*.js',
-  'dist/kendo.forms.min.js',
+  'dist/js/kendo.forms.min.js',
   {pattern: 'lib/js/jquery.min.js', watched: false, served: true, included: true},
   {pattern: 'spec/lib/jasmine-jquery.js', watched: false, served: true, included: true},
   {pattern: 'src/js/*.js', watched: true, served: true, included: false},
@@ -69,7 +69,7 @@ captureTimeout = 50000;
 
 // Auto run tests on start (when browsers are captured) and exit
 // CLI --single-run --no-single-run
-singleRun = false;
+singleRun = true;
 
 // report which specs are slower than 500ms
 // CLI --report-slower-than 500

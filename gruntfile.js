@@ -90,7 +90,7 @@ module.exports = function(grunt) {
     watch: {
       scripts: {
         files: ['<%= jshint.files %>'],
-        tasks: ['minify', 'test'],
+        tasks: ['minify', 'test', 'notify:watch'],
         options: {
           nospawn: true
         }
@@ -111,6 +111,14 @@ module.exports = function(grunt) {
         github: 'kendo-labs/kendo-ui-forms',
         version: grunt.file.readJSON('package.json').version
       }
+    },
+    notify: {
+      watch: {
+        options: {
+          title: 'Watch complete',  // optional
+          message: 'Minfication and tests have finished running', //required
+        }
+      }
     }
   });
 
@@ -123,6 +131,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jasmine');
   grunt.loadNpmTasks('grunt-kendo-lint');
   grunt.loadNpmTasks('grunt-conventional-changelog');
+  grunt.loadNpmTasks('grunt-notify');
 
   // Default task(s).
   grunt.registerTask('default', ['jshint', 'kendo_lint', 'concat', 'uglify']);

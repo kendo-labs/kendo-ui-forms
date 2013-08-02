@@ -1,0 +1,1 @@
+.placeholder{color:gray;display:block;font-size:small;padding-top:3px;position:relative;text-indent:5px}input[placeholder]{background-color:transparent;left:0;position:absolute;top:0;z-index:1}input:focus,input:first-line{background-color:#fff}

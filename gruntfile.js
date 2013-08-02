@@ -35,12 +35,6 @@ module.exports = function(grunt) {
           src: 'src/js/*.js',
           dest: 'dist/js/kendo.forms.js'
         }
-      },
-      css: {
-        dist: {
-          src: 'src/css/*.css',
-          dest: 'dist/css/kendo.forms.css'
-        }
       }
     },
     uglify: {
@@ -60,9 +54,22 @@ module.exports = function(grunt) {
       },
       dist: {
         files: {
-          'dist/js/kendo.forms.min.js': ['<%= concat.js.dist.dest %>'],
-          'dist/css/kendo.forms.min.css': ['<%= concat.css.dist.dest %>']
+          'dist/js/kendo.forms.min.js': '<%= concat.js.dist.dest %>'
         }
+      }
+    },
+    cssmin: {
+      combine: {
+        files: {
+          'dist/css/kendo.forms.css': 'src/css/*.css'
+        }
+      },
+      minify: {
+        expand: true,
+        cwd: 'src/css/',
+        src: ['*.css', '!*.min.css'],
+        dest: 'dist/css/',
+        ext: '.forms.min.css'
       }
     },
     karma: {
@@ -102,7 +109,8 @@ module.exports = function(grunt) {
       }
     },
     jasmine: {
-      src: ['lib/**/*.js', 'dist/js/kendo.forms.min.js', 'dist/css/kendo.forms.min.css'],
+      src: ['lib/**/*.js', 'dist/js/kendo.forms.min.js',
+        'dist/css/kendo.forms.min.css'],
       options: {
         specs: 'spec/js/*.js',
         vendor: [
@@ -137,10 +145,12 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-kendo-lint');
   grunt.loadNpmTasks('grunt-conventional-changelog');
   grunt.loadNpmTasks('grunt-notify');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
 
   // Default task(s).
-  grunt.registerTask('default', ['jshint', 'kendo_lint', 'concat', 'uglify']);
-	grunt.registerTask('minify', ['jshint', 'kendo_lint', 'concat', 'uglify']);
+  grunt.registerTask('default', ['jshint', 'kendo_lint']);
+	grunt.registerTask('minify', ['jshint', 'kendo_lint', 'concat',
+    'cssmin', 'uglify']);
   grunt.registerTask('x-test', ['minify', 'karma:forms']);
 	grunt.registerTask('test', ['jasmine']);
   grunt.registerTask('release', ['x-test', 'changelog']);

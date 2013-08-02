@@ -15,7 +15,8 @@ files = [
   'dist/kendo.forms.min.js',
   {pattern: 'lib/js/jquery.min.js', watched: false, served: true, included: true},
   {pattern: 'spec/lib/jasmine-jquery.js', watched: false, served: true, included: true},
-  {pattern: 'src/*.js', watched: true, served: true, included: false},
+  {pattern: 'src/js/*.js', watched: true, served: true, included: false},
+  {pattern: 'src/css/*.css', watched: true, served: true, included: false},
   {pattern: 'spec/**/*.html', included: false},
   'spec/js/*.js',
 ];
@@ -68,7 +69,7 @@ captureTimeout = 50000;
 
 // Auto run tests on start (when browsers are captured) and exit
 // CLI --single-run --no-single-run
-singleRun = true;
+singleRun = false;
 
 // report which specs are slower than 500ms
 // CLI --report-slower-than 500

@@ -27,7 +27,11 @@
 		time: detectFormTypeSupport('time'),
 		month: detectFormTypeSupport('month'),
 		week: detectFormTypeSupport('week'),
-		date: detectFormTypeSupport('date')
+		date: detectFormTypeSupport('date'),
+		placeholder: function() {
+			return 'placeholder' in document.createElement('input') &&
+				'placeholder' in document.createElement('textarea');
+		}
 	};
 
 	kendo.forms.features = featureDetects;

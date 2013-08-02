@@ -579,6 +579,21 @@ describe('Kendo Forms Widget Test Suite', function() {
 			}
 		});
 
+		describe('Placeholder support', function() {
+			it('should provide a feature test for placeholder support', function() {
+				expect(kendo.forms.features.placeholder).toBeDefined();
+			});
+
+			it('should add a placeholder class to elements with the' +
+				' placeholder attribute', function() {
+				fixtures.load('form-init.html');
+				$('#imperative-form').kendoForm();
+
+				var placeholder = $('#placeholder');
+				expect(placeholder.hasClass('placeholder')).toBe(true);
+			});
+		});
+
 		fixtures.cleanUp();
 		fixtures.clearCache();
 	});

@@ -44,6 +44,13 @@
 				var typeObj = typeUpgrades[i];
 				upgradeFormType(typeObj.type, typeObj.upgrade);
 			}
+
+			// Add placeholder support if not provided by the browser
+			//if(!kendo.forms.features.placeholder) {
+			form.find('[placeholder]').each(function(index, val) {
+				$(val).addClass('placeholder');
+			});
+			//}
 		},
 
 		options: {

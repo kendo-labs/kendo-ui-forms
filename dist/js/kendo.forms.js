@@ -158,7 +158,11 @@
 		time: detectFormTypeSupport('time'),
 		month: detectFormTypeSupport('month'),
 		week: detectFormTypeSupport('week'),
-		date: detectFormTypeSupport('date')
+		date: detectFormTypeSupport('date'),
+		placeholder: function() {
+			return 'placeholder' in document.createElement('input') &&
+				'placeholder' in document.createElement('textarea');
+		}
 	};
 
 	kendo.forms.features = featureDetects;
@@ -208,6 +212,13 @@
 				var typeObj = typeUpgrades[i];
 				upgradeFormType(typeObj.type, typeObj.upgrade);
 			}
+
+			// Add placeholder support if not provided by the browser
+			//if(!kendo.forms.features.placeholder) {
+			form.find('[placeholder]').each(function(index, val) {
+				$(val).addClass('placeholder');
+			});
+			//}
 		},
 
 		options: {

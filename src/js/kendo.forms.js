@@ -49,9 +49,16 @@
 			if(!kendo.forms.features.placeholder) {
 				form.find('[placeholder]').each(function(index, val) {
 					var el = $(val);
+					var placeholderText = el.attr('placeholder');
 
-					el.wrap('<label class="placeholder">' + el.attr('placeholder') +
-						'</label>');
+					el.on('blur', function() {
+						if (this.value) {
+							this.previousSibling.nodeValue = '';
+						} else {
+							this.previousSibling.nodeValue = placeholderText;
+						}
+					});
+					el.wrap('<label class="placeholder">' + placeholderText + '</label>');
 					el.addClass('placeholder');
 				});
 			}

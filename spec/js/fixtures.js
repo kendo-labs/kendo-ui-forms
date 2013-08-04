@@ -602,6 +602,17 @@ describe('Kendo Forms Widget Test Suite', function() {
 					var placeholder = $('label.placeholder');
 					expect(placeholder.length === 1).toBe(true);
 				});
+
+				it('should hide the label when input text is entered', function() {
+					fixtures.load('form-init.html');
+					$('#imperative-form').kendoForm();
+
+					var placeholder = $('label.placeholder');
+					var input = $('#placeholder');
+
+					input.val('foo');
+					expect(input[0].previousSibling.nodeValue).toEqual('');
+				});
 			}
 		});
 

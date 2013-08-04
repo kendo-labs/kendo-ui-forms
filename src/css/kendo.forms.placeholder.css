@@ -18,3 +18,7 @@ input.placeholder {
 input.placeholder:focus, input.placeholder:first-line {
     background-color: white;
 }
+
+span.hidden {
+    opacity: 0;
+}

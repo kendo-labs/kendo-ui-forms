@@ -1,3 +1,18 @@
+/*
+ * kendo-ui-forms v0.2.0 (2013-08-04)
+ * Copyright © 2013 Telerik
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License")
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 (function (kendo) {
 	kendo.forms = kendo.forms || {};
 
@@ -217,9 +232,16 @@
 			if(!kendo.forms.features.placeholder) {
 				form.find('[placeholder]').each(function(index, val) {
 					var el = $(val);
+					var placeholderText = el.attr('placeholder');
 
-					el.wrap('<label class="placeholder">' + el.attr('placeholder') +
-						'</label>');
+					el.on('blur', function() {
+						if (this.value) {
+							this.previousSibling.nodeValue = '';
+						} else {
+							this.previousSibling.nodeValue = placeholderText;
+						}
+					});
+					el.wrap('<label class="placeholder">' + placeholderText + '</label>');
 					el.addClass('placeholder');
 				});
 			}

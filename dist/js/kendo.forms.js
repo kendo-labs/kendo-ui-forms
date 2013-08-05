@@ -246,7 +246,7 @@
 						var $el = $(this);
 						var labelNode = this.previousSibling;
 						if (this.value) {
-							labelNode.nodeValue = '\n';
+							labelNode.nodeValue = '';
 							$el.addClass('relPlaceholder');
 						} else if (labelNode.nodeValue !== placeholderText) {
 							labelNode.nodeValue = placeholderText;

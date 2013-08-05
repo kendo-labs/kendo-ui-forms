@@ -611,6 +611,7 @@ describe('Kendo Forms Widget Test Suite', function() {
 					var input = $('#placeholder');
 
 					input.val('foo');
+					input.blur();
 					expect(input[0].previousSibling.nodeValue).toEqual('');
 				});
 			}

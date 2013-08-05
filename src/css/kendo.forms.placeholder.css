@@ -15,6 +15,10 @@ input.placeholder {
     z-index: 1;
 }
 
+input.relPlaceholder {
+    position: relative;
+}
+
 input.placeholder:focus, input.placeholder:first-line {
     background-color: white;
 }

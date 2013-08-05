@@ -47,6 +47,7 @@ module.exports = function(grunt) {
       },
       dist: {
         src: [
+          'src/js/kendo.forms.utils.js',
           'src/js/kendo.forms.features.js',
           'src/js/kendo.forms.types.js',
           'src/js/kendo.forms.js'

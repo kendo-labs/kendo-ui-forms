@@ -51,11 +51,17 @@
 					var el = $(val);
 					var placeholderText = el.attr('placeholder');
 
+					// When the field loses focus, clear out the placeholder if
+					// the input contains a value.
 					el.on('blur', function() {
+						var $el = $(this);
+						var labelNode = this.previousSibling;
 						if (this.value) {
-							this.previousSibling.nodeValue = '';
-						} else {
-							this.previousSibling.nodeValue = placeholderText;
+							labelNode.nodeValue = '\n';
+							$el.addClass('relPlaceholder');
+						} else if (labelNode.nodeValue !== placeholderText) {
+							labelNode.nodeValue = placeholderText;
+							$el.removeClass('relPlaceholder');
 						}
 					});
 					el.wrap('<label class="placeholder">' + placeholderText + '</label>');

@@ -1,5 +1,5 @@
 /*
- * kendo-ui-forms v0.2.0 (2013-08-04)
+ * kendo-ui-forms v0.2.0 (2013-08-05)
  * Copyright © 2013 Telerik
  *
  * Licensed under the Apache License, Version 2.0 (the "License")
@@ -13,7 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-(function (kendo) {
+(function() {
+	if(!String.prototype.trim) {
+		String.prototype.trim = function () {
+			return this.replace(/^\s+|\s+$/g,'');
+		};
+	}
+}());;(function (kendo) {
 	kendo.forms = kendo.forms || {};
 
 	function detectFormTypeSupport(type) {
@@ -234,11 +240,17 @@
 					var el = $(val);
 					var placeholderText = el.attr('placeholder');
 
+					// When the field loses focus, clear out the placeholder if
+					// the input contains a value.
 					el.on('blur', function() {
+						var $el = $(this);
+						var labelNode = this.previousSibling;
 						if (this.value) {
-							this.previousSibling.nodeValue = '';
-						} else {
-							this.previousSibling.nodeValue = placeholderText;
+							labelNode.nodeValue = '\n';
+							$el.addClass('relPlaceholder');
+						} else if (labelNode.nodeValue !== placeholderText) {
+							labelNode.nodeValue = placeholderText;
+							$el.removeClass('relPlaceholder');
 						}
 					});
 					el.wrap('<label class="placeholder">' + placeholderText + '</label>');

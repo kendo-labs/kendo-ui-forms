@@ -2,9 +2,17 @@
 	kendo.forms = kendo.forms || {};
 
 	function detectFormTypeSupport(type) {
-		var i = document.createElement('input');
-		i.setAttribute('type', type);
-		return i.type !== 'text';
+		var input = document.createElement('input');
+		
+		//Wrap this in a try/catch b/c IE8 doesn't allow one to set
+		//the type of input elements with setAttribute
+		try {
+			input.setAttribute('type', type);
+		} catch(e) {
+			input.type = type;
+		}
+
+		return input.type !== 'text';
 	}
 
 	function detectDateTimeFields(type) {

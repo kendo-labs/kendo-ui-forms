@@ -29,8 +29,7 @@ describe('Kendo Forms Widget Test Suite', function() {
 
 				kendo.init(document.body);
 
-				expect(typeof $('#declarative-form').data('kendoForm'))
-					.toEqual('object');
+				expect($('#declarative-form').data('kendoForm')).not.toBe(null);
 			});
 		});
 

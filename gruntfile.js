@@ -3,23 +3,14 @@ module.exports = function(grunt) {
   // karma setup
   var browsers;
   (function() {
-    try {
-      var config = grunt.file.readJSON('local.json');
-      if (config.browsers) {
-        browsers = config.browsers;
-      }
-    } catch (e) {
-      var os = require('os');
-      browsers = ['Chrome', 'Firefox', 'Opera'];
-      if (os.type() === 'Darwin') {
-        browsers.push('ChromeCanary');
-        // Karma doesn't shut down Safari automatically, so commenting this out
-        // for my sanity, for now.
-        // browsers.push('Safari');
-      }
-      if (os.type() === 'Windows_NT') {
-        browsers.push('IE');
-      }
+    var os = require('os');
+    browsers = ['Chrome', 'Firefox', 'Opera'];
+    if (os.type() === 'Darwin') {
+      browsers.push('ChromeCanary');
+      browsers.push('Safari');
+    }
+    if (os.type() === 'Windows_NT') {
+      browsers.push('IE');
     }
   })();
 

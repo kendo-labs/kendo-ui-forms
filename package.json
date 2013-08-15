@@ -1,29 +1,46 @@
 {
   "name": "kendo-ui-forms",
   "version": "0.2.0",
+  "description": "A cross-browser polyfill for HTML5 forms features",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/kendo-labs/kendo-ui-forms.git"
+  },
+  "keywords": [
+    "html5",
+    "polyfill",
+    "forms",
+    "validation",
+    "kendo ui"
+  ],
   "devDependencies": {
     "grunt": "*",
     "grunt-contrib-uglify": "*",
-    "grunt-karma": "~0.6.1",
-    "karma-script-launcher": "~0.1.0",
-    "karma-crbot-reporter": "*",
     "grunt-contrib-watch": "~0.4.4",
     "grunt-contrib-jshint": "~0.6.0",
     "grunt-contrib-concat": "~0.3.0",
-    "karma-jasmine": "~0.1.0",
-    "karma-safari-launcher": "0.0.2",
-    "karma-opera-launcher": "~0.1",
     "grunt-contrib-jasmine": "~0.5.1",
     "grunt-kendo-lint": "~0.0.1",
     "grunt-conventional-changelog": "~0.1.2",
     "grunt-notify": "~0.2.7",
     "grunt-concat-css": "~0.1.0",
     "grunt-contrib-cssmin": "~0.6.1",
+    "karma-script-launcher": "~0.1.0",
     "karma-chrome-launcher": "~0.1.0",
     "karma-firefox-launcher": "~0.1.0",
+    "karma-html2js-preprocessor": "~0.1.0",
+    "karma-jasmine": "~0.1.0",
+    "karma-requirejs": "~0.1.0",
+    "karma-coffee-preprocessor": "~0.1.0",
     "karma-phantomjs-launcher": "~0.1.0",
-    "karma": "~0.10.0"
+    "karma": "~0.10.1",
+    "grunt-karma": "~0.6.1",
+    "karma-safari-launcher": "~0.1.1",
+    "karma-opera-launcher": "~0.1.0"
   },
+  "author": "Brandon Satrom",
+  "license": "Apache 2.0",
+  "readmeFilename": "README.asciidoc",
   "scripts": {
     "test": "grunt test"
   }

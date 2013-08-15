@@ -138,7 +138,7 @@ module.exports = function(grunt) {
   // Load the plugin that provides the "uglify" task.
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-jshint');
-	grunt.loadNpmTasks('grunt-karma-0.9.1');
+	grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-jasmine');
@@ -151,7 +151,7 @@ module.exports = function(grunt) {
   grunt.registerTask('default', ['jshint', 'kendo_lint']);
 	grunt.registerTask('minify', ['jshint', 'kendo_lint', 'concat',
     'cssmin', 'uglify']);
-  grunt.registerTask('x-test', ['minify', 'karma:forms']);
-	grunt.registerTask('test', ['jasmine']);
+  grunt.registerTask('x-test', ['minify', 'jasmine', 'karma:forms']);
+	grunt.registerTask('test', ['minify', 'jasmine']);
   grunt.registerTask('release', ['x-test', 'changelog']);
 };

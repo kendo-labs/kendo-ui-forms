@@ -25,7 +25,7 @@ describe('Kendo Forms Widget Test Suite', function() {
 
 			it('should be able to perform declarative initialization with data' +
 				' attributes', function() {
-				fixtures.load('form-init.html');
+				fixtures.load('declarative-form.html');
 
 				kendo.init(document.body);
 
@@ -36,7 +36,7 @@ describe('Kendo Forms Widget Test Suite', function() {
 		describe('Input transformation', function() {
 			it('should add the k-input class to all inputs inside of the form',
 				function() {
-				fixtures.load('form-init.html');
+				fixtures.load('input-transformation.html');
 
 				$('#imperative-form').kendoForm();
 				expect($('#imperative-form').find('#vanillaInput')
@@ -45,7 +45,7 @@ describe('Kendo Forms Widget Test Suite', function() {
 
 			it('should add the k-input class to inputs inside of the form' +
 				' if the styleInputs option is true', function() {
-				fixtures.load('form-init.html');
+				fixtures.load('input-transformation.html');
 
 				$('#imperative-form').kendoForm({ styleInputs: true });
 				expect($('#imperative-form').find('#vanillaInput')
@@ -54,7 +54,7 @@ describe('Kendo Forms Widget Test Suite', function() {
 
 			it('should NOT add the k-input class to inputs inside of the' +
 				' form if the styleInputs option is false', function() {
-				fixtures.load('form-init.html');
+				fixtures.load('input-transformation.html');
 
 				$('#imperative-form').kendoForm({ styleInputs: false });
 				expect($('#imperative-form').find('#vanillaInput')
@@ -62,7 +62,7 @@ describe('Kendo Forms Widget Test Suite', function() {
 			});
 
 			it('should NOT add the k-input class to button inputs', function() {
-				fixtures.load('form-init.html');
+				fixtures.load('input-transformation.html');
 
 				$('#imperative-form').kendoForm();
 				expect($('#imperative-form').find('#submit')
@@ -76,7 +76,7 @@ describe('Kendo Forms Widget Test Suite', function() {
 			});
 
 			it('should add the k-button class to button inputs', function() {
-				fixtures.load('form-init.html');
+				fixtures.load('input-transformation.html');
 
 				$('#imperative-form').kendoForm();
 				expect($('#imperative-form').find('#submit')
@@ -94,25 +94,25 @@ describe('Kendo Forms Widget Test Suite', function() {
 			if (!kendo.forms.features.color) {
 				it('should create a kendoColorPicker from the color input type',
 					function() {
-					fixtures.load('form-init.html');
+					fixtures.load('color-type.html');
 
-					$('#imperative-form').kendoForm();
+					$('#color-form').kendoForm();
 					expect($('#color').data('role')).toEqual('colorpicker');
 				});
 			} else {
 				it('should NOT create a kendoColorPicker if the color type is' +
 					' already supported by the browser', function() {
-					fixtures.load('form-init.html');
+					fixtures.load('color-type.html');
 
-					$('#imperative-form').kendoForm();
+					$('#color-form').kendoForm();
 					expect($('#color').data('role')).not.toBeDefined();
 				});
 
 				it('should create a colorpicker on ALL browsers if the' +
 					' alwaysUseWidgets option is passed-in', function() {
-					fixtures.load('form-init.html');
+					fixtures.load('color-type.html');
 
-					$('#imperative-form').kendoForm({ alwaysUseWidgets: true });
+					$('#color-form').kendoForm({ alwaysUseWidgets: true });
 					expect($('#color').data('role')).toEqual('colorpicker');
 				});
 			}
@@ -122,34 +122,34 @@ describe('Kendo Forms Widget Test Suite', function() {
 			if (!kendo.forms.features.number) {
 				it('should create a kendoNumericTextBox from the number input' +
 					' type', function() {
-					fixtures.load('form-init.html');
+					fixtures.load('number-type.html');
 
-					$('#imperative-form').kendoForm();
+					$('#number-form').kendoForm();
 					expect($('#numeric').data('role')).toEqual('numerictextbox');
 				});
 			} else {
 				it('should NOT create a kendoNumericTextBox if the number type' +
 					' is already supported by the browser', function() {
-					fixtures.load('form-init.html');
+					fixtures.load('number-type.html');
 
-					$('#imperative-form').kendoForm();
+					$('#number-form').kendoForm();
 					expect($('#numeric').data('role')).not.toBeDefined();
 				});
 
 				it('should create a colorpicker on ALL browsers if the' +
 					' alwaysUseWidgets option is passed-in', function() {
-					fixtures.load('form-init.html');
+					fixtures.load('number-type.html');
 
-					$('#imperative-form').kendoForm({ alwaysUseWidgets: true });
+					$('#number-form').kendoForm({ alwaysUseWidgets: true });
 					expect($('#numeric').data('role')).toEqual('numerictextbox');
 				});
 			}
 
 			it('should expose number type attributes as values in the' +
 				' kendoNumericTextBox widget', function() {
-				fixtures.load('form-init.html');
+				fixtures.load('number-type.html');
 
-				$('#imperative-form').kendoForm({ alwaysUseWidgets: true });
+				$('#number-form').kendoForm({ alwaysUseWidgets: true });
 
 				var numericInput = $('#numeric');
 				var ntbObject = numericInput.data('kendoNumericTextBox');
@@ -166,34 +166,34 @@ describe('Kendo Forms Widget Test Suite', function() {
 		describe('Range type support', function() {
 			if (!kendo.forms.features.range) {
 				it('should create a kendoSlider from the range input type', function() {
-					fixtures.load('form-init.html');
+					fixtures.load('range-type.html');
 
-					$('#imperative-form').kendoForm();
+					$('#range-form').kendoForm();
 					expect($('#slider').data('role')).toEqual('slider');
 				});
 			} else {
 				it('should NOT create a kendoSlider if the range type is already' +
 					' supported by the browser', function() {
-					fixtures.load('form-init.html');
+					fixtures.load('range-type.html');
 
-					$('#imperative-form').kendoForm();
+					$('#range-form').kendoForm();
 					expect($('#slider').data('role')).not.toBeDefined();
 				});
 
 				it('should create a slider on ALL browsers if the alwaysUseWidgets' +
 					' option is passed-in', function() {
-					fixtures.load('form-init.html');
+					fixtures.load('range-type.html');
 
-					$('#imperative-form').kendoForm({ alwaysUseWidgets: true });
+					$('#range-form').kendoForm({ alwaysUseWidgets: true });
 					expect($('#slider').data('role')).toEqual('slider');
 				});
 			}
 
 			it('should expose range type attributes as values in the kendoSlider' +
 				' widget', function() {
-				fixtures.load('form-init.html');
+				fixtures.load('range-type.html');
 
-				$('#imperative-form').kendoForm({ alwaysUseWidgets: true });
+				$('#range-form').kendoForm({ alwaysUseWidgets: true });
 
 				var rangeInput = $('#slider');
 				var sliderObject = rangeInput.data('kendoSlider');
@@ -212,34 +212,34 @@ describe('Kendo Forms Widget Test Suite', function() {
 		describe('File type support', function() {
 			if (!kendo.forms.features.file) {
 				it('should create a kendoUpload from the file input type', function() {
-					fixtures.load('form-init.html');
+					fixtures.load('file-type.html');
 
-					$('#imperative-form').kendoForm();
+					$('#file-form').kendoForm();
 					expect($('input[type=file]').data('role')).toEqual('upload');
 				});
 			} else {
 				it('should NOT create a kendoUpload if the file type is already' +
 					' supported by the browser', function() {
-					fixtures.load('form-init.html');
+					fixtures.load('file-type.html');
 
-					$('#imperative-form').kendoForm();
+					$('#file-form').kendoForm();
 					expect($('#photos').data('role')).not.toBeDefined();
 				});
 
 				it('should create a slider on ALL browsers if the alwaysUseWidgets' +
 					' option is passed-in', function() {
-					fixtures.load('form-init.html');
+					fixtures.load('file-type.html');
 
-					$('#imperative-form').kendoForm({ alwaysUseWidgets: true });
+					$('#file-form').kendoForm({ alwaysUseWidgets: true });
 					expect($('#photos').data('role')).toEqual('upload');
 				});
 			}
 
 			it('should preserve the accept attribute on the upload widget',
 				function() {
-				fixtures.load('form-init.html');
+				fixtures.load('file-type.html');
 
-				$('#imperative-form').kendoForm({ alwaysUseWidgets: true });
+				$('#file-form').kendoForm({ alwaysUseWidgets: true });
 
 				expect($('#photos').attr('accept')).toEqual('.doc,.docx,.xml');
 			});
@@ -249,9 +249,9 @@ describe('Kendo Forms Widget Test Suite', function() {
 			if (!kendo.forms.features.datetime) {
 				it('should create a kendoDateTime from the datetime input type',
 					function() {
-					fixtures.load('form-init.html');
+					fixtures.load('datetime-type.html');
 
-					$('#imperative-form').kendoForm();
+					$('#datetime-form').kendoForm();
 					expect($('#datetime').data('role')).toEqual('datetimepicker');
 				});
 
@@ -261,9 +261,9 @@ describe('Kendo Forms Widget Test Suite', function() {
 				if (env !== 'headless') {
 					it('should apply the datetime attributes (val, min, max, step)' +
 						' to the widget', function() {
-						fixtures.load('form-init.html');
+						fixtures.load('datetime-type.html');
 
-						$('#imperative-form').kendoForm();
+						$('#datetime-form').kendoForm();
 
 						var datetimeInput = $('#datetime');
 						var datetimeObject = datetimeInput.data('kendoDateTimePicker');
@@ -300,9 +300,9 @@ describe('Kendo Forms Widget Test Suite', function() {
 					});
 
 					it('should apply default values when attrs are null', function() {
-						fixtures.load('form-init.html');
+						fixtures.load('datetime-type.html');
 
-						$('#imperative-form').kendoForm();
+						$('#datetime-form').kendoForm();
 
 						var datetimeInput = $('#datetimeWithNoAttrs');
 						var datetimeObject = datetimeInput.data('kendoDateTimePicker');
@@ -316,17 +316,17 @@ describe('Kendo Forms Widget Test Suite', function() {
 			} else {
 				it('should NOT create a kendoUpload if the file type is already' +
 						' supported by the browser', function() {
-					fixtures.load('form-init.html');
+					fixtures.load('datetime-type.html');
 
-					$('#imperative-form').kendoForm();
+					$('#datetime-form').kendoForm();
 					expect($('#datetime').data('role')).not.toBeDefined();
 				});
 
 				it('should create a datetimepicker on ALL browsers if the' +
 					' alwaysUseWidgets option is passed-in', function() {
-					fixtures.load('form-init.html');
+					fixtures.load('datetime-type.html');
 
-					$('#imperative-form').kendoForm({ alwaysUseWidgets: true });
+					$('#datetime-form').kendoForm({ alwaysUseWidgets: true });
 					expect($('#datetime').data('role')).toEqual('datetimepicker');
 				});
 			}
@@ -334,17 +334,17 @@ describe('Kendo Forms Widget Test Suite', function() {
 			if (!kendo.forms.features.datetime_local) {
 				it('should create a kendoDateTime from the datetime-local input' +
 					' type', function() {
-					fixtures.load('form-init.html');
+					fixtures.load('datetime-type.html');
 
-					$('#imperative-form').kendoForm();
+					$('#datetime-form').kendoForm();
 					expect($('#local').data('role')).toEqual('datetimepicker');
 				});
 			} else {
 				it('should NOT create a kendoDateTimePicker from datetime-local' +
 					' if the file type is already supported by the browser', function() {
-					fixtures.load('form-init.html');
+					fixtures.load('datetime-type.html');
 
-					$('#imperative-form').kendoForm();
+					$('#datetime-form').kendoForm();
 					expect($('#local').data('role')).not.toBeDefined();
 				});
 			}
@@ -357,9 +357,9 @@ describe('Kendo Forms Widget Test Suite', function() {
 				// 'datetime-local' to 'text'
 				it('should apply the datetime-local value attrbiute to the widget',
 					function() {
-					fixtures.load('form-init.html');
+					fixtures.load('datetime-type.html');
 
-					$('#imperative-form').kendoForm({ alwaysUseWidgets: true });
+					$('#datetime-form').kendoForm({ alwaysUseWidgets: true });
 
 					var datetimeInput = $('#local');
 					var datetimeObject = datetimeInput.data('kendoDateTimePicker');
@@ -374,25 +374,25 @@ describe('Kendo Forms Widget Test Suite', function() {
 			if(!kendo.forms.features.time) {
 				it('should create a kendoTimePicker from the time input type',
 					function() {
-					fixtures.load('form-init.html');
+					fixtures.load('time-type.html');
 
-					$('#imperative-form').kendoForm();
+					$('#time-form').kendoForm();
 					expect($('#time').data('role')).toEqual('timepicker');
 				});
 			} else {
 				it('should NOT create a kendoTimePocker if the time type is' +
 					' already supported by the browser', function() {
-					fixtures.load('form-init.html');
+					fixtures.load('time-type.html');
 
-					$('#imperative-form').kendoForm();
+					$('#time-form').kendoForm();
 					expect($('#time').data('role')).not.toBeDefined();
 				});
 
 				it('should create a timepicker on ALL browsers if the ' +
 					' alwaysUseWidgets option is passed-in', function() {
-					fixtures.load('form-init.html');
+					fixtures.load('time-type.html');
 
-					$('#imperative-form').kendoForm({ alwaysUseWidgets: true });
+					$('#time-form').kendoForm({ alwaysUseWidgets: true });
 					expect($('#time').data('role')).toEqual('timepicker');
 				});
 			}
@@ -400,10 +400,10 @@ describe('Kendo Forms Widget Test Suite', function() {
 			if (env !== 'headless') {
 				it('should apply the time attributes (val, min, max, step) to' +
 					' the widget', function() {
-					fixtures.load('form-init.html');
+					fixtures.load('time-type.html');
 					var dummyDate = '2013-10-04T';
 
-					$('#imperative-form').kendoForm({ alwaysUseWidgets: true });
+					$('#time-form').kendoForm({ alwaysUseWidgets: true });
 
 					var timeInput = $('#time');
 					var timeObject = timeInput.data('kendoTimePicker');
@@ -429,25 +429,25 @@ describe('Kendo Forms Widget Test Suite', function() {
 			if(!kendo.forms.features.month) {
 				it('should create a kendoDatePicker from the month input type',
 					function() {
-					fixtures.load('form-init.html');
+					fixtures.load('month-type.html');
 
-					$('#imperative-form').kendoForm();
+					$('#month-form').kendoForm();
 					expect($('#month').data('role')).toEqual('datepicker');
 				});
 			} else {
 				it('should NOT create a kendoDatePicker if the time type is' +
 					' already supported by the browser', function() {
-					fixtures.load('form-init.html');
+					fixtures.load('month-type.html');
 
-					$('#imperative-form').kendoForm();
+					$('#month-form').kendoForm();
 					expect($('#month').data('role')).not.toBeDefined();
 				});
 
 				it('should create a kendoDatePicker on ALL browsers if the' +
 					' alwaysUseWidgets option is passed-in', function() {
-					fixtures.load('form-init.html');
+					fixtures.load('month-type.html');
 
-					$('#imperative-form').kendoForm({ alwaysUseWidgets: true });
+					$('#month-form').kendoForm({ alwaysUseWidgets: true });
 					expect($('#month').data('role')).toEqual('datepicker');
 				});
 			}
@@ -455,8 +455,8 @@ describe('Kendo Forms Widget Test Suite', function() {
 			if (env !== 'headless') {
 				it('should apply the month attributes (val, min, max, step)' +
 					' to the widget', function() {
-					fixtures.load('form-init.html');
-					$('#imperative-form').kendoForm({ alwaysUseWidgets: true });
+					fixtures.load('month-type.html');
+					$('#month-form').kendoForm({ alwaysUseWidgets: true });
 
 					var dateInput = $('#month');
 					var dateObject = dateInput.data('kendoDatePicker');
@@ -480,25 +480,25 @@ describe('Kendo Forms Widget Test Suite', function() {
 			if(!kendo.forms.features.week) {
 				it('should create a kendoDatePicker from the week input type',
 					function() {
-					fixtures.load('form-init.html');
+					fixtures.load('week-type.html');
 
-					$('#imperative-form').kendoForm();
+					$('#week-form').kendoForm();
 					expect($('#week').data('role')).toEqual('datepicker');
 				});
 			} else {
 				it('should NOT create a kendoDatePicker if the time type is' +
 					' already supported by the browser', function() {
-					fixtures.load('form-init.html');
+					fixtures.load('week-type.html');
 
-					$('#imperative-form').kendoForm();
+					$('#week-form').kendoForm();
 					expect($('#week').data('role')).not.toBeDefined();
 				});
 
 				it('should create a kendoDatePicker on ALL browsers if' +
 					' the alwaysUseWidgets option is passed-in', function() {
-					fixtures.load('form-init.html');
+					fixtures.load('week-type.html');
 
-					$('#imperative-form').kendoForm({ alwaysUseWidgets: true });
+					$('#week-form').kendoForm({ alwaysUseWidgets: true });
 					expect($('#week').data('role')).toEqual('datepicker');
 				});
 			}
@@ -506,8 +506,8 @@ describe('Kendo Forms Widget Test Suite', function() {
 			if (env !== 'headless') {
 				it('should apply the week attributes (val, min, max, step)' +
 					' to the widget', function() {
-					fixtures.load('form-init.html');
-					$('#imperative-form').kendoForm({ alwaysUseWidgets: true });
+					fixtures.load('week-type.html');
+					$('#week-form').kendoForm({ alwaysUseWidgets: true });
 
 					var dateInput = $('#week');
 					var dateObject = dateInput.data('kendoDatePicker');
@@ -531,25 +531,25 @@ describe('Kendo Forms Widget Test Suite', function() {
 			if(!kendo.forms.features.date) {
 				it('should create a kendoDatePicker from the date input type',
 					function() {
-					fixtures.load('form-init.html');
+					fixtures.load('date-type.html');
 
-					$('#imperative-form').kendoForm();
+					$('#date-form').kendoForm();
 					expect($('#date').data('role')).toEqual('datepicker');
 				});
 			} else {
 				it('should NOT create a kendoDatePicker if the time type is' +
 					' already supported by the browser', function() {
-					fixtures.load('form-init.html');
+					fixtures.load('date-type.html');
 
-					$('#imperative-form').kendoForm();
+					$('#date-form').kendoForm();
 					expect($('#date').data('role')).not.toBeDefined();
 				});
 
 				it('should create a kendoDatePicker on ALL browsers if the' +
 					' alwaysUseWidgets option is passed-in', function() {
-					fixtures.load('form-init.html');
+					fixtures.load('date-type.html');
 
-					$('#imperative-form').kendoForm({ alwaysUseWidgets: true });
+					$('#date-form').kendoForm({ alwaysUseWidgets: true });
 					expect($('#date').data('role')).toEqual('datepicker');
 				});
 			}
@@ -557,8 +557,8 @@ describe('Kendo Forms Widget Test Suite', function() {
 			if (env !== 'headless') {
 				it('should apply the date attributes (val, min, max, step) to' +
 					' the widget', function() {
-					fixtures.load('form-init.html');
-					$('#imperative-form').kendoForm({ alwaysUseWidgets: true });
+					fixtures.load('date-type.html');
+					$('#date-form').kendoForm({ alwaysUseWidgets: true });
 
 					var dateInput = $('#date');
 					var dateObject = dateInput.data('kendoDatePicker');
@@ -586,8 +586,8 @@ describe('Kendo Forms Widget Test Suite', function() {
 			if(!kendo.forms.features.placeholder) {
 				it('should add a placeholder class to elements with the' +
 					' placeholder attribute', function() {
-					fixtures.load('form-init.html');
-					$('#imperative-form').kendoForm();
+					fixtures.load('placeholder.html');
+					$('#placeholder-form').kendoForm();
 
 					var placeholder = $('#placeholder');
 					expect(placeholder.hasClass('placeholder')).toBe(true);
@@ -595,16 +595,16 @@ describe('Kendo Forms Widget Test Suite', function() {
 
 				it('should add a label element to serve as the pseudo placeholder',
 					function() {
-					fixtures.load('form-init.html');
-					$('#imperative-form').kendoForm();
+					fixtures.load('placeholder.html');
+					$('#placeholder-form').kendoForm();
 
 					var placeholder = $('label.placeholder');
 					expect(placeholder.length === 1).toBe(true);
 				});
 
 				it('should hide the label when input text is entered', function() {
-					fixtures.load('form-init.html');
-					$('#imperative-form').kendoForm();
+					fixtures.load('placeholder.html');
+					$('#placeholder-form').kendoForm();
 
 					var placeholder = $('label.placeholder');
 					var input = $('#placeholder');

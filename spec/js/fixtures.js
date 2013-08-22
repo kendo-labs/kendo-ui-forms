@@ -613,7 +613,18 @@ describe('Kendo Forms Widget Test Suite', function() {
 					input.blur();
 					expect(input[0].previousSibling.nodeValue).toEqual('');
 				});
-			}
+
+        it('should remove CR and LF chars from the placeholder value',
+        function() {
+          fixtures.load('placeholder.html');
+          $('#placeholder-form').kendoForm();
+
+          var placeholder = $('label.placeholder');
+          var input = $('#break-placeholder');
+
+          expect(input[0].previousSibling.nodeValue).toEqual('Text me!');
+        });
+      }
 		});
 
 		fixtures.cleanUp();

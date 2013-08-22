@@ -30,8 +30,8 @@
 					var el = $(val);
 
 					if (val.type === 'button' ||
-							val.type === 'submit' ||
-							val.type === 'reset') {
+						val.type === 'submit' ||
+						val.type === 'reset') {
 						el.addClass('k-button');
 					} else {
 						el.addClass('k-input');
@@ -49,7 +49,10 @@
 			if(!kendo.forms.features.placeholder) {
 				form.find('[placeholder]').each(function(index, val) {
 					var el = $(val);
-					var placeholderText = el.attr('placeholder');
+					// Strip CR and LF from attribute vales, as specified in
+          // www.w3.org/TR/html5/forms.html#the-placeholder-attribute
+          var placeholderText = el.attr('placeholder')
+            .replace(/(\\r\\n|\\n|\\r)/gm,'');
 
 					// When the field loses focus, clear out the placeholder if
 					// the input contains a value.

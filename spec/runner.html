@@ -14,6 +14,7 @@
     <script type="text/javascript" src="lib/jasmine-1.3.1/jasmine-html.js"></script>
     <script src="../lib/js/jquery.min.js"></script>
     <script type="text/javascript" src="lib/jasmine-jquery.js"></script>
+      <script type="text/javascript" src="lib/jasmine.tap-reporter.js"></script>
     
     <!-- Dependencies -->
     <link rel="stylesheet" href="../src/css/kendo.forms.placeholder.css" />
@@ -33,9 +34,11 @@
         var jasmineEnv = jasmine.getEnv();
         jasmineEnv.updateInterval = 1000;
 
-        var htmlReporter = new jasmine.HtmlReporter();
+          var htmlReporter = new jasmine.HtmlReporter();
+          jasmineEnv.addReporter(htmlReporter);
 
-        jasmineEnv.addReporter(htmlReporter);
+          var tapReporter = new jasmine.TapReporter();
+          jasmineEnv.addReporter(tapReporter);
 
         jasmineEnv.specFilter = function(spec) {
           return htmlReporter.specFilter(spec);

@@ -6,7 +6,7 @@ A Full-Featured HTML5 Forms Polyfill that leverages Kendo UI Widgets and Framewo
 
 image::https://travis-ci.org/kendo-labs/kendo-ui-forms.png[Build Status, link="https://travis-ci.org/kendo-labs/kendo-ui-forms"]
 
-[![browser support](https://ci.testling.com/kendo-labs/kendo-ui-forms.png)](https://ci.testling.com/kendo-labs/kendo-ui-forms)
+image::https://ci.testling.com/kendo-labs/kendo-ui-forms.png[browser support, link="https://ci.testling.com/kendo-labs/kendo-ui-forms"]
 
 == Purpose & Goals
 

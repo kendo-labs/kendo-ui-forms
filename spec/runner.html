@@ -34,11 +34,9 @@
         var jasmineEnv = jasmine.getEnv();
         jasmineEnv.updateInterval = 1000;
 
-          var htmlReporter = new jasmine.HtmlReporter();
-          jasmineEnv.addReporter(htmlReporter);
+        var htmlReporter = new jasmine.HtmlReporter();
+        jasmineEnv.addReporter(htmlReporter);
 
-          var tapReporter = new jasmine.TapReporter();
-          jasmineEnv.addReporter(tapReporter);
 
         jasmineEnv.specFilter = function(spec) {
           return htmlReporter.specFilter(spec);

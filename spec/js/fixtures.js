@@ -517,12 +517,12 @@ describe('Kendo Forms Widget Test Suite', function() {
 					var maxParts = dateInput.attr('max').split(dateRegex);
 
 					expect(dateObject.value()).not.toBeNull();
-					expect(dateObject.value().getMonth()+1).toEqual(
-						parseInt(valParts[0], 10));
-					expect(dateObject.min().getMonth()+1).toEqual(
-						parseInt(minParts[1], 10));
-					expect(dateObject.max().getMonth()+1).toEqual(
-						parseInt(maxParts[1], 10));
+					expect(dateObject.value().getFullYear()).toEqual(
+						parseInt(valParts[2], 10));
+					expect(dateObject.min().getFullYear()).toEqual(
+						parseInt(minParts[0], 10));
+					expect(dateObject.max().getFullYear()).toEqual(
+						parseInt(maxParts[0], 10));
 				});
 			}
 		});

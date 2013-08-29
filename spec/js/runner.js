@@ -4,5 +4,5 @@
   var tapReporter = new jasmine.TapReporter();
   jasmineEnv.addReporter(tapReporter);
   jasmineEnv.execute();
-  
+
 })();

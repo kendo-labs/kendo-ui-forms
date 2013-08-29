@@ -12,7 +12,7 @@ module.exports = function(config) {
       {pattern: 'src/js/*.js', watched: true, served: true, included: false},
       {pattern: 'src/css/*.css', watched: true, served: true, included: false},
       {pattern: 'spec/**/*.html', included: false},
-      'spec/js/*.js',
+      'spec/js/fixtures.js',
     ],
 
     // list of files to exclude

@@ -239,7 +239,7 @@
 				// replace dash with underscore for features object lookup
 				var modType = type.replace(/-/g,'_');
 
-				if (!kendo.forms.features[modType] || that.options.alwaysUseWidgets) {
+				if (that.options.alwaysUseWidgets || !kendo.forms.features[modType]) {
           inputs.filter('input[type=' + type + ']').each(callback);
 				}
 			};

@@ -112,8 +112,13 @@
 	}
 
 	function getDateFromWeekString(weekString) {
-		var week, year,
-			dateParts = weekString.split('-');
+    var week, year, dateParts;
+
+    if (!weekString) {
+      return null;
+    }
+
+    dateParts = weekString.split('-');
 
 		if (dateParts.length < 2) {
 			return null;

@@ -7,8 +7,10 @@ module.exports = function(config) {
     files: [
       'lib/js/*.js',
       'dist/js/kendo.forms.min.js',
-      {pattern: 'lib/js/jquery.min.js', watched: false, served: true, included: true},
-      {pattern: 'spec/lib/jasmine-jquery.js', watched: false, served: true, included: true},
+      {pattern: 'lib/js/jquery.min.js', watched: false, served: true,
+       included: true},
+      {pattern: 'spec/lib/jasmine-jquery.js', watched: false, served: true,
+       included: true},
       {pattern: 'src/js/*.js', watched: true, served: true, included: false},
       {pattern: 'src/css/*.css', watched: true, served: true, included: false},
       {pattern: 'spec/**/*.html', included: false},

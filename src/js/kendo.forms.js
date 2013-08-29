@@ -7,7 +7,7 @@
 	var Form = Widget.extend({
 		init: function(element, options) {
 			var that = this;
-			var form = $(element);
+			var inputs = $(element).find('input, button');
 			var i, len;
 
 			var upgradeFormType = function(type, callback) {
@@ -15,7 +15,7 @@
 				var modType = type.replace(/-/g,'_');
 
 				if (!kendo.forms.features[modType] || that.options.alwaysUseWidgets) {
-					form.find('input[type=' + type + ']').each(callback);
+          inputs.filter('input[type=' + type + ']').each(callback);
 				}
 			};
 
@@ -23,7 +23,7 @@
 			Widget.fn.init.call(this, element, options);
 
 			if (that.options.styleInputs) {
-				form.find('input, button').each(function(index, val) {
+        inputs.filter('input, button').each(function(index, val) {
 					// Add the k-input class to each form element (or 
 					// k-button for buttons), providing Kendo UI styling 
 					// to all elements, not just those the widget will transform.
@@ -47,7 +47,7 @@
 
 			// Add placeholder support if not provided by the browser
 			if(!kendo.forms.features.placeholder) {
-				form.find('[placeholder]').each(function(index, val) {
+        inputs.filter('[placeholder]').each(function(index, val) {
 					var el = $(val);
 					// Strip CR and LF from attribute vales, as specified in
           // www.w3.org/TR/html5/forms.html#the-placeholder-attribute

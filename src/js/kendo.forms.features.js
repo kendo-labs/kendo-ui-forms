@@ -31,7 +31,7 @@
 		range: detectFormTypeSupport('range'),
 		file: detectFormTypeSupport('file'),
 		datetime: detectDateTimeFields('datetime'),
-		datetime_local: detectFormTypeSupport('datetime-local'),
+		'datetime-local': detectFormTypeSupport('datetime-local'),
 		time: detectFormTypeSupport('time'),
 		month: detectFormTypeSupport('month'),
 		week: detectFormTypeSupport('week'),

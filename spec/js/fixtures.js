@@ -331,7 +331,7 @@ describe('Kendo Forms Widget Test Suite', function() {
 				});
 			}
 
-			if (!kendo.forms.features.datetime_local) {
+			if (!kendo.forms.features['datetime-local']) {
 				it('should create a kendoDateTime from the datetime-local input' +
 					' type', function() {
 					fixtures.load('datetime-type.html');

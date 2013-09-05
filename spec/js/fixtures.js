@@ -600,7 +600,7 @@ describe('Kendo Forms Widget Test Suite', function() {
 					$('#placeholder-form').kendoForm();
 
 					var placeholder = $('label.placeholder');
-					expect(placeholder.length === 1).toBe(true);
+					expect(placeholder.length >= 1).toBe(true);
 				});
 
 				it('should hide the label when input text is entered', function() {

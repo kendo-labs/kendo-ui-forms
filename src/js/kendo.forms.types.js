@@ -139,7 +139,7 @@
       // Valid ISO Dates may not parse on some browsers (IE7,8)
       var altDate = new Date(val.replace(/-/g, '/'));
 
-      if (!altDate) {
+      if (altDate) {
         return altDate;
       }
 

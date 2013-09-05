@@ -96,12 +96,11 @@
         dummyDate = '2013-10-04T';
 
       input.kendoTimePicker({
-        value: input.val().length > 0 ? new Date(dummyDate + input.val())
-          : null,
-        min: input.attr('min') ? new Date(dummyDate + input.attr('min'))
-          : new Date(2049, 0, 1, 0, 0, 0),
-        max: input.attr('max') ? new Date(dummyDate + input.attr('max'))
-          : new Date(2099, 11, 31, 0, 0, 0),
+        value: createDateFromInput(input.val(), null, dummyDate),
+        min: createDateFromInput(input.attr('min'),
+          new Date(2049, 0, 1, 0, 0, 0), dummyDate),
+        max: createDateFromInput(input.attr('max'),
+          new Date(2099, 11, 31, 0, 0, 0), dummyDate),
         // Step attribute is seconds, interval in minute
         interval: input.attr('step') ?
           Math.round(parseInt(input.attr('step'), 10)/60) : 30
@@ -196,9 +195,13 @@
 		};
 	}
 
-  function createDateFromInput(val, defaultDate) {
+  function createDateFromInput(val, defaultDate, prefix) {
     if (!val) {
       return defaultDate;
+    }
+
+    if (prefix) {
+      val = prefix + val;
     }
 
     if (!Date.parse(val)) {
@@ -206,7 +209,9 @@
       var altDate = new Date(val.replace(/-/g, '/'));
 
       if (altDate) {
-        return altDate;
+        // If this alternate value is valid, add a day
+        // to account for UA parsing
+        return new Date(altDate.setDate(altDate.getDate() + 1));
       }
 
       return defaultDate;

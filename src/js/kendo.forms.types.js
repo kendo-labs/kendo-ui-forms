@@ -140,7 +140,9 @@
       var altDate = new Date(val.replace(/-/g, '/'));
 
       if (altDate) {
-        return altDate;
+        // If this alternate value is valid, add a day
+        // to account for UA parsing.
+        return altDate.setDate(altDate.getDate() + 1);
       }
 
       return defaultDate;

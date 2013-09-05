@@ -1,5 +1,5 @@
 /*
- * kendo-ui-forms v0.2.0 (2013-09-05)
+ * kendo-ui-forms v0.2.0 (2013-11-27)
  * Copyright © 2013 Telerik
  *
  * Licensed under the Apache License, Version 2.0 (the "License")
@@ -149,7 +149,14 @@
 	function convertMonthPartToDate(val) {
 		// Add dummy day of month for valid date parsing
 		val = val + '-' + new Date().getDate();
-		return Date.parse(val);
+
+    if (!Date.parse(val)) {
+      // Valid ISO Dates may not parse on some browsers (IE7,8)
+      // replace dashes with slashes and try another parse.
+      return Date.parse(val.replace(/-/g, '/'));
+    }
+
+    return Date.parse(val);
 	}
 
 	function getDateFromWeekString(weekString) {
@@ -250,10 +257,19 @@
 		},
     shouldUpgradeType: function(type) {
       var that = this;
+
+      var inputSupported = features[type];
+
+      // don't upgrade mobile inputs if they are supported
+      // and the user has requested they always be used
+      if (that.options.mobile && kendo.support.mobileOS && inputSupported) {
+        return false;
+      }
+      
       return (that.options.alwaysUseWidgets ||
-             !features[type]) &&
-             type in typeUpgrades &&
-             !vanillaInputRegEx.test(type);
+             !inputSupported) &&
+             type in typeUpgrades && !vanillaInputRegEx.test(type);
+             
     },
     upgradeInputType: function(that, el) {
       var type = el.getAttribute('type');
@@ -299,6 +315,7 @@
 			// The jQuery plugin would be jQuery.fn.kendoForm.
 			name: 'Form',
 			alwaysUseWidgets: false,
+      mobile: false,
 			styleInputs: true
 		}
 	});

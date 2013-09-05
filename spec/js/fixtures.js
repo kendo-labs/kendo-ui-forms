@@ -600,7 +600,7 @@ describe('Kendo Forms Widget Test Suite', function() {
 					$('#placeholder-form').kendoForm();
 
 					var placeholder = $('label.placeholder');
-					expect(placeholder.length === 1).toBe(true);
+					expect(placeholder.length >= 1).toBe(true);
 				});
 
 				it('should hide the label when input text is entered', function() {
@@ -626,6 +626,43 @@ describe('Kendo Forms Widget Test Suite', function() {
           expect(input[0].previousSibling.nodeValue).toEqual('Text me!');
         });
       }
+		});
+
+		describe('Mobile support', function() {
+			it('should use native inputs on mobile if the input is supported, ' +
+				'alwaysUseWidgets is true and the mobile is true', function() {
+
+					fixtures.load('mobile.html');
+
+					// force kendo into a mobile state
+					kendo.support.mobileOS = true;
+
+					$('#mobile-form').kendoForm({
+						alwaysUseWidgets: true,
+						mobile: true
+					});
+
+					// undo the forced mobile state for later tests
+					kendo.support.mobileOS = false;
+
+					expect($('#mobile-date').data('role')).not.toBeDefined();
+				});
+		});
+
+		describe('Mobile support', function() {
+			it('should use widgets on desktop if the input is supported, ' +
+				'alwaysUseWidgets is true and mobile is true', function() {
+
+					fixtures.load('mobile.html');
+
+					$('#mobile-form').kendoForm({
+						alwaysUseWidgets: true,
+						mobile: true
+					});
+
+					expect($('#mobile-date').data('role')).toEqual('datepicker');
+				
+				});
 		});
 
     function createDateFromInput(val, defaultDate, prefix) {

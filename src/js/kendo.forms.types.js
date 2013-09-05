@@ -83,7 +83,14 @@
 	function convertMonthPartToDate(val) {
 		// Add dummy day of month for valid date parsing
 		val = val + '-' + new Date().getDate();
-		return Date.parse(val);
+
+    if (!Date.parse(val)) {
+      // Valid ISO Dates may not parse on some browsers (IE7,8)
+      // replace dashes with slashes and try another parse.
+      return Date.parse(val.replace(/-/g, '/'));
+    }
+
+    return Date.parse(val);
 	}
 
 	function getDateFromWeekString(weekString) {

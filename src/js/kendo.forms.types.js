@@ -124,13 +124,30 @@
 
 	function getDateTimeDefaults(input) {
 		return {
-			value: input.val().length > 0 ? new Date(input.val()) : null,
-			min: input.attr('min') ? new Date(input.attr('min'))
-				: new Date(1900, 0, 1),
-			max: input.attr('max') ? new Date(input.attr('max'))
-				: new Date(2099, 11, 31)
+			value: createDateFromInput(input.val(), null),
+			min: createDateFromInput(input.attr('min'), new Date(1900, 0, 1)),
+			max: createDateFromInput(input.attr('max'), new Date(2099, 11, 31))
 		};
 	}
+
+  function createDateFromInput(val, defaultDate) {
+    if (!val) {
+      return defaultDate;
+    }
+
+    if (!Date.parse(val)) {
+      // Valid ISO Dates may not parse on some browsers (IE7,8)
+      var altDate = new Date(val.replace(/-/g, '/'));
+
+      if (!altDate) {
+        return altDate;
+      }
+
+      return defaultDate;
+    }
+
+    return new Date(val);
+  }
 
   function upgradeButton(val) {
     $(val).addClass('k-button');

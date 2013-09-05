@@ -1,5 +1,5 @@
 /*
- * kendo-ui-forms v0.2.0 (2013-08-30)
+ * kendo-ui-forms v0.2.0 (2013-09-05)
  * Copyright © 2013 Telerik
  *
  * Licensed under the Apache License, Version 2.0 (the "License")
@@ -190,13 +190,29 @@
 
 	function getDateTimeDefaults(input) {
 		return {
-			value: input.val().length > 0 ? new Date(input.val()) : null,
-			min: input.attr('min') ? new Date(input.attr('min'))
-				: new Date(1900, 0, 1),
-			max: input.attr('max') ? new Date(input.attr('max'))
-				: new Date(2099, 11, 31)
+			value: createDateFromInput(input.val(), null),
+			min: createDateFromInput(input.attr('min'), new Date(1900, 0, 1)),
+			max: createDateFromInput(input.attr('max'), new Date(2099, 11, 31))
 		};
 	}
+
+  function createDateFromInput(val, defaultDate) {
+    if (!val) {
+      return defaultDate;
+    }
+
+    if (!Date.parse(val)) {
+      var altDate = new Date(val.replace(/-/g, '/'));
+
+      if (!altDate) {
+        return altDate;
+      }
+
+      return defaultDate;
+    }
+
+    return new Date(val);
+  }
 
   function upgradeButton(val) {
     $(val).addClass('k-button');

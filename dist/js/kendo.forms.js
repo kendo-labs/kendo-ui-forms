@@ -149,7 +149,12 @@
 	function convertMonthPartToDate(val) {
 		// Add dummy day of month for valid date parsing
 		val = val + '-' + new Date().getDate();
-		return Date.parse(val);
+
+    if (!Date.parse(val)) {
+      return Date.parse(val.replace(/-/g, '/'));
+    }
+
+    return Date.parse(val);
 	}
 
 	function getDateFromWeekString(weekString) {

@@ -411,7 +411,7 @@ describe('Kendo Forms Widget Test Suite', function() {
 						.split(':');
           expect(timeObject.value()).not.toBeNull();
 					expect(timeObject.value().getHours().toString())
-						.toMatch(new RegExp(timeParts[0] + '|' + timeParts[0]+12, 'g'));
+						.toMatch(new RegExp(timeParts[0] + '|' + (+timeParts[0]+12), 'g'));
 					expect(timeObject.value().getMinutes().toString())
 						.toEqual(timeParts[1]);
 					expect(timeObject.min().toString()).toEqual(

@@ -412,13 +412,13 @@ describe('Kendo Forms Widget Test Suite', function() {
 
 					expect(timeObject.value()).not.toBeNull();
 					expect(timeObject.value().getHours().toString())
-						.toEqual(timeParts[0]);
+						.toEqual(timeParts[0] || timeParts[0] + 12);
 					expect(timeObject.value().getMinutes().toString())
 						.toEqual(timeParts[1]);
 					expect(timeObject.min().toString()).toEqual(
-						new Date(dummyDate + timeInput.attr('min')).toString());
+						createDateFromInput(timeInput.attr('min'), null, dummyDate).toString());
 					expect(timeObject.max().toString()).toEqual(
-						new Date(dummyDate + timeInput.attr('max')).toString());
+            createDateFromInput(timeInput.attr('max'), null, dummyDate).toString());
 					expect(timeObject.options.interval).toEqual(
 						Math.round(parseInt(timeInput.attr('step'), 10)/60));
 				});
@@ -626,6 +626,31 @@ describe('Kendo Forms Widget Test Suite', function() {
         });
       }
 		});
+
+    function createDateFromInput(val, defaultDate, prefix) {
+      if (!val) {
+        return defaultDate;
+      }
+
+      if (prefix) {
+        val = prefix + val;
+      }
+
+      if (!Date.parse(val)) {
+        // Valid ISO Dates may not parse on some browsers (IE7,8)
+        var altDate = new Date(val.replace(/-/g, '/'));
+
+        if (altDate) {
+          // If this alternate value is valid, add a day
+          // to account for UA parsing
+          return new Date(altDate.setDate(altDate.getDate() + 1));
+        }
+
+        return defaultDate;
+      }
+
+      return new Date(val);
+    }
 
 		fixtures.cleanUp();
 		fixtures.clearCache();

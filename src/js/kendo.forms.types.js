@@ -137,12 +137,10 @@
 
     if (!Date.parse(val)) {
       // Valid ISO Dates may not parse on some browsers (IE7,8)
-      var altDate = new Date(val.replace(/-/g, '/'));
-
-      if (altDate) {
+      if (Date.parse(val.replace(/-/g, '/'))) {
         // If this alternate value is valid, add a day
         // to account for UA parsing.
-        return altDate.setDate(altDate.getDate() + 1);
+        return new Date(altDate.setDate(altDate.getDate() + 1));
       }
 
       return defaultDate;

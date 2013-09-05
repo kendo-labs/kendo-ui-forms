@@ -409,16 +409,17 @@ describe('Kendo Forms Widget Test Suite', function() {
 					var timeObject = timeInput.data('kendoTimePicker');
 					var timeParts = timeInput.val().replace(/AM|PM/g, '').trim()
 						.split(':');
-
-					expect(timeObject.value()).not.toBeNull();
+          expect(timeObject.value()).not.toBeNull();
 					expect(timeObject.value().getHours().toString())
-						.toEqual(timeParts[0] || timeParts[0] + 12);
+						.toMatch(new RegExp(timeParts[0] + '|' + timeParts[0]+12, 'g'));
 					expect(timeObject.value().getMinutes().toString())
 						.toEqual(timeParts[1]);
 					expect(timeObject.min().toString()).toEqual(
-						createDateFromInput(timeInput.attr('min'), null, dummyDate).toString());
+						createDateFromInput(timeInput.attr('min'),
+              null, dummyDate).toString());
 					expect(timeObject.max().toString()).toEqual(
-            createDateFromInput(timeInput.attr('max'), null, dummyDate).toString());
+            createDateFromInput(timeInput.attr('max'),
+              null, dummyDate).toString());
 					expect(timeObject.options.interval).toEqual(
 						Math.round(parseInt(timeInput.attr('step'), 10)/60));
 				});

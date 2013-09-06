@@ -1,5 +1,5 @@
 /*
- * kendo-ui-forms v0.2.0 (2013-09-05)
+ * kendo-ui-forms v0.2.0 (2013-09-06)
  * Copyright © 2013 Telerik
  *
  * Licensed under the Apache License, Version 2.0 (the "License")
@@ -151,6 +151,8 @@
 		val = val + '-' + new Date().getDate();
 
     if (!Date.parse(val)) {
+      // Valid ISO Dates may not parse on some browsers (IE7,8)
+      // replace dashes with slashes and try another parse.
       return Date.parse(val.replace(/-/g, '/'));
     }
 

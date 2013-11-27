@@ -258,16 +258,18 @@
     shouldUpgradeType: function(type) {
       var that = this;
 
+      var inputSupported = features[type];
+
       // don't upgrade mobile inputs if they are supported
       // and the user has requested they always be used
-      if (that.options.mobile && kendo.support.mobileOS) {
+      if (that.options.mobile && kendo.support.mobileOS && inputSupported) {
         return false;
       }
       
       return (that.options.alwaysUseWidgets ||
-             !features[type]) &&
-             type in typeUpgrades &&
-             !vanillaInputRegEx.test(type);
+             !inputSupported) &&
+             type in typeUpgrades && !vanillaInputRegEx.test(type);
+             
     },
     upgradeInputType: function(that, el) {
       var type = el.getAttribute('type');

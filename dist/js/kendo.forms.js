@@ -1,5 +1,5 @@
 /*
- * kendo-ui-forms v0.2.0 (2013-09-06)
+ * kendo-ui-forms v0.2.0 (2013-11-27)
  * Copyright © 2013 Telerik
  *
  * Licensed under the Apache License, Version 2.0 (the "License")
@@ -257,6 +257,13 @@
 		},
     shouldUpgradeType: function(type) {
       var that = this;
+
+      // don't upgrade mobile inputs if they are supported
+      // and the user has requested they always be used
+      if (that.options.mobile && kendo.support.mobileOS) {
+        return false;
+      }
+      
       return (that.options.alwaysUseWidgets ||
              !features[type]) &&
              type in typeUpgrades &&
@@ -306,6 +313,7 @@
 			// The jQuery plugin would be jQuery.fn.kendoForm.
 			name: 'Form',
 			alwaysUseWidgets: false,
+      mobile: false,
 			styleInputs: true
 		}
 	});

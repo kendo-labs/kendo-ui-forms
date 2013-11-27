@@ -23,6 +23,13 @@
 		},
     shouldUpgradeType: function(type) {
       var that = this;
+
+      // don't upgrade mobile inputs if they are supported
+      // and the user has requested they always be used
+      if (that.options.mobile && kendo.support.mobileOS) {
+        return false;
+      }
+      
       return (that.options.alwaysUseWidgets ||
              !features[type]) &&
              type in typeUpgrades &&
@@ -72,6 +79,7 @@
 			// The jQuery plugin would be jQuery.fn.kendoForm.
 			name: 'Form',
 			alwaysUseWidgets: false,
+      mobile: false,
 			styleInputs: true
 		}
 	});

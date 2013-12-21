@@ -147,6 +147,7 @@ file://localhost/Users/brandon/Dropbox/Development/kendo-ui-forms/spec/runner.ht
 
 .*Running Karma in Chrome*
 [NOTE]
+____
 If you're using Chrome and taking the latter approach, some of the tests will fail because of cross-domain features in Chrome. To work around this, run Chrome with the +--allow-file-access-from-files+ terminal command. 
 
 For OSX:
@@ -162,10 +163,9 @@ And Windows:
 ----
 C:\Users\[UserName]\AppData\Local\Google\Chrome[ SxS]\Application\chrome.exe --allow-file-access-from-files
 ----
+____
 
 == Getting Help
-
-Use this section to list ways that a developer can obtain help or support for this project, for instance, Stack Overflow. Make sure to also leave the following section:
 
 As a part of Kendo UI Labs, kendo-ui-forms is intended to be a community-run project, and not an official part of any Kendo UI SKU (Web, DataViz, Mobile or Complete). As such, this project is not a supported part of Kendo UI, and is not covered under the support agreements for Kendo UI license holders. Please do not create support requests for this project, as these will be immediately closed and you'll be directed to post your question on a community forum.
 

@@ -1,5 +1,5 @@
 /*
- * kendo-ui-forms v0.2.0 (2013-09-06)
+ * kendo-ui-forms v0.2.0 (2013-12-23)
  * Copyright © 2013 Telerik
  *
  * Licensed under the Apache License, Version 2.0 (the "License")
@@ -19,6 +19,19 @@
 			return this.replace(/^\s+|\s+$/g,'');
 		};
 	}
+
+  if (!Array.prototype.forEach) {
+    Array.prototype.forEach = function (fn, scope) {
+      'use strict';
+      var i, len;
+      
+      for (i = 0, len = this.length; i < len; ++i) {
+        if (i in this) {
+          fn.call(scope, this[i], i, this);
+        }
+      }
+    };
+  }
 }());;(function (kendo) {
 	kendo.forms = kendo.forms || {};
 

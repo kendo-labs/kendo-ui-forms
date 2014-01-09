@@ -77,6 +77,10 @@
       var input = $(val);
       var defaults = getDateTimeDefaults(input);
       input.kendoDatePicker(defaults);
+    },
+    progress: function(val) {
+      var input = $(val);
+      input.kendoProgressBar();
     }
   };
 

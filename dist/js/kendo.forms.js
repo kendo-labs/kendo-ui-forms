@@ -70,6 +70,9 @@
 		month: detectFormTypeSupport('month'),
 		week: detectFormTypeSupport('week'),
 		date: detectFormTypeSupport('date'),
+    progress: (function() {
+      return document.createElement('progress').max !== undefined;
+    }()),
 		placeholder: (function() {
 			return 'placeholder' in document.createElement('input') &&
 				'placeholder' in document.createElement('textarea');
@@ -156,6 +159,10 @@
       var input = $(val);
       var defaults = getDateTimeDefaults(input);
       input.kendoDatePicker(defaults);
+    },
+    progress: function(val) {
+      var input = $(val);
+      input.kendoProgressBar();
     }
   };
 
@@ -255,22 +262,36 @@
 	var Form = Widget.extend({
 		init: function(element, options) {
 			var that = this;
-			var inputs = $(element).find('input, button');
-
 			Widget.fn.init.call(this, element, options);
 
-			inputs.each(function(index, el) {
+      that.processInputElements(element);
+      that.processProgressElements(element);
+		},
+    processInputElements: function(form) {
+      var that = this;
+      var inputs = $(form).find('input, button');
+
+      inputs.each(function(index, el) {
         that.upgradeInputType(that, el);
 
         if (el.getAttribute('placeholder') &&
-            !kendo.forms.features.placeholder) {
+          !kendo.forms.features.placeholder) {
           that.upgradePlaceholder(el);
         }
       });
-		},
+    },
+    processProgressElements: function(form) {
+      var that = this;
+      var progress = $(form).find('progress');
+
+      progress.each(function(index, el) {
+        if(that.options.alwaysUseWidgets || !kendo.forms.features.progress) {
+          typeUpgrades.progress(el);
+        }
+      });
+    },
     shouldUpgradeType: function(type) {
       var that = this;
-
       var inputSupported = features[type];
 
       // don't upgrade mobile inputs if they are supported

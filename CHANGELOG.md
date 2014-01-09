@@ -1,3 +1,9 @@
+# 0.1.9
+
+- Added support for mobile devices
+- Added kendoButton support
+- Added kendoProgressBar support
+
 # 0.1.5
 
 - Added placeholder support for oldIE and Opera Mobile

@@ -36,6 +36,9 @@
 		month: detectFormTypeSupport('month'),
 		week: detectFormTypeSupport('week'),
 		date: detectFormTypeSupport('date'),
+    progress: (function() {
+      return document.createElement('progress').max !== undefined;
+    }()),
 		placeholder: (function() {
 			return 'placeholder' in document.createElement('input') &&
 				'placeholder' in document.createElement('textarea');

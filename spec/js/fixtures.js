@@ -593,6 +593,38 @@ describe('Kendo Forms Widget Test Suite', function() {
       });
     });
 
+    describe('Progress element support', function() {
+      it('should provide a feature text for progress support', function() {
+        expect(kendo.forms.features.progress).toBeDefined();
+      });
+
+      if(!kendo.forms.features.progress) {
+        it('should create a kendoProgressBar from the progress type',
+          function() {
+            fixtures.load('progress.html');
+
+            $('#progress-form').kendoForm();
+            expect($('#completionPct').data('role')).toEqual('progressbar');
+          });
+      } else {
+        it('should NOT create a kendoProgressBar if progress is' +
+          ' already supported by the browser', function() {
+          fixtures.load('progress.html');
+
+          $('#progress-form').kendoForm();
+          expect($('#completionPct').data('role')).not.toBeDefined();
+        });
+
+        it('should create a kendoProgressBar on ALL browsers if the' +
+          ' alwaysUseWidgets option is passed-in', function() {
+          fixtures.load('progress.html');
+
+          $('#progress-form').kendoForm({ alwaysUseWidgets: true });
+          expect($('#completionPct').data('role')).toEqual('progressbar');
+        });
+      }
+    });
+
 		describe('Placeholder support', function() {
 			it('should provide a feature test for placeholder support', function() {
 				expect(kendo.forms.features.placeholder).toBeDefined();

@@ -162,7 +162,7 @@
   }
 
   function upgradeButton(val) {
-    $(val).addClass('k-button');
+    $(val).kendoButton();
   }
 
 	kendo.forms.types = typeUpgrades;

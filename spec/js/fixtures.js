@@ -579,6 +579,20 @@ describe('Kendo Forms Widget Test Suite', function() {
 			}
 		});
 
+    describe('Button support', function() {
+      it('should create kendoButtons from buttons and submit/reset inputs',
+        function() {
+        fixtures.load('button.html');
+        $('#button-form').kendoForm();
+
+        $('button,input[type=submit],input[type=reset]')
+          .each(function(index, element) {
+          expect($(element).hasClass('k-button')).toBe(true);
+          expect($(element).data('role')).toBe('button');
+        });
+      });
+    });
+
 		describe('Placeholder support', function() {
 			it('should provide a feature test for placeholder support', function() {
 				expect(kendo.forms.features.placeholder).toBeDefined();
@@ -647,22 +661,20 @@ describe('Kendo Forms Widget Test Suite', function() {
 
 					expect($('#mobile-date').data('role')).not.toBeDefined();
 				});
-		});
 
-		describe('Mobile support', function() {
-			it('should use widgets on desktop if the input is supported, ' +
-				'alwaysUseWidgets is true and mobile is true', function() {
+      it('should use widgets on desktop if the input is supported, ' +
+        'alwaysUseWidgets is true and mobile is true', function() {
 
-					fixtures.load('mobile.html');
+        fixtures.load('mobile.html');
 
-					$('#mobile-form').kendoForm({
-						alwaysUseWidgets: true,
-						mobile: true
-					});
+        $('#mobile-form').kendoForm({
+          alwaysUseWidgets: true,
+          mobile: true
+        });
 
-					expect($('#mobile-date').data('role')).toEqual('datepicker');
-				
-				});
+        expect($('#mobile-date').data('role')).toEqual('datepicker');
+
+      });
 		});
 
     function createDateFromInput(val, defaultDate, prefix) {

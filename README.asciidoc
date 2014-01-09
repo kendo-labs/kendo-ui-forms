@@ -38,8 +38,9 @@ This library will function as an opt-in polyfill, meaning that the developer wil
 == Roadmap
 
 - v0.1 - Support upgrading all HTML5 input types (color, numeric, range, file, datatime, time, month, week)
-- v0.1.1 (Current) - button support & date type support
-- v0.2 - Add support for progress and datalist elements; add a placeholder fallback and search box UI; autocomplete attribute support.
+- v0.1.1 - button support & date type support
+- v0.1.9 (Current) - placeholder fallback; progress support; button support
+- v0.2 - Add support for meter and datalist elements; add search box UI; autocomplete attribute support.
 - v0.3 - Add validation support 
 
 A complete list of features can be found in Table 1, below. For details about forms support across browsers, see the https://github.com/kendo-labs/kendo-ui-forms/blob/master/docs/forms_support.asciidoc[following document].
@@ -60,7 +61,8 @@ A complete list of features can be found in Table 1, below. For details about fo
 |Week            |Yes      |0.1
 |Date            |Yes      |0.1.1
 |Inputs & Buttons|Yes      |0.1.1
-|Progress        |No       |0.2
+|Progress        |Yes      |0.1.9
+|Meter           |No       |0.2
 |Datalist        |No       |0.2
 |Placeholder     |Yes      |0.1.5
 |Search          |No       |0.2

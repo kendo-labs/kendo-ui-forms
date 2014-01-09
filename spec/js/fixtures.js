@@ -628,6 +628,43 @@ describe('Kendo Forms Widget Test Suite', function() {
       }
 		});
 
+		describe('Mobile support', function() {
+			it('should use native inputs on mobile if the input is supported, ' +
+				'alwaysUseWidgets is true and the mobile is true', function() {
+
+					fixtures.load('mobile.html');
+
+					// force kendo into a mobile state
+					kendo.support.mobileOS = true;
+
+					$('#mobile-form').kendoForm({
+						alwaysUseWidgets: true,
+						mobile: true
+					});
+
+					// undo the forced mobile state for later tests
+					kendo.support.mobileOS = false;
+
+					expect($('#mobile-date').data('role')).not.toBeDefined();
+				});
+		});
+
+		describe('Mobile support', function() {
+			it('should use widgets on desktop if the input is supported, ' +
+				'alwaysUseWidgets is true and mobile is true', function() {
+
+					fixtures.load('mobile.html');
+
+					$('#mobile-form').kendoForm({
+						alwaysUseWidgets: true,
+						mobile: true
+					});
+
+					expect($('#mobile-date').data('role')).toEqual('datepicker');
+				
+				});
+		});
+
     function createDateFromInput(val, defaultDate, prefix) {
       if (!val) {
         return defaultDate;

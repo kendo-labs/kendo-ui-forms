@@ -1,5 +1,5 @@
 /*
- * kendo-ui-forms v0.2.0 (2014-01-09)
+ * kendo-ui-forms v0.1.9 (2014-01-18)
  * Copyright © 2013 Telerik
  *
  * Licensed under the Apache License, Version 2.0 (the "License")
@@ -84,9 +84,10 @@
 	kendo.forms = kendo.forms || {};
 
 	var typeUpgrades = {
-    text: function(val) {
-      $(val).addClass('k-input');
-    },
+    text: upgradeInputs,
+    email: upgradeInputs,
+    tel: upgradeInputs,
+    search: upgradeInputs,
     button: upgradeButton,
     submit: upgradeButton,
     reset: upgradeButton,
@@ -249,6 +250,10 @@
 
   function upgradeButton(val) {
     $(val).kendoButton();
+  }
+
+  function upgradeInputs(val) {
+    $(val).addClass('k-input k-textbox');
   }
 
 	kendo.forms.types = typeUpgrades;

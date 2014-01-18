@@ -2,9 +2,10 @@
 	kendo.forms = kendo.forms || {};
 
 	var typeUpgrades = {
-    text: function(val) {
-      $(val).addClass('k-input');
-    },
+    text: upgradeInputs,
+    email: upgradeInputs,
+    tel: upgradeInputs,
+    search: upgradeInputs,
     button: upgradeButton,
     submit: upgradeButton,
     reset: upgradeButton,
@@ -167,6 +168,10 @@
 
   function upgradeButton(val) {
     $(val).kendoButton();
+  }
+
+  function upgradeInputs(val) {
+    $(val).addClass('k-input k-textbox');
   }
 
 	kendo.forms.types = typeUpgrades;

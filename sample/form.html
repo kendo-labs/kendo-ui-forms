@@ -1,152 +1,171 @@
 <!doctype html>
 <html>
 <head>
-	<title>Kendo UI Forms Widget Sample</title>
-	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="css/bootstrap/bootstrap.css">
-	<link rel="stylesheet" href="../lib/css/kendo.common.min.css">
-	<link rel="stylesheet" href="../lib/css/kendo.default.min.css">
-  <link rel="stylesheet" href="../dist/css/kendo.forms.min.css">
+    <title>Kendo UI Forms Widget Sample</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/justified-nav.css">
+    <link rel="stylesheet" href="../lib/css/kendo.common-bootstrap.min.css">
+	<link rel="stylesheet" href="../lib/css/kendo.bootstrap.min.css">
+    <link rel="stylesheet" href="../dist/css/kendo.forms.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-	<div class="navbar navbar-inverse navbar-fixed-top">
-		<div class="navbar-inner">
-			<div class="container-fluid">
-				<button type="button" data-toggle="collapse" data-target=".nav-collapse" class="btn btn-navbar">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a href="#" class="brand">Kendo UI Forms Widget Sample</a>
+  <div class="container">
 
-				<div class="nav-collapse collapse">
-					<ul class="nav">
-						<li class="active"><a href="#">Home</a></li>
-						<li><a href="http://www.github.com/kendo-labs/kendo-ui-forms" target="blank">GitHub Repo</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="container-fluid">
-      <div class="row-fluid">
-        <div class="span3">
-          <div class="well sidebar-nav">
-            <ul class="nav nav-list">
-              <li class="nav-header">Kendo UI Forms</li>
-              <li class="active"><a href="#/">Sample</a></li>
-              <li><a href="https://github.com/kendo-labs/kendo-ui-forms/wiki/Getting-Started">Getting Started</a></li>
-              <li><a href="https://github.com/kendo-labs/kendo-ui-forms/blob/master/README.md">Project Info</a></li>
-              <li><a href="http://www.github.com/kendo-labs/kendo-ui-forms">GitHub Repository</a></li>              
-            </ul>
-          </div><!--/.well -->
-        </div><!--/span-->
-        <div class="span5">
-          <div >
-          	<h1>Magic Form</h1>
-          </div>
-          <div>
-          	<form action="#" id="sampleForm">
-          		<fieldset>
-          			<legend>Essentials</legend>
-          			<div>
-	          			<label for="name">Name</label>
-	          			<input type="text" required placeholder="ex. Hugo Reyes" />
-                    </div>
-                    <div>
-                        <label for="email">Email</label>
-                        <input type="email" required placeholder="ex. hugo@dharma.com" />
-                    </div>
-                    <div>
-                        <label for="phone">Phone</label>
-                        <input type="tel" placeholder="ex. 555-555-5555"
-                               pattern="^[2-9]\d{2}-\d{3}-\d{4}$"
-                               title="Use a XXX-XXX-XXXX format" />
-                    </div>
-                    <div>
-                        <label for="phone">Gratuitous Search</label>
-                        <input type="search" id="search" />
-                    </div>
-          		</fieldset>
-          		<fieldset>
-          			<legend>Dates and Times</legend>
-          			<div>
-						<label for="birthday">Birthday</label>
-          				<input type="date" />
-					</div>
-					<div>
-						<label for="doctor">Next Doctor's Appointment</label>
-          				<input type="datetime-local" />
-					</div>
-					<div>
-						<label for="favMonth">What month is it?</label>
-          				<input type="month" />
-					</div>
-					<div>
-						<label for="favMonth">When is Shark Week?</label>
-          				<input type="week" />
-					</div>
-					<div>
-						<label for="favMonth">What time is Beer O'Clock?</label>
-          				<input type="time" />
-					</div>
-          		</fieldset>
-          		<fieldset>
-          			<legend>Other Stuff</legend>
-          			<div>
-          				<label for="age">Age</label>
-          				<input type="number" min=13 max=128 required placeholder="13 - 128" />
-          			</div>
-					<div>
-          				<label for="color">Favorite Color</label>
-          				<input type="color" value="#fd49eb" />
-          			</div>
-					<div>
-						<label for="GPA">College GPA</label>
-          				<input type="range" min=0.0 max=4.0 value=3.0 step=0.25 /><span id="rangeValue"></span>
-					</div>
-					<div>
-						<label for="browser">Favorite Browser</label>
-          				<input type="text" list="browsers" />
-                        <datalist id="browsers">
-                          <option value="Chrome">
-                          <option value="Firefox">
-                          <option value="Internet Explorer">
-                          <option value="Opera">
-                          <option value="Safari">
-                        </datalist>
-                    </div>
-					<div>
-						<label for="picture">Recent Photo</label>
-			          	<input type="file" />
-					</div>
-          		</fieldset>
-          		<hr />
-          		<div>
-          			<div>
-          				Progress
-          				<progress id="completionPct" min=1 max=12 value=3></progress> 
-          			</div>
-          			<br />
-          			<input type="submit" value="Submit this mess!" />
-					<input type="submit" formnovalidate value="Save for later" />
-				</div>
-          	</form>
-          </div>
-        </div>
-      </div>
+    <div class="masthead">
+      <h3 class="text-muted">Kendo UI Forms Widget Sample</h3>
+      <ul class="nav nav-justified">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="http://www.github.com/kendo-labs/kendo-ui-forms">GitHub Project</a></li>
+        <li><a href="https://github.com/kendo-labs/kendo-ui-forms/blob/master/README.md">Readme</a></li>
+        <li><a href="https://github.com/kendo-labs/kendo-ui-forms/wiki/Getting-Started">Getting Started</a></li>
+        <li><a href="#">Polyfills Book!</a></li>
+      </ul>
     </div>
+
+    <div class="jumbotron">
+      <h2>HTML5 Form with Polyfill</h2>
+      <p class="lead">Click one of the buttons below to see the Polyfill in action. "Polyfill my browser" will upgrade only those types not supported by your browser. "Use widgets for everything" will apply Kendo UI styles and widgets to all inputs for a consistent look and feel.</p>
+      <a class="btn btn btn-primary" id="activatePolyfill" role="button">Polyfill my browser!</a>
+      <a class="btn btn btn-info" id="useWidgets" role="button">Use Widgets for everything!</a>
+    </div>
+    <form action="#" id="sampleForm">
+
+      <!-- Example row of columns -->
+      <div class="well clearfix">
+        <div class="form-horizontal form-widgets col-lg-6">
+          <fieldset>
+            <legend>Essentials</legend>
+              
+              <div class="form-group">
+                <label class="control-label col-sm-4"for="name">Name</label>
+                <div class="col-md-6">
+                  <input type="text" required placeholder="ex. Hugo Reyes" />
+                </div>
+              </div>
+              <div class="form-group">
+                  <label class="control-label col-sm-4" for="email">Email</label>
+                  <div class="col-md-6">
+                    <input type="email" required placeholder="ex. hugo@dharma.com" />
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label class="control-label col-sm-4" for="phone">Phone</label>
+                  <div class="col-md-6">
+                    <input type="tel" placeholder="ex. 555-555-5555"
+                      pattern="^[2-9]\d{2}-\d{3}-\d{4}$"
+                      title="Use a XXX-XXX-XXXX format" />
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label class="control-label col-sm-4"for="phone">Gratuitous Search</label>
+                  <div class="col-md-6">
+                    <input type="search" id="search" />
+                  </div>
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend>Dates and Times</legend>
+              <div class="form-group">
+                <label class="control-label col-sm-4" for="birthday">Birthday</label>
+                <div class="col-md-6">
+                  <input type="date" value="10/09/1979" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-sm-4" for="doctor">Next Doctor's Appointment</label>
+                <div class="col-md-6">
+                  <input type="datetime-local" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-sm-4" for="favMonth">What month is it?</label>
+                <div class="col-md-6">
+                  <input type="month" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-sm-4" for="favMonth">When is Shark Week?</label>
+                <div class="col-md-6">
+                  <input type="week" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-sm-4" for="favMonth">What time is Beer O'Clock?</label>
+                <div class="col-md-6">
+                  <input type="time" />
+                </div>
+              </div>
+            </fieldset>
+        </div>
+        <div class="col-lg-6">
+          <fieldset>
+            <legend>Other Stuff</legend>
+            <div class="form-group">
+              <label class="control-label col-sm-4" for="age">Age</label>
+              <div class="col-md-6">
+                <input type="number" min=13 max=128 required placeholder="13 - 128" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-4" for="GPA">College GPA</label>
+              <div class="col-md-6">
+                <input type="range" min=0.0 max=4.0 value=3.0 step=0.25 /><span id="rangeValue"></span>
+              </div>  
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-4" for="browser">Favorite Browser</label>
+              <div class="col-md-6">
+                <input  type="text" list="browsers" />
+                <datalist id="browsers">
+                  <option value="Chrome">
+                  <option value="Firefox">
+                  <option value="Internet Explorer">
+                  <option value="Opera">
+                  <option value="Safari">
+                </datalist>
+              </div>
+            </div>
+            <div>
+            <label class="control-label col-sm-4" for="picture">Recent Photo</label>
+            <div class="col-md-6">
+              <input id="picture" type="file" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-4" for="color">Favorite Color</label>
+            <div class="col-md-2">
+              <input type="color" value="#fd49eb" />
+            </div>
+          </div>
+        </fieldset>
+        <hr />
+        <div>
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="completionPct">Progress</label>
+            <div class="col-md-8">
+              <progress id="completionPct" min=1 max=12 value=3></progress>
+            </div> 
+          </div>
+          <br />
+          <br />
+          <input type="submit" value="Submit this mess!" />
+          <input type="submit" formnovalidate value="Save for later" />
+       </div>
+      </div>
+
+    </form>
   </div>
 
 	<hr>
 	
 	<footer>
-		<p>&copy; Kendo UI 2013</p>
+		<p>&copy; Brandon Satrom &amp; Telerik 2014</p>
 	</footer>
 
 	<script src="../lib/js/jquery.min.js"></script>
-	<script src="js/bootstrap/bootstrap.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
 	<script src="../lib/js/kendo.custom.min.js"></script>
 	<script src="../dist/js/kendo.forms.js"></script>
 	<script src="js/sample.js"></script>

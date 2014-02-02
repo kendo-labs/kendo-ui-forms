@@ -1,5 +1,5 @@
 /*
- * kendo-ui-forms v0.1.9 (2014-01-18)
+ * kendo-ui-forms v0.1.9 (2014-02-02)
  * Copyright © 2013 Telerik
  *
  * Licensed under the Apache License, Version 2.0 (the "License")

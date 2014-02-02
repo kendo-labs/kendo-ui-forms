@@ -10,6 +10,7 @@ node_modules
 .DS_Store
 .grunt/
 _SpecRunner.html
+.idea/
 
 pids
 logs

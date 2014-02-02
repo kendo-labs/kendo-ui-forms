@@ -1,5 +1,9 @@
 /*
+<<<<<<< HEAD
  * kendo-ui-forms v0.2.0 (2013-08-09)
+=======
+ * kendo-ui-forms v0.1.9 (2014-01-18)
+>>>>>>> master
  * Copyright © 2013 Telerik
  *
  * Licensed under the Apache License, Version 2.0 (the "License")
@@ -19,6 +23,19 @@
 			return this.replace(/^\s+|\s+$/g,'');
 		};
 	}
+
+  if (!Array.prototype.forEach) {
+    Array.prototype.forEach = function (fn, scope) {
+      'use strict';
+      var i, len;
+      
+      for (i = 0, len = this.length; i < len; ++i) {
+        if (i in this) {
+          fn.call(scope, this[i], i, this);
+        }
+      }
+    };
+  }
 }());;(function (kendo) {
 	kendo.forms = kendo.forms || {};
 
@@ -52,11 +69,14 @@
 		range: detectFormTypeSupport('range'),
 		file: detectFormTypeSupport('file'),
 		datetime: detectDateTimeFields('datetime'),
-		datetime_local: detectFormTypeSupport('datetime-local'),
+		'datetime-local': detectFormTypeSupport('datetime-local'),
 		time: detectFormTypeSupport('time'),
 		month: detectFormTypeSupport('month'),
 		week: detectFormTypeSupport('week'),
 		date: detectFormTypeSupport('date'),
+    progress: (function() {
+      return document.createElement('progress').max !== undefined;
+    }()),
 		placeholder: (function() {
 			return 'placeholder' in document.createElement('input') &&
 				'placeholder' in document.createElement('textarea');
@@ -67,115 +87,131 @@
 } (kendo));;(function (kendo) {
 	kendo.forms = kendo.forms || {};
 
-	var typeUpgrades = [
-		{
-			type: 'color',
-			upgrade: function(index, val) {
-				$(val).kendoColorPicker({ palette: 'basic' });
-			}
-		},
-		{
-			type: 'number',
-			upgrade: function(index, val) {
-				$(val).kendoNumericTextBox();
-			}
-		},
-		{
-			type: 'range',
-			upgrade: function(index, val) {
-				$(val).kendoSlider({
-					showButtons: false,
-					tickPlacement: 'none'
-				});
-			}
-		},
-		{
-			type: 'file',
-			upgrade: function(index, val) {
-				$(val).kendoUpload();
-			}
-		},
-		{
-			type: 'datetime',
-			upgrade: dateTimeUpgrade
-		},
-		{
-			type: 'datetime-local',
-			upgrade: dateTimeUpgrade
-		},
-		{
-			type: 'time',
-			upgrade: function(index, val) {
-				var input = $(val),
-					dummyDate = '2013-10-04T';
+	var typeUpgrades = {
+    text: upgradeInputs,
+    email: upgradeInputs,
+    tel: upgradeInputs,
+    search: upgradeInputs,
+    button: upgradeButton,
+    submit: upgradeButton,
+    reset: upgradeButton,
+    color: function(val) {
+      $(val).kendoColorPicker({ palette: 'basic' });
+    },
+    number: function(val) {
+      $(val).kendoNumericTextBox();
+    },
+    range: function(val) {
+      $(val).kendoSlider({
+        showButtons: false,
+        tickPlacement: 'none'
+      });
+    },
+    file: function(val) {
+      $(val).kendoUpload();
+    },
+    datetime: dateTimeUpgrade,
+    'datetime-local': dateTimeUpgrade,
+    time: function(val) {
+      var input = $(val),
+        dummyDate = '2013-10-04T';
 
-				input.kendoTimePicker({
-					value: input.val().length > 0 ? new Date(dummyDate + input.val())
-						: null,
-					min: input.attr('min') ? new Date(dummyDate + input.attr('min'))
-						: new Date(2049, 0, 1, 0, 0, 0),
-					max: input.attr('max') ? new Date(dummyDate + input.attr('max'))
-						: new Date(2099, 11, 31, 0, 0, 0),
-					// Step attribute is seconds, interval in minute
-					interval: input.attr('step') ?
-						Math.round(parseInt(input.attr('step'), 10)/60) : 30
-				});
-			}
-		},
-		{
-			type: 'month',
-			upgrade: function(index, val) {
-				dateUpgrade(val, 'year');
-			}
-		},
-		{
-			type: 'week',
-			upgrade: function(index, val) {
-				dateUpgrade(val, 'month');
-			}
-		},
-		{
-			type: 'date',
-			upgrade: function(index, val) {
-				dateUpgrade(val);
-			}
-		}
-	];
+      input.kendoTimePicker({
+        value: createDateFromInput(input.val(), null, dummyDate),
+        min: createDateFromInput(input.attr('min'),
+          new Date(2049, 0, 1, 0, 0, 0), dummyDate),
+        max: createDateFromInput(input.attr('max'),
+          new Date(2099, 11, 31, 0, 0, 0), dummyDate),
+        // Step attribute is seconds, interval in minute
+        interval: input.attr('step') ?
+          Math.round(parseInt(input.attr('step'), 10)/60) : 30
+      });
+    },
+    month: function(val) {
+      var input = $(val),
+        value = convertMonthPartToDate(input.val()),
+        min = convertMonthPartToDate(input.attr('min')),
+        max = convertMonthPartToDate(input.attr('max'));
 
-	function dateUpgrade(val, depth) {
-		var input = $(val);
+      input.kendoDatePicker({
+        // Set the start and depth properties to year, which means
+        // that only month values are displayed.
+        start: 'year',
+        depth: 'year',
+        // If the conversion returned a NaN, use the default values
+        value: isNaN(value) ? null : new Date(value),
+        min: isNaN(min) ? new Date(1900, 0, 1) : new Date(min),
+        max: isNaN(max) ? new Date(2099, 11, 31) : new Date(max)
+      });
+    },
+    week: function(val) {
+      var input = $(val),
+        value = getDateFromWeekString(input.val()),
+        min = getDateFromWeekString(input.attr('min')),
+        max = getDateFromWeekString(input.attr('max'));
 
-		// Change the input type to 'text'. This
-		// preserves it's attributes, while working around some known issues 
-		// in certain browsers (eg. Chrome) that render attributes
-		// like value, min, max and step un-readable/writable when the 
-		// datetime and datetime-local fields are used.
-		if (!input.val()) {
-			input.attr('type', 'text');
-		}
+      input.kendoDatePicker({
+        // Set the start and depth properties to month, which means
+        // that only day/week values are displayed.
+        depth: 'month',
+        // If the conversion returned a null date, use the default values
+        value: value,
+        min: min === null ? new Date(1900, 0, 1) : min,
+        max: max === null ? new Date(2099, 11, 31) : max
+      });
+    },
+    date: function(val) {
+      var input = $(val);
+      var defaults = getDateTimeDefaults(input);
+      input.kendoDatePicker(defaults);
+    },
+    progress: function(val) {
+      var input = $(val);
+      input.kendoProgressBar();
+    }
+  };
 
-		var defaults = getDateTimeDefaults(input);
-		// Set the start and depth properties to month, which means 
-		// that only day/week values are displayed.
-		if (depth) {
-			defaults.start = depth;
-			defaults.depth = depth;
-		}
+	function convertMonthPartToDate(val) {
+		// Add dummy day of month for valid date parsing
+		val = val + '-' + new Date().getDate();
 
-		input.kendoDatePicker(defaults);
+    if (!Date.parse(val)) {
+      // Valid ISO Dates may not parse on some browsers (IE7,8)
+      // replace dashes with slashes and try another parse.
+      return Date.parse(val.replace(/-/g, '/'));
+    }
+
+    return Date.parse(val);
 	}
 
-	function dateTimeUpgrade(index, val) {
+	function getDateFromWeekString(weekString) {
+    var week, year, dateParts;
+
+    if (!weekString) {
+      return null;
+    }
+
+    dateParts = weekString.split('-');
+
+		if (dateParts.length < 2) {
+			return null;
+		}
+
+		year = dateParts[0];
+		week = dateParts[1].replace(/w/gi, '');
+
+		if (isNaN(parseInt(week, 10)) || isNaN(parseInt(year, 10))) {
+			return null;
+		}
+
+		// Jan 1 + 7 days per week
+    var day = (1 + (week - 1) * 7);
+    return new Date(year, 0, day);
+	}
+
+	function dateTimeUpgrade(val) {
 		var input = $(val);
 
-		// Change the input type to 'text'. This
-		// preserves it's attributes, while working around some known issues 
-		// in certain browsers (eg. Chrome) that render attributes
-		// like value, min, max and step un-readable/writable when the 
-		// datetime and datetime-local fields are used.
-		if (!input.val()) {
-			input.attr('type', 'text');
-		}
 		// Step attribute is seconds, interval in minute
 		var defaults = getDateTimeDefaults(input);
 		defaults.interval = input.attr('step') ?
@@ -185,93 +221,144 @@
 
 	function getDateTimeDefaults(input) {
 		return {
-			value: input.val().length > 0 ? new Date(input.val()
-				.trim().replace(/ /g, 'T')) : null,
-			min: input.attr('min') ? new Date(input.attr('min')
-				.trim().replace(/ /g, 'T')) : new Date(1900, 0, 1),
-			max: input.attr('max') ? new Date(input.attr('max')
-				.trim().replace(/ /g, 'T')) : new Date(2099, 11, 31)
+			value: createDateFromInput(input.val(), null),
+			min: createDateFromInput(input.attr('min'), new Date(1900, 0, 1)),
+			max: createDateFromInput(input.attr('max'), new Date(2099, 11, 31))
 		};
 	}
+
+  function createDateFromInput(val, defaultDate, prefix) {
+    if (!val) {
+      return defaultDate;
+    }
+
+    if (prefix) {
+      val = prefix + val;
+    }
+
+    if (!Date.parse(val)) {
+      // Valid ISO Dates may not parse on some browsers (IE7,8)
+      var altDate = new Date(val.replace(/-/g, '/'));
+
+      if (altDate) {
+        // If this alternate value is valid, add a day
+        // to account for UA parsing
+        return new Date(altDate.setDate(altDate.getDate() + 1));
+      }
+
+      return defaultDate;
+    }
+
+    return new Date(val);
+  }
+
+  function upgradeButton(val) {
+    $(val).kendoButton();
+  }
+
+  function upgradeInputs(val) {
+    $(val).addClass('k-input k-textbox');
+  }
 
 	kendo.forms.types = typeUpgrades;
 } (kendo));;(function($, kendo) {
 	var ui = kendo.ui,
 		Widget = ui.Widget,
-		formWidget,
-		typeUpgrades = kendo.forms.types;
+		typeUpgrades = kendo.forms.types,
+    features = kendo.forms.features,
+    vanillaInputRegEx = /text|button|submit|reset/i;
 
 	var Form = Widget.extend({
 		init: function(element, options) {
 			var that = this;
-			var form = $(element);
-			var i, len;
-
-			var upgradeFormType = function(type, callback) {
-				// replace dash with underscore for features object lookup
-				var modType = type.replace(/-/g,'_');
-
-				if (!kendo.forms.features[modType] || that.options.alwaysUseWidgets) {
-					form.find('input[type=' + type + ']').each(callback);
-				}
-			};
-
-			// base call to widget initialization
 			Widget.fn.init.call(this, element, options);
 
-			if (that.options.styleInputs) {
-				form.find('input, button').each(function(index, val) {
-					// Add the k-input class to each form element (or 
-					// k-button for buttons), providing Kendo UI styling 
-					// to all elements, not just those the widget will transform.
-					var el = $(val);
-
-					if (val.type === 'button' ||
-							val.type === 'submit' ||
-							val.type === 'reset') {
-						el.addClass('k-button');
-					} else {
-						el.addClass('k-input');
-					}
-				});
-			}
-
-			// Add basic support for form types defined in the typeUpgrades array
-			for (i = 0, len = typeUpgrades.length; i < len; i++) {
-				var typeObj = typeUpgrades[i];
-				upgradeFormType(typeObj.type, typeObj.upgrade);
-			}
-
-			// Add placeholder support if not provided by the browser
-			if(!kendo.forms.features.placeholder) {
-				form.find('[placeholder]').each(function(index, val) {
-					var el = $(val);
-					var placeholderText = el.attr('placeholder');
-
-					// When the field loses focus, clear out the placeholder if
-					// the input contains a value.
-					el.on('blur', function() {
-						var $el = $(this);
-						var labelNode = this.previousSibling;
-						if (this.value) {
-							labelNode.nodeValue = '';
-							$el.addClass('relPlaceholder');
-						} else if (labelNode.nodeValue !== placeholderText) {
-							labelNode.nodeValue = placeholderText;
-							$el.removeClass('relPlaceholder');
-						}
-					});
-					el.wrap('<label class="placeholder">' + placeholderText + '</label>');
-					el.addClass('placeholder');
-				});
-			}
+      that.processInputElements(element);
+      that.processProgressElements(element);
 		},
+    processInputElements: function(form) {
+      var that = this;
+      var inputs = $(form).find('input, button');
 
+      inputs.each(function(index, el) {
+        that.upgradeInputType(that, el);
+
+        if (el.getAttribute('placeholder') &&
+          !kendo.forms.features.placeholder) {
+          that.upgradePlaceholder(el);
+        }
+      });
+    },
+    processProgressElements: function(form) {
+      var that = this;
+      var progress = $(form).find('progress');
+
+      progress.each(function(index, el) {
+        if(that.options.alwaysUseWidgets || !kendo.forms.features.progress) {
+          typeUpgrades.progress(el);
+        }
+      });
+    },
+    shouldUpgradeType: function(type) {
+      var that = this;
+      var inputSupported = features[type];
+
+      // don't upgrade mobile inputs if they are supported
+      // and the user has requested they always be used
+      if (that.options.mobile && kendo.support.mobileOS && inputSupported) {
+        return false;
+      }
+      
+      return (that.options.alwaysUseWidgets ||
+             !inputSupported) &&
+             type in typeUpgrades && !vanillaInputRegEx.test(type);
+             
+    },
+    upgradeInputType: function(that, el) {
+      var type = el.getAttribute('type');
+
+      if (!type && el.nodeName === 'BUTTON') {
+        type = 'button';
+      }
+
+      if(vanillaInputRegEx.test(type) && that.options.styleInputs) {
+        typeUpgrades[type](el);
+      }
+
+      if (that.shouldUpgradeType(type)) {
+        typeUpgrades[type](el);
+      }
+
+    },
+    upgradePlaceholder: function(el) {
+      el = $(el);
+      // Strip CR and LF from attribute vales, as specified in
+      // www.w3.org/TR/html5/forms.html#the-placeholder-attribute
+      var placeholderText = el.attr('placeholder')
+        .replace(/(\\r\\n|\\n|\\r)/gm,'');
+
+      // When the field loses focus, clear out the placeholder if
+      // the input contains a value.
+      el.on('blur', function() {
+        var $el = $(this);
+        var labelNode = this.previousSibling;
+        if (this.value) {
+          labelNode.nodeValue = '';
+          $el.addClass('relPlaceholder');
+        } else if (labelNode.nodeValue !== placeholderText) {
+          labelNode.nodeValue = placeholderText;
+          $el.removeClass('relPlaceholder');
+        }
+      });
+      el.wrap('<label class="placeholder">' + placeholderText + '</label>');
+      el.addClass('placeholder');
+    },
 		options: {
 			// the name is what it will appear in the kendo namespace (kendo.ui.Form).
 			// The jQuery plugin would be jQuery.fn.kendoForm.
 			name: 'Form',
 			alwaysUseWidgets: false,
+      mobile: false,
 			styleInputs: true
 		}
 	});

@@ -1,10 +1,10 @@
 == kendo-ui-forms
 
-== About kendo-ui-forms
-
 A Full-Featured HTML5 Forms Polyfill that leverages Kendo UI Widgets and Framework Validation
 
 image::https://travis-ci.org/kendo-labs/kendo-ui-forms.png[Build Status, link="https://travis-ci.org/kendo-labs/kendo-ui-forms"]
+
+http://kendo-labs.github.io/kendo-ui-forms/[View a live sample]
 
 == Purpose & Goals
 

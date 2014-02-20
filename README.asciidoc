@@ -4,7 +4,9 @@ A Full-Featured HTML5 Forms Polyfill that leverages Kendo UI Widgets and Framewo
 
 image::https://travis-ci.org/kendo-labs/kendo-ui-forms.png[Build Status, link="https://travis-ci.org/kendo-labs/kendo-ui-forms"]
 
-http://kendo-labs.github.io/kendo-ui-forms/[View a live sample]
+== Demo
+
+Click http://kendo-labs.github.io/kendo-ui-forms/[here] to view a demo of this library in action
 
 == Purpose & Goals
 

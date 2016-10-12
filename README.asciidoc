@@ -118,7 +118,7 @@ to make sure everything is working. If you see text indicating that the jshint, 
 
 == Running the Tests
 
-Tests are written in http://pivotal.github.io/jasmine/[jasmine] and can be found in the spec/ directory. To run the tests from the command-line, call
+Tests are written in https://jasmine.github.io/[jasmine] and can be found in the spec/ directory. To run the tests from the command-line, call
 
 [source]
 ----
